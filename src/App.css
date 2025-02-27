@@ -6,6 +6,8 @@
 }
 
 /*********** Desktop Design *******************/
+/* like a Windows 95 window with a cloud background */
+
 /* desktop view */
 body {
   /* image doesn't repeat, centers the pic horizontal & vertical */
@@ -36,8 +38,13 @@ body {
     position: absolute;
     text-align: left;
     background: linear-gradient(to right, #02198e, #1178c9);
+    border: 1px solid #c0c0c0;
+    box-sizing: border-box;
   }
 
+  .navbar {
+    padding: 10px 0;
+  }
   .navbar ul {
     /* removes the browser's default 40px padding to the left of the navbar */
     padding: 0;
@@ -50,5 +57,23 @@ body {
   nav ul li {
     list-style: none;
     padding-right: 10px;
+    color: black;
+  }
+
+  nav ul li::first-letter {
+    text-decoration: underline;
+  }
+
+  .content {
+    border-top: 2px solid black; /* Top border */
+    border-left: 2px solid black; /* Left border */
+    margin-top: 10px; /* Space between header and content */
+    padding: 10px; /* Optional: Adjust padding inside content */
+    height: 100vh; /* Ensures it covers the page */
+    box-sizing: border-box;
+    position: absolute;
+    left: 1.5px;
+    top: 50px;
+    width: 100vw;
   }
 }

@@ -14,6 +14,9 @@ function App() {
             </ul>
           </nav>
         </header>
+        <div className='content'>
+          
+        </div>
     </>
   )
 }

@@ -6,7 +6,6 @@
 */
 
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -22,7 +21,8 @@
 /* desktop view */
 body {
   /* image doesn't repeat, centers the pic horizontal & vertical */
-  background: url('./assets/boop.jpg') no-repeat fixed;
+  /* center/cover centers the pic & covers the entire background */
+  background: url('./assets/boop.jpg') no-repeat center/cover;
 }
 
 .content {

@@ -4,14 +4,17 @@ function App() {
 
   return (
     <>
-      <div className="scrollable-content">
+      <div className="window">
         <header>
-          <section className='blue-bar'>Zelma Sedano</section>
+          <section className='blue-bar'>
+            <img src="/src/assets/bio.png" className='icon'></img>
+            <section className='blue-bar-text'>Zelma Sedano</section>
+            </section>
           <nav className='navbar'>
             <ul>
-              <li><a>Portfolio</a></li>
-              <li><a>About</a></li>
-              <li><a>Contact</a></li>
+              <li className='button'><a>Portfolio</a></li>
+              <li className='button'><a>About</a></li>
+              <li className='button'><a>Contact</a></li>
             </ul>
           </nav>
         </header>

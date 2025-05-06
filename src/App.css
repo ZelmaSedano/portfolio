@@ -22,7 +22,7 @@
 body {
   /* image doesn't repeat, centers the pic horizontal & vertical */
   /* center/cover centers the pic & covers the entire background */
-  background: url('./assets/boop.jpg') no-repeat center/cover;
+  background: url('./assets/boop.png') no-repeat center/cover;
 }
 
 .blue-bar {
@@ -33,10 +33,28 @@ body {
   background: linear-gradient(to right, #02198e, #1178c9);
   border: 1px solid #c0c0c0;
   box-sizing: border-box;
+  height: 40px;
+  display: flex;
+}
+.blue-bar-text {
+  /* font-family: "Handjet", sans-serif;
+  font-weight: 250; */
+  font-family: "Electrolize", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.5px;
+  font-size: 17px;
+}
+.blue-bar img {
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 15px;
+  height: 15px;
 }
 
 .navbar {
-  padding: 10px 0;
+  padding: 11px 0;
 }
 .navbar ul {
   /* removes the browser's default 40px padding to the left of the navbar */
@@ -46,7 +64,7 @@ body {
   text-decoration: none;
   position: absolute;
   background: #c3c3c3;
-  border-bottom: 2px solid black; /* Top border */
+  border-bottom: 1px solid black; /* Top border */
 }
 nav ul li {
   list-style: none;
@@ -54,15 +72,40 @@ nav ul li {
   cursor: pointer;
   border: 1px solid black;
 }
+.button {
+  background: rgb(195, 195, 195);
+  border-top: solid rgb(250, 250, 250) 1px;
+  border-left: solid rgb(250, 250, 250) 1px;
+  border-right: solid rgb(90, 90, 90) 1px;
+  border-bottom: solid rgb(90, 90, 90) 1px;
+  box-shadow: 1px 1px black;
+  align-items: center;
+  margin: 3px;
+}
 nav ul li a {
   color: black;
+  font-family: "Electrolize", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.5px;
+}
+nav ul li::first-letter {
+  text-decoration: underline;
 }
 
+.window {
+  background-color: #c3c3c3;
+  border-top: solid rgb(250, 250, 250) 2px;
+  border-left: solid rgb(250, 250, 250) 2px;
+  border-right: solid rgb(90, 90, 90) 1.5px;
+  border-bottom: solid rgb(90, 90, 90) 1.5px;
+  box-shadow: 1.5px 1.5px black;
+  outline: rgb(222, 222, 222) 1px solid;
+}
 .content {
   padding-top: 50px;
   width: 70vw;
   height: 70vh;
-  background-color: #c3c3c3;
   color: black;
 }
 
@@ -129,16 +172,12 @@ nav ul li a {
     text-decoration: none;
     left: 0;
     position: absolute;
+    width: 100%;
   }
-
   nav ul li {
     list-style: none;
     padding-right: 10px;
     color: black;
-  }
-
-  nav ul li::first-letter {
-    text-decoration: underline;
   }
 
   .content {
@@ -153,6 +192,10 @@ nav ul li a {
     justify-content: center;
     margin: 0 auto;
     width: 99vw;
+  }
+
+  .window {
+
   }
 }
 

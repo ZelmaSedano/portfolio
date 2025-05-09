@@ -6,23 +6,49 @@ function App() {
     <>
       <div className="window">
         <header>
+
           <section className='blue-bar'>
-            <img src="/src/assets/bio.png" className='icon'></img>
-            <section className='blue-bar-text'>Zelma Sedano</section>
+            <img src="/src/assets/Connections on Earth.ico" className='icon'></img>
+            <section className='blue-bar-text'>Valentia Sedano</section>
             </section>
+
+          {/* navbar buttons */}
           <nav className='navbar'>
             <ul>
-              <li className='button'><a>Portfolio</a></li>
-              <li className='button'><a>About</a></li>
-              <li className='button'><a>Contact</a></li>
+
+              <li className='button left-button'><a>
+                <img src="/src/assets/Starfield.ico" className='home-icon'></img>
+                  <p>Home</p>
+              </a></li>
+              <li className='button'><a>
+                <img src="/src/assets/painting.ico" className='paint-icon'></img>
+                <p>Portfolio</p>
+              </a></li>
+              <li className='button'><a>
+                <img src="/src/assets/resume.png" className='resume-icon'></img>
+                <p>Resume</p>
+              </a></li>
+              <li className='button'><a>
+                <img src="/src/assets/send.png" className='contact-icon'></img>
+                <p>Contact</p>
+              </a></li>
+              
             </ul>
           </nav>
-        </header>
-        <div className='content'>
-            <p className='paragraph'>Lorem ipsum odor amet, consectetuer adipiscing elit. Placerat tempor mollis quisque nullam euismod odio tincidunt et nec. Himenaeos curae mattis rhoncus mus rhoncus lobortis rutrum vulputate. Neque curae efficitur at lobortis lobortis mollis. Praesent ad efficitur eleifend pulvinar faucibus cubilia efficitur elementum. Hendrerit ipsum ultrices natoque integer lectus fames fringilla nec. Pretium condimentum felis nullam inceptos ultricies adipiscing ad nunc felis. Quam ornare nunc phasellus rutrum hac sem. Tempus semper mauris eros tincidunt ac purus.</p>
 
-            <p className='paragraph'>Cras nam primis fermentum leo neque potenti, faucibus orci consequat. Pulvinar condimentum neque aptent torquent cubilia. Nec facilisis aptent vestibulum ac; netus dis eget consectetur. Efficitur inceptos nisi orci convallis elit fusce, consectetur augue. Condimentum viverra potenti lectus sed taciti maecenas mus elit. Integer velit lacus lobortis tortor nam per laoreet. Suspendisse velit magnis libero tellus fames sapien. Per magna ultricies nunc; vulputate molestie in.</p>
+        </header>
+
+        <div className='content'>
+
+          <div className='bio-section'>
+            <img src="/src/assets/mee.jpg" className='bio-image'></img>
+
+            <p className='paragraph'>Welcome to my lil corner of the internet!  This site is my homage to vintage web design.  </p>
+          </div>
+
         </div>
+        {/* ^ content section*/}
+
       </div>
     </>
   )

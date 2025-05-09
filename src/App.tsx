@@ -8,7 +8,7 @@ function App() {
         <header>
 
           <section className='blue-bar'>
-            <img src="/src/assets/Connections on Earth.ico" className='icon'></img>
+            <img src="/src/assets/connections.ico" className='icon'></img>
             <section className='blue-bar-text'>Valentia Sedano</section>
             </section>
 
@@ -39,11 +39,11 @@ function App() {
         </header>
 
         <div className='content'>
-
+          <p className='banner'>Welcome to my lil corner of the internet!</p>
           <div className='bio-section'>
             <img src="/src/assets/mee.jpg" className='bio-image'></img>
 
-            <p className='paragraph'>Welcome to my lil corner of the internet!  This site is my homage to vintage web design.  </p>
+            <p>This site is my homage to vintage web design. </p>
           </div>
 
         </div>

@@ -7,7 +7,7 @@
 
 @import url('./fonts/fontStyles.css');
 
-#root { 
+#root {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -28,6 +28,10 @@ body {
   background: url('./assets/boop.png') no-repeat center/cover;
 }
 
+header {
+  margin: 0px 0px 40px 0px;
+}
+
 .blue-bar {
   width: 70vw;
   /* if you don't include max-content, then the navbar spreads */
@@ -40,21 +44,22 @@ body {
   display: flex;
 }
 .blue-bar-text {
-  /* font-family: "Handjet", sans-serif;
-  font-weight: 250; */
   letter-spacing: -0.5px;
-  font-size: 17px;
+  font-size: 18px;
+  margin-top: 2px;
 }
 .blue-bar img {
-  margin-left: 5px;
-  margin-top: 5px;
+  margin-left: 8px;
+  margin-top: 3px;
   margin-right: 5px;
-  width: 15px;
-  height: 15px;
+  margin-bottom: 5px;
+  width: 20px;
+  height: 20px;
 }
 
+/********** nav buttons *********/
 .navbar {
-  padding: 11px 0;
+  padding: 13px 0;
 }
 .navbar ul {
   /* removes the browser's default 40px padding to the left of the navbar */
@@ -70,9 +75,9 @@ nav ul li {
   list-style: none;
   padding-right: 10px;
   cursor: pointer;
-  border: 1px solid black;
 }
 .button {
+  display: flex;
   background: rgb(195, 195, 195);
   border-top: solid rgb(250, 250, 250) 1px;
   border-left: solid rgb(250, 250, 250) 1px;
@@ -82,16 +87,55 @@ nav ul li {
   align-items: center;
   margin: 3px;
 }
+/* shift left navbar button slightly right */
+.left-button {
+  margin-left: 5px;
+}
+.home-icon{
+  margin-left: 1px;
+  margin-top: 4px;
+  margin-right: 5px;
+  width: 22px;
+  height: 22px;
+}
+.paint-icon{
+  margin-left: 1px;
+  margin-top: 4px;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+.resume-icon{
+  margin-left: 1px;
+  margin-top: 4px;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+.contact-icon{
+  margin-left: 1px;
+  margin-top: 4px;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
 nav ul li a {
   color: black;
   font-weight: 400;
   font-style: normal;
   letter-spacing: -0.5px;
+  margin-left: 5px;
+  display: flex;
 }
 nav ul li::first-letter {
   text-decoration: underline;
 }
+nav ul li a p{
+  margin-top: 3px;
+  margin-bottom: 1px;
+}
 
+/************ entire window ***************/
 .window {
   background-color: #c3c3c3;
   border-top: solid rgb(250, 250, 250) 2px;
@@ -102,12 +146,23 @@ nav ul li::first-letter {
   outline: rgb(222, 222, 222) 1px solid;
 }
 .content {
-  padding-top: 50px;
+  background: url('./assets/purple_zone.png') no-repeat center/cover;
+  padding-top: 20px;
   width: 70vw;
   height: 70vh;
   color: black;
+  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
+  box-sizing: border-box;
+  border: 5px solid #c3c3c3; /* Add this line */
 }
 
+.bio-section{
+  display: flex;
+}
+.bio-section img{
+  height: 200px;
+  width: 200px;
+}
 .paragraph {
   width: 50vw;
   margin: 0 auto;
@@ -134,7 +189,7 @@ nav ul li::first-letter {
   outline: rgb(219, 219, 219);
 }
 
-/*********** Mobile Design *******************/
+/************** Mobile Design *******************/
 @media (max-width: 768px) {
   body {
     background: #c0c0c0;
@@ -187,14 +242,9 @@ nav ul li::first-letter {
     position: absolute;
     /* pulling all the stuff inside over to the left b/c I'm trying to make a border */
     left: 1.5px;
-    top: 50px;
+    top: 70px;
     justify-content: center;
     margin: 0 auto;
-    width: 99vw;
-  }
-
-  .window {
-
+    width: 96.5vw;
   }
 }
-

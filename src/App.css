@@ -55,6 +55,7 @@ header {
   margin-bottom: 5px;
   width: 20px;
   height: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }
 
 /********** nav buttons *********/
@@ -158,8 +159,12 @@ nav ul li a p{
 
 .bio-section{
   display: flex;
+  margin-left: 40px;
+
 }
 .bio-section img{
+  /* keeps this element from interfering with the flow of other elements */
+  /* position: absolute; */
   height: 200px;
   width: 200px;
 }

@@ -153,8 +153,10 @@ nav ul li a p{
   height: 70vh;
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
-  box-sizing: border-box;
-  border: 5px solid #c3c3c3; /* Add this line */
+  border: none;
+  box-shadow: 
+    inset 1px 1px 0px #808080,
+    0 0 0 0px #c3c3c3;
 }
 
 .bio-section{
@@ -162,11 +164,15 @@ nav ul li a p{
   margin-left: 40px;
 
 }
+/* pic */
 .bio-section img{
   /* keeps this element from interfering with the flow of other elements */
   /* position: absolute; */
   height: 200px;
   width: 200px;
+}
+.bio-p {
+  margin-left: 10px;
 }
 .paragraph {
   width: 50vw;
@@ -240,16 +246,18 @@ nav ul li a p{
   }
 
   .content {
-    margin-top: 10px; /* Space between header and content */
-    padding: 10px; /* Optional: Adjust padding inside content */
-    height: 100vh; /* Ensures it covers the page */
+    margin-top: 10px;
+    padding: 10px;
+    height: calc(100vh - 80px); /* Adjust height accounting for header */
     box-sizing: border-box;
     position: absolute;
-    /* pulling all the stuff inside over to the left b/c I'm trying to make a border */
-    left: 1.5px;
+    left: 5px; /* Changed from 1.5px to match border width */
+    right: 5px; /* Add right positioning */
     top: 70px;
-    justify-content: center;
+    width: auto; /* Changed from 99vw to auto */
     margin: 0 auto;
-    width: 96.5vw;
+    border: 5px solid #c3c3c3; /* Explicitly set border width */
+    height: 89vh;
+    background: url('./assets/purple_zone.png') no-repeat center/cover;
   }
 }

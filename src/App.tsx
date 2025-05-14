@@ -43,7 +43,7 @@ function App() {
           <div className='bio-section'>
             <img src="/src/assets/mee.jpg" className='bio-image'></img>
 
-            <p>This site is my homage to vintage web design. </p>
+            <p className='bio-p'>This site is my homage to vintage web design. </p>
           </div>
 
         </div>

@@ -148,10 +148,16 @@ nav ul li a p{
 }
 .content {
   background: url('./assets/purple_zone.png') no-repeat center/cover;
+  
+  /* positioning */
+  position: relative;
   padding-top: 20px;
   width: 70vw;
   height: 70vh;
+  
+  /* text color */
   color: black;
+
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
   border: none;
   box-shadow: 
@@ -162,7 +168,6 @@ nav ul li a p{
 .bio-section{
   display: flex;
   margin-left: 40px;
-
 }
 /* pic */
 .bio-section img{
@@ -174,12 +179,66 @@ nav ul li a p{
 .bio-p {
   margin-left: 10px;
 }
-.paragraph {
-  width: 50vw;
-  margin: 0 auto;
-  padding-top: 20px;
-  font-size: 15px;
+
+/* CONTENT FOOTER SECTION */
+.footer {
+  position: absolute;
+  /* */
+  display: flex;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 28px;
+  background: #c3c3c3;
 }
+/* each section has the same border style */
+.footer-section {
+  height: 100%;
+  position: relative;
+  background: #c3c3c3;
+
+  border: 3px solid #c3c3c3;
+  box-sizing: border-box;
+
+  /* inside border */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    border-top: 1px solid #959595;
+    border-left: 1px solid #959595;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    /* margin: 1px; */
+  }
+}
+/* how wide each section is */
+.footer-large {
+  width: 60%;
+}
+.footer-small {
+  width: 5%;
+}
+.footer-medium {
+  width: 25%;
+  /* flex property automatically aligns items to the left, so earth icon will float left */
+  display: flex;
+  align-items: center;
+}
+.content-footer-icon {
+  height: 17px;
+  width: 17px;
+  padding-left: 5px;
+}
+.footer-section-text {
+  padding-left: 5px;
+  padding-top: 2px;
+}
+
 
 /* scrollbar */
 ::-webkit-scrollbar {

@@ -1,8 +1,7 @@
 /* to-do
   - FIX content border scrolling up when user scrolls down the page
   - make desktop link button look like the ones on this website (Resume icon) 
-      - https://www.donchia.tech/
-
+    - https://www.donchia.tech/
 */
 
 @import url('./fonts/fontStyles.css');
@@ -18,7 +17,7 @@
   width: 5px; 
 }
 
-/*********** Desktop Design *******************/
+/***************** Desktop Design *******************/
 /* like a Windows 95 window with a cloud background */
 
 /* desktop view */
@@ -350,9 +349,7 @@ nav ul li a p{
     box-sizing: border-box;
   }
 
-  .navbar {
-    padding: 10px 0;
-  }
+
   .navbar ul {
     /* removes the browser's default 40px padding to the left of the navbar */
     padding: 0;
@@ -382,5 +379,15 @@ nav ul li a p{
     border: 5px solid #c3c3c3; /* Explicitly set border width */
     height: 89vh;
     background: url('./assets/purple_zone.png') no-repeat center/cover;
+  }
+
+  /* PSYCH message */
+  .message {
+    position: absolute;
+    left: -300%;
+    top: 10px;
+    transform: translate(-50%, -50%);
+    white-space: normal;
+    font-size: 25px;
   }
 }

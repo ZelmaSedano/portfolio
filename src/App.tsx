@@ -1,18 +1,71 @@
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
+  const [isRotated, setIsRotated] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState('');
 
+  const messages = [
+    "PSYCH!!",
+    "Nice try!",
+    "SPLAT",
+    "404 - you're awesome",
+    "Windows 98 forever!",
+    "try the Start menu",
+    "Error: Too much awesome"
+  ];
+
+  const handleClick = () => {
+    setIsRotated(!isRotated);
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    setCurrentMessage(randomMessage);
+    setShowMessage(true);
+  };
+
+  useEffect(() => {
+    // when something isn't working or is acting weird, console.log inside the function to test
+    console.log('test useEffect')
+    // declare a timer variable
+    let timer;
+    // if showMessage boolean is true, set timer to timeout after 5000 milliseconds
+    if (showMessage) {
+      timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [showMessage]);
+
+  
   return (
     <>
       <div className="window">
+        {/* HEADER */}
         <header>
 
           <section className='blue-bar'>
             <img src="/src/assets/connections.ico" className='icon'></img>
             <section className='blue-bar-text'>Valentia Sedano</section>
-            </section>
 
-          {/* navbar buttons */}
+
+            {/* ROTATING BUTTON */}
+            <div className="button-container">
+              {showMessage && (
+                <div className={`message ${showMessage ? 'visible' : ''}`}>
+                  {currentMessage}
+                </div>
+              )}
+              <button
+                className={`rotate-button ${isRotated ? 'rotated' : ''}`}
+                onClick={handleClick}
+              >
+                ✕
+              </button>
+            </div>
+          </section>
+
+          {/* navbar */}
           <nav className='navbar'>
             <ul>
 
@@ -63,6 +116,7 @@ function App() {
 
         </div>
         {/* end content section*/}
+
 
       </div>
     </>

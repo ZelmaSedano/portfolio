@@ -58,7 +58,71 @@ header {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }
 
-/********** nav buttons *********/
+/* X BUTTON */
+.button-container {
+  /* floats the button to the right */
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+}
+.rotate-button {
+  display: flex;
+  width: 5px;
+  height: 5px;
+  background-color: #c3c3c3;
+  
+  font-family: 'MS Sans Serif';
+  font-weight: bold;
+  font-size: 12px;
+  color: black;
+  padding: 9px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  box-shadow: 
+    1px 1px 0px #000000,
+    inset 1px 1px 0px #dfdfdf;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+.rotate-button:active {
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  box-shadow: 
+    0px 0px 0px #000000,
+    inset 1px 1px 0px #808080;
+}
+.rotate-button:hover {
+  background-color: #c3c3c3;
+}
+.rotate-button.rotated {
+  transform: rotate(360deg);
+}
+/* PSYCH! */
+.message {
+  position: fixed;
+  left: calc(70vw + 20px);
+  top: 15px;
+  color: #6cc314;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+  font-weight: bold;
+  white-space: nowrap;
+  font-family: 'single day';
+  font-size: 30px;
+}
+
+/********** NAVBAR *********/
 .navbar {
   padding: 13px 0;
 }
@@ -235,10 +299,10 @@ nav ul li a p{
   padding-left: 5px;
 }
 .footer-section-text {
-  padding-left: 5px;
+  padding-left: 7px;
   padding-top: 2px;
+  font-size: 15px;
 }
-
 
 /* scrollbar */
 ::-webkit-scrollbar {

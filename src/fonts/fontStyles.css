@@ -2,3 +2,8 @@
     font-family: "MS Sans Serif";
     src: url("./MSW98UI-Regular.ttf");
 }
+
+@font-face {
+    font-family: "single day";
+    src: url("./SingleDay-Regular.ttf");
+}

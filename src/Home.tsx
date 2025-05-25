@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './App.css'
 
@@ -6,18 +6,26 @@ function Home() {
     const [isRotated, setIsRotated] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [currentMessage, setCurrentMessage] = useState('');
+    // move window around
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+    const windowRef = useRef(null);
+    // decides if something is visible on the page or not
+    const [isVisible, setIsVisible] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const messages = [
         "PSYCH!!"
     ];
 
+    // button/PSYCH message
     const handleClick = () => {
         setIsRotated(!isRotated);
         const randomMessage = messages[Math.floor(Math.random() * messages.length)];
         setCurrentMessage(randomMessage);
         setShowMessage(true);
     };
-
     useEffect(() => {
         // when something isn't working or is acting weird, console.log inside the function to test
         console.log('test useEffect')
@@ -27,15 +35,104 @@ function Home() {
         if (showMessage) {
         timer = setTimeout(() => {
             setShowMessage(false);
-        }, 3000);
+        }, 1500);
         }
         return () => clearTimeout(timer);
     }, [showMessage]);
 
+    // drag window
+    // Check for mobile view on mount and resize
+    useEffect(() => {
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkIfMobile(); // Initial check
+        window.addEventListener('resize', checkIfMobile);
+        return () => window.removeEventListener('resize', checkIfMobile);
+    }, []);
+    
+    // puts the window in the middle of viewport
+    useEffect(() => {
+        if (!isMobile && windowRef.current) {
+            const windowWidth = windowRef.current.offsetWidth;
+            const windowHeight = windowRef.current.offsetHeight;
+            
+            const centerX = (window.innerWidth - windowWidth) / 2;
+            const centerY = (window.innerHeight - windowHeight) / 2;
+            
+            setPosition({
+                x: centerX,
+                y: centerY
+            });
+            setIsVisible(true);
+        }
+    }, [isMobile]); // re-run when mobile state changes
+
+    // handle when the user clicks blue-bar
+    const handleMouseDown = (e) => {
+        if (!isMobile && e.target.closest('.blue-bar') && !e.target.closest('.rotate-button')) {
+            setIsDragging(true);
+            const rect = windowRef.current.getBoundingClientRect();
+            setDragOffset({
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            });
+        }
+    };
+    // handle the movement of the mouse
+    // blocks the user from pulling window outside of viewport 
+    const handleMouseMove = (e) => {
+    if (isDragging && windowRef.current) {
+        const windowWidth = windowRef.current.offsetWidth;
+        const windowHeight = windowRef.current.offsetHeight;
+        
+        // Calculate new position with boundaries
+        let newX = e.clientX - dragOffset.x;
+        let newY = e.clientY - dragOffset.y;
+        
+        // Constrain to viewport boundaries
+        newX = Math.max(0, Math.min(newX, window.innerWidth - windowWidth));
+        newY = Math.max(0, Math.min(newY, window.innerHeight - windowHeight));
+        
+        setPosition({
+            x: newX,
+            y: newY
+        });
+    }
+};
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+    useEffect(() => {
+        if (isDragging) {
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+        } else {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isDragging, dragOffset]);
+
     
     return (
         <>
-        <div className="window">
+        <div className={`window ${isVisible ? 'visible' : ''}`}
+            ref={windowRef}
+                style={!isMobile ? {
+                    position: 'absolute',
+                    left: `${position.x}px`,
+                    top: `${position.y}px`,
+                    cursor: isDragging ? 'grabbing' : 'default'
+                } : undefined }
+                onMouseDown={isMobile ? undefined : handleMouseDown}
+        >
+
             {/* HEADER */}
             <header>
 

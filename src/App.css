@@ -243,12 +243,17 @@ nav ul li a p{
 .url-bar-small-1 {
   width: 10%;
   color: black;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
 }
 
 .url-bar-large {
   background-color: white;
   width: 80%;
-  position: flex;
+  display: flex;
+  position: relative;
   border: 1px solid #000;
 
   &::before {
@@ -272,10 +277,37 @@ nav ul li a p{
   padding-left: 5px;
 }
 
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.url-dropdown-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 26px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: #c0c0c0;
+  font-size: 12px;
+  color: black;
+  /* MS 98 styling */
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+}
+
 .url-bar-small-2 {
   width: 10%;
   color: black;
-
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
 }
 
 

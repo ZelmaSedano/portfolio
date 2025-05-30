@@ -190,15 +190,20 @@ function Home() {
             {/* URL BAR*/}
             <div className='url-container'>
 
-                    <div className = 'url-bar'>
-                        <div className = 'url-bar-small-1'>Address</div>
-                        <div className = 'url-bar-large'>
+                <div className = 'url-bar'>
+                    <div className = 'url-bar-small-1'>Address</div>
+
+                    <div className = 'url-bar-large'>
+                        {/* you need this to ensure the button doesn't leave the url-bar when position:absolute is applied */}
+                        <div className='dropdown-container'>
                             <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
-                            <div className='lil-caret'></div>
                         </div>
-                        <div className = 'url-bar-small-2'>Links</div>
+                        <button className='url-dropdown-button'>▼</button>
                     </div>
+                    <div className = 'url-bar-small-2'>Links</div>
+
                 </div>
+            </div>
 
             <div className='content'>
 

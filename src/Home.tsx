@@ -135,11 +135,9 @@ function Home() {
 
             {/* HEADER */}
             <header>
-
             <section className='blue-bar'>
                 <img src="/src/assets/connections.ico" className='icon'></img>
                 <section className='blue-bar-text'>Valentia Sedano</section>
-
 
                 {/* ROTATING BUTTON */}
                 <div className="button-container">
@@ -160,79 +158,87 @@ function Home() {
             {/* NAVBAR */}
             <nav className='navbar'>
                 <ul>
-
-                <li className='button left-button'>
-                    <Link to="/">
-                        <img src="/src/assets/Starfield.ico" className='home-icon'></img>
-                        <p>Home</p>
-                    </Link>
-                </li>
-                <li className='button'>
-                    <Link to="/portfolio">
-                        <img src="/src/assets/painting.ico" className='paint-icon'></img>
-                        <p>Portfolio</p>
-                    </Link>
-                </li>
-                <li className='button'><a>
-                    <img src="/src/assets/resume.png" className='resume-icon'></img>
-                    <p>Resume</p>
-                </a></li>
-                <li className='button'><a>
-                    <img src="/src/assets/send.png" className='contact-icon'></img>
-                    <p>Contact</p>
-                </a></li>
-                
+                    <li className='button left-button'>
+                        <Link to="/">
+                            <img src="/src/assets/Starfield.ico" className='home-icon'></img>
+                            <p>Home</p>
+                        </Link>
+                    </li>
+                    <li className='button'>
+                        <Link to="/portfolio">
+                            <img src="/src/assets/painting.ico" className='paint-icon'></img>
+                            <p>Portfolio</p>
+                        </Link>
+                    </li>
+                    <li className='button'><a>
+                        <img src="/src/assets/resume.png" className='resume-icon'></img>
+                        <p>Resume</p>
+                    </a></li>
+                    <li className='button'><a>
+                        <img src="/src/assets/send.png" className='contact-icon'></img>
+                        <p>Contact</p>
+                    </a></li>   
                 </ul>
             </nav>
 
             </header>
             
-            {/* URL BAR*/}
-            <div className='url-container'>
-
-                <div className = 'url-bar'>
-                    <div className = 'url-bar-small-1'>Address</div>
-
-                    <div className = 'url-bar-large'>
-                        {/* you need this to ensure the button doesn't leave the url-bar when position:absolute is applied */}
-                        <div className='dropdown-container'>
-                            <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
+                {/* URL BAR*/}
+                <div className='url-container'>
+                    <div className = 'url-bar'>
+                        <div className = 'url-bar-small-1'>Address</div>
+                        <div className = 'url-bar-large'>
+                            {/* you need this to ensure the button doesn't leave the url-bar when position:absolute is applied */}
+                            <div className='dropdown-container'>
+                                <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
+                            </div>
+                            <button className='url-dropdown-button'>▼</button>
                         </div>
-                        <button className='url-dropdown-button'>▼</button>
+                        <div className = 'url-bar-small-2'>Links</div>
                     </div>
-                    <div className = 'url-bar-small-2'>Links</div>
+                </div>
+            
+                {/* CONTENT */}
+                <div className='content'>
+                <p className='banner'>Welcome to my lil corner of the internet!</p>
+
+                {/* BIO SECTION */}
+                <div className='bio-section'>
+                    <img src="/src/assets/mee.jpg" className='bio-image'></img>
+
+                    <p className='bio-p'>This site is my homage to vintage web design. </p>
+                </div>
+
+                {/* CONTENT FOOTER */}
+                {/* use the footer section for the border styling */}
+                <div className="footer">
+                    <div className='footer-section footer-large'></div>
+                    <div className = 'footer-section footer-small'></div>
+                    <div className = 'footer-section footer-small'></div>
+                    <div className = 'footer-section footer-small'></div>
+                    <div className='footer-section footer-medium'>
+                    <img src="/src/assets/earth.ico" className='content-footer-icon'></img>
+                    <p className='footer-section-text'>Internet</p>
+                    </div>
+                </div>
 
                 </div>
+                {/* end content section*/}
             </div>
-
-            <div className='content'>
-
-            <p className='banner'>Welcome to my lil corner of the internet!</p>
-
-            {/* BIO SECTION */}
-            <div className='bio-section'>
-                <img src="/src/assets/mee.jpg" className='bio-image'></img>
-
-                <p className='bio-p'>This site is my homage to vintage web design. </p>
-            </div>
-
-            {/* CONTENT FOOTER */}
-            {/* use the footer section for the border styling */}
-            <div className="footer">
-                <div className='footer-section footer-large'></div>
-                <div className = 'footer-section footer-small'></div>
-                <div className = 'footer-section footer-small'></div>
-                <div className = 'footer-section footer-small'></div>
-                <div className='footer-section footer-medium'>
-                <img src="/src/assets/earth.ico" className='content-footer-icon'></img>
-                <p className='footer-section-text'>Internet</p>
+        {/* end of window */}
+        
+        {/* Windows 98 Taskbar */}
+        <div className="taskbar">
+            <button className="start-button">
+                <img src="/src/assets/flag.png" className="start-icon"></img>
+                <span className="start-text">Start</span>
+            </button>
+            <div className="taskbar-items">
+                <div className="taskbar-item">test</div>
+                <div className="clock">
+                {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                 </div>
             </div>
-
-            </div>
-            {/* end content section*/}
-
-
         </div>
         </>
     )

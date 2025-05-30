@@ -6,19 +6,33 @@
 
 @import url('./fonts/fontStyles.css');
 
-#root {
+/* #root {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
   font-family: 'MS Sans Serif';
+} */
+
+html, body {
+  font-family: 'MS Sans Serif';
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
 }
 
 ::-webkit-scrollbar {
   width: 5px; 
 }
 
-/***************** Desktop Design *******************/
-/* like a Windows 95 window with a cloud background */
+/************ Desktop Design ***********/
 
 .window {
   user-select: none;
@@ -30,6 +44,7 @@ body {
   /* center/cover centers the pic & covers the entire background */
   background: url('./assets/boop.png') no-repeat center/cover;
 }
+
 
 header {
   margin: 0px 0px 40px 0px;
@@ -233,13 +248,14 @@ nav ul li a p{
     0 0 0 0px #c3c3c3;
 }
 
+
+
 .url-bar {
   width: 100%;
   /* makes all the sections float inline */
   display: flex;
   height: 26px;
 }
-
 .url-bar-small-1 {
   width: 10%;
   color: black;
@@ -248,7 +264,6 @@ nav ul li a p{
   border-right: 1px solid #808080;
   border-bottom: 1px solid #808080;
 }
-
 .url-bar-large {
   background-color: white;
   width: 80%;
@@ -276,12 +291,10 @@ nav ul li a p{
   padding: 1px;
   padding-left: 5px;
 }
-
 .dropdown-container {
   position: relative;
   display: inline-block;
 }
-
 .url-dropdown-button {
   position: absolute;
   right: 0;
@@ -300,7 +313,6 @@ nav ul li a p{
   border-right: 1px solid #808080;
   border-bottom: 1px solid #808080;
 }
-
 .url-bar-small-2 {
   width: 10%;
   color: black;
@@ -309,8 +321,6 @@ nav ul li a p{
   border-right: 1px solid #808080;
   border-bottom: 1px solid #808080;
 }
-
-
 
 
 
@@ -389,6 +399,102 @@ nav ul li a p{
   font-size: 15px;
 }
 
+
+
+/* START MENU */
+.taskbar {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: #c3c3c3;
+  /* centers horizontally, too */
+  align-items: center;
+
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  font-family: 'MS Sans Serif', sans-ser
+}
+.start-button {
+  color: black;
+  font-size: 18px;
+  height: 100%;
+  display: flex;
+  /* aligns horizontally */
+  align-items: center;
+  padding: 0 10px;
+  border: none;
+  background-color: #c3c3c3;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  box-shadow: 
+    inset -1px -1px 0 #000,
+    inset 1px 1px 0 #dfdfdf;
+}
+.start-button:active {
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  box-shadow: 
+    inset -1px -1px 0 #dfdfdf,
+    inset 1px 1px 0 #000;
+}
+.start-icon {
+  width: 25px;
+  margin-right: 5px;
+}
+.taskbar-items {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  align-items: center;
+  padding-left: 5px;
+}
+.taskbar-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 8px;
+  background: #c0c0c0;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  margin-left: 5px;
+  box-shadow: 
+    inset -1px -1px 0 #000,
+    inset 1px 1px 0 #dfdfdf;
+}
+.clock {
+  margin-left: auto;
+  padding: 0 8px;
+  height: 100%;
+  display: flex;
+  color: black;
+  align-items: center;
+  background: #c0c0c0;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+  box-shadow: 
+    inset -1px -1px 0 #000,
+    inset 1px 1px 0 #dfdfdf;
+}
+
+
+
+
+
 /* scrollbar */
 ::-webkit-scrollbar {
   width: 15px;
@@ -408,7 +514,7 @@ nav ul li a p{
   outline: rgb(219, 219, 219);
 }
 
-/************** Mobile Design *******************/
+/************ Mobile Design ***************/
 @media (max-width: 768px) {
   body {
     background: #c0c0c0;

@@ -157,7 +157,7 @@ function Home() {
                 </div>
             </section>
 
-            {/* navbar */}
+            {/* NAVBAR */}
             <nav className='navbar'>
                 <ul>
 
@@ -186,8 +186,22 @@ function Home() {
             </nav>
 
             </header>
+            
+            {/* URL BAR*/}
+            <div className='url-container'>
+
+                    <div className = 'url-bar'>
+                        <div className = 'url-bar-small-1'>Address</div>
+                        <div className = 'url-bar-large'>
+                            <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
+                            <div className='lil-caret'></div>
+                        </div>
+                        <div className = 'url-bar-small-2'>Links</div>
+                    </div>
+                </div>
 
             <div className='content'>
+
             <p className='banner'>Welcome to my lil corner of the internet!</p>
 
             {/* BIO SECTION */}

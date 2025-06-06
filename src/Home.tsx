@@ -5,27 +5,22 @@ import './App.css'
 function Home() {
     const [isRotated, setIsRotated] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
-    const [currentMessage, setCurrentMessage] = useState('');
     // move window around
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
     const windowRef = useRef(null);
     // decides if something is visible on the page or not
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const [isMobile, setIsMobile] = useState(false);
 
-    const messages = [
-        "PSYCH!!"
-    ];
 
     // button/PSYCH message
     const handleClick = () => {
-        setIsRotated(!isRotated);
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        setCurrentMessage(randomMessage);
-        setShowMessage(true);
+        setIsVisible(false);
+        console.log('working')
     };
+
     useEffect(() => {
         // when something isn't working or is acting weird, console.log inside the function to test
         console.log('test useEffect')
@@ -229,7 +224,7 @@ function Home() {
         
         {/* Windows 98 Taskbar */}
         <div className="taskbar">
-            <button className="start-button">
+            <button className="start-button" onClick={() => setIsVisible(true)}>
                 <img src="/src/assets/flag.png" className="start-icon"></img>
                 <span className="start-text">Start</span>
             </button>

@@ -7,7 +7,7 @@ import Portfolio from './Portfolio'
 
 function App() {
   return (
-    <div className="window">
+    <div className="outside-window">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/portfolio" element={<Portfolio />} />

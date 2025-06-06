@@ -38,6 +38,13 @@ html, body {
   user-select: none;
   z-index: 100;
 }
+.window {
+  display: none;
+}
+.window.visible {
+  display: block;
+}
+
 /* desktop view */
 body {
   /* image doesn't repeat, centers the pic horizontal & vertical */

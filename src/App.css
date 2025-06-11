@@ -521,7 +521,7 @@ nav ul li a p{
   outline: rgb(219, 219, 219);
 }
 
-/************ Mobile Design ***************/
+/******** Mobile Design *********/
 @media (max-width: 768px) {
   body {
     background: #c0c0c0;
@@ -580,24 +580,36 @@ nav ul li a p{
     padding: 10px;
     height: calc(100vh - 80px); /* Adjust height accounting for header */
     box-sizing: border-box;
-    position: absolute;
+    position: relative;
     left: 5px; /* Changed from 1.5px to match border width */
     right: 5px; /* Add right positioning */
-    top: 70px;
+    top: 100px;
     width: auto; /* Changed from 99vw to auto */
     margin: 0 auto;
     border: 5px solid #c3c3c3; /* Explicitly set border width */
     height: 89vh;
     background: url('./assets/purple_zone.png') no-repeat center/cover;
+    top: auto;
+    left: auto;
+    right: auto;
+    height: calc(100vh - 130px); /* Account for header + taskbar */
+    padding-bottom: 30px; /* Space for footer */
+    overflow-y: auto;
   }
 
-  /* PSYCH message */
-  .message {
-    position: absolute;
-    left: -300%;
-    top: 10px;
-    transform: translate(-50%, -50%);
-    white-space: normal;
-    font-size: 25px;
+  .url-container {
+    position: relative;
+    margin-top: 70px;
+    height: 80%;
   }
+
+  .footer {
+    position: fixed; /* Change from absolute */
+    bottom: 30px; /* Taskbar height */
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+
 }

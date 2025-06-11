@@ -21,31 +21,31 @@ function Home() {
         console.log('working')
     };
 
-    useEffect(() => {
-        // when something isn't working or is acting weird, console.log inside the function to test
-        console.log('test useEffect')
-        // declare a timer variable
-        let timer;
-        // if showMessage boolean is true, set timer to timeout after 5000 milliseconds
-        if (showMessage) {
-        timer = setTimeout(() => {
-            setShowMessage(false);
-        }, 1500);
-        }
-        return () => clearTimeout(timer);
-    }, [showMessage]);
+    // useEffect(() => {
+    //     // when something isn't working or is acting weird, console.log inside the function to test
+    //     console.log('test useEffect')
+    //     // declare a timer variable
+    //     let timer;
+    //     // if showMessage boolean is true, set timer to timeout after 5000 milliseconds
+    //     if (showMessage) {
+    //     timer = setTimeout(() => {
+    //         setShowMessage(false);
+    //     }, 1500);
+    //     }
+    //     return () => clearTimeout(timer);
+    // }, [showMessage]);
 
     // drag window
     // Check for mobile view on mount and resize
-    useEffect(() => {
-        const checkIfMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
+    // useEffect(() => {
+    //     const checkIfMobile = () => {
+    //         setIsMobile(window.innerWidth <= 768);
+    //     };
 
-        checkIfMobile(); // Initial check
-        window.addEventListener('resize', checkIfMobile);
-        return () => window.removeEventListener('resize', checkIfMobile);
-    }, []);
+    //     checkIfMobile(); // Initial check
+    //     window.addEventListener('resize', checkIfMobile);
+    //     return () => window.removeEventListener('resize', checkIfMobile);
+    // }, []);
     
     // puts the window in the middle of viewport
     useEffect(() => {
@@ -136,13 +136,8 @@ function Home() {
 
                 {/* ROTATING BUTTON */}
                 <div className="button-container">
-                {showMessage && (
-                    <div className={`message ${showMessage ? 'visible' : ''}`}>
-                    {currentMessage}
-                    </div>
-                )}
                 <button
-                    className={`rotate-button ${isRotated ? 'rotated' : ''}`}
+                    className={`x-button ${isRotated ? 'rotated' : ''}`}
                     onClick={handleClick}
                 >
                     ✕

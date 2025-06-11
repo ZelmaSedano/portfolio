@@ -136,10 +136,7 @@ function Home() {
 
                 {/* ROTATING BUTTON */}
                 <div className="button-container">
-                <button
-                    className={`x-button ${isRotated ? 'rotated' : ''}`}
-                    onClick={handleClick}
-                >
+                <button className= 'x-button' onClick={handleClick}>
                     ✕
                 </button>
                 </div>

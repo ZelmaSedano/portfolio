@@ -5,67 +5,28 @@ import './App.css'
 function Portfolio() {
     // move window around
     const [position, setPosition] = useState(() => {
-    if (typeof window !== 'undefined') {
-        const savedPosition = sessionStorage.getItem('windowPosition');
-        if (savedPosition) {
-            return JSON.parse(savedPosition);
-        }
-    }
-    return { x: 0, y: 0 }; // Default if no saved position
+        const saved = sessionStorage.getItem('windowPosition');
+        return saved ? JSON.parse(saved) : { 
+            x: Math.max(0, (window.innerWidth - 800) / 2),
+            y: Math.max(0, (window.innerHeight - 600) / 2)
+        };
     });
+    // decides if something is visible on the page or not
+    const [isVisible, setIsVisible] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
     const windowRef = useRef(null);
-    // decides if something is visible on the page or not
-    const [isVisible, setIsVisible] = useState(true);
+
     const [isMobile, setIsMobile] = useState(false);
 
-    // ==================== NEW CODE START ====================
-    // 1. Load saved position from sessionStorage on initial render
+    // 2. Save state to sessionStorage
     useEffect(() => {
-        const savedPosition = sessionStorage.getItem('windowPosition');
-        if (savedPosition && !isMobile) {
-            setPosition(JSON.parse(savedPosition));
-        }
-    }, [isMobile]);
+        sessionStorage.setItem('windowPosition', JSON.stringify(position));
+    }, [position]);
 
-    // 2. Save position to sessionStorage whenever it changes
-    useEffect(() => {
-        if (!isMobile) {
-            sessionStorage.setItem('windowPosition', JSON.stringify(position));
-        }
-    }, [position, isMobile]);
-    // ==================== NEW CODE END ====================
 
-    // button/PSYCH message
-    const handleClick = () => {
-        setIsVisible(false);
-        console.log('working')
-    };
-    
-    // puts the window in the middle of viewport
-    useEffect(() => {
-        if (!isMobile && windowRef.current) {
-            const windowWidth = windowRef.current.offsetWidth;
-            const windowHeight = windowRef.current.offsetHeight;
-            
-            // ==================== MODIFIED CODE START ====================
-            // Only center if position is at origin (0,0)
-            if (position.x === 0 && position.y === 0) {
-                const centerX = (window.innerWidth - windowWidth) / 2;
-                const centerY = (window.innerHeight - windowHeight) / 2;
-                
-                setPosition({
-                    x: centerX,
-                    y: centerY
-                });
-            }
-            // ==================== MODIFIED CODE END ====================
-            setIsVisible(true);
-        }
-    }, [isMobile, position]); // Added position to dependencies
 
-    // handle when the user clicks blue-bar
+    // 3. Mouse event handlers
     const handleMouseDown = (e) => {
         if (!isMobile && e.target.closest('.blue-bar') && !e.target.closest('.rotate-button')) {
             setIsDragging(true);
@@ -77,23 +38,15 @@ function Portfolio() {
         }
     };
 
-    // handle the movement of the mouse
     const handleMouseMove = (e) => {
         if (isDragging && windowRef.current) {
-            const windowWidth = windowRef.current.offsetWidth;
-            const windowHeight = windowRef.current.offsetHeight;
-            
-            // Calculate new position with boundaries
-            let newX = e.clientX - dragOffset.x;
-            let newY = e.clientY - dragOffset.y;
-            
-            // Constrain to viewport boundaries
-            newX = Math.max(0, Math.min(newX, window.innerWidth - windowWidth));
-            newY = Math.max(0, Math.min(newY, window.innerHeight - windowHeight));
+            const newX = e.clientX - dragOffset.x;
+            const newY = e.clientY - dragOffset.y;
+            const { offsetWidth, offsetHeight } = windowRef.current;
             
             setPosition({
-                x: newX,
-                y: newY
+                x: Math.max(0, Math.min(newX, window.innerWidth - offsetWidth)),
+                y: Math.max(0, Math.min(newY, window.innerHeight - offsetHeight))
             });
         }
     };
@@ -102,24 +55,21 @@ function Portfolio() {
         setIsDragging(false);
     };
 
+    // 4. Event listeners
     useEffect(() => {
-        if (isDragging) {
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
-        } else {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
-        }
-
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
         };
     }, [isDragging, dragOffset]);
 
+    const toggleWindow = () => setIsVisible(!isVisible);
+
     return (
         <>
-        <div className={`window ${isVisible ? 'visible' : ''}`}
+        <div className={`window ${isVisible ? 'hidden' : ''}`}
             ref={windowRef}
                 style={!isMobile ? {
                     position: 'absolute',
@@ -137,7 +87,7 @@ function Portfolio() {
 
                     {/* ROTATING BUTTON */}
                     <div className="button-container">
-                        <button className= 'x-button' onClick={handleClick}>
+                        <button className= 'x-button' onClick={toggleWindow}>
                             ✕
                         </button>
                     </div>
@@ -210,7 +160,7 @@ function Portfolio() {
         
         {/* Windows 98 Taskbar */}
         <div className="taskbar">
-            <button className="start-button" onClick={() => setIsVisible(true)}>
+            <button className="start-button" onClick={toggleWindow}>
                 <img src="/src/assets/flag.png" className="start-icon"></img>
                 <span className="start-text">Start</span>
             </button>

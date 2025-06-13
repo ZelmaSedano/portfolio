@@ -76,7 +76,7 @@ function Home() {
                     }}
                     onMouseDown={handleMouseDown}
                 >
-                    {/* Window Header */}
+                    {/* HEADER */}
                     <header>
                         <section className='blue-bar'>
                             <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
@@ -111,10 +111,10 @@ function Home() {
                                     <img src="/src/assets/send.png" className='contact-icon'></img>
                                     <p>Contact</p>
                                 </a></li>   
-                                {/* Other nav items */}
                             </ul>
                         </nav>
                     </header>
+
                     {/* URL BAR*/}
                     <div className='url-container'>
                         <div className = 'url-bar'>
@@ -128,6 +128,8 @@ function Home() {
                             <div className = 'url-bar-small-2'>Links</div>
                         </div>
                     </div>
+
+
                     {/* Window Content */}
                     <div className='content'>
                         <p className='banner'>Welcome to my lil corner of the internet!</p>
@@ -135,7 +137,8 @@ function Home() {
                             <img src="/src/assets/mee.jpg" className='bio-image' alt="bio"/>
                             <p className='bio-p'>This site is my homage to vintage web design.</p>
                         </div>
-                        {/* Footer */}
+
+
                         {/* CONTENT FOOTER */}
                         <div className="footer">
                             <div className='footer-section footer-large'></div>

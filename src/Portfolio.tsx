@@ -2,9 +2,17 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './App.css'
 
-function Home() {
+function Portfolio() {
     // move window around
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [position, setPosition] = useState(() => {
+    if (typeof window !== 'undefined') {
+        const savedPosition = sessionStorage.getItem('windowPosition');
+        if (savedPosition) {
+            return JSON.parse(savedPosition);
+        }
+    }
+    return { x: 0, y: 0 }; // Default if no saved position
+    });
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
     const windowRef = useRef(null);
@@ -12,6 +20,22 @@ function Home() {
     const [isVisible, setIsVisible] = useState(true);
     const [isMobile, setIsMobile] = useState(false);
 
+    // ==================== NEW CODE START ====================
+    // 1. Load saved position from sessionStorage on initial render
+    useEffect(() => {
+        const savedPosition = sessionStorage.getItem('windowPosition');
+        if (savedPosition && !isMobile) {
+            setPosition(JSON.parse(savedPosition));
+        }
+    }, [isMobile]);
+
+    // 2. Save position to sessionStorage whenever it changes
+    useEffect(() => {
+        if (!isMobile) {
+            sessionStorage.setItem('windowPosition', JSON.stringify(position));
+        }
+    }, [position, isMobile]);
+    // ==================== NEW CODE END ====================
 
     // button/PSYCH message
     const handleClick = () => {
@@ -25,16 +49,21 @@ function Home() {
             const windowWidth = windowRef.current.offsetWidth;
             const windowHeight = windowRef.current.offsetHeight;
             
-            const centerX = (window.innerWidth - windowWidth) / 2;
-            const centerY = (window.innerHeight - windowHeight) / 2;
-            
-            setPosition({
-                x: centerX,
-                y: centerY
-            });
+            // ==================== MODIFIED CODE START ====================
+            // Only center if position is at origin (0,0)
+            if (position.x === 0 && position.y === 0) {
+                const centerX = (window.innerWidth - windowWidth) / 2;
+                const centerY = (window.innerHeight - windowHeight) / 2;
+                
+                setPosition({
+                    x: centerX,
+                    y: centerY
+                });
+            }
+            // ==================== MODIFIED CODE END ====================
             setIsVisible(true);
         }
-    }, [isMobile]); // re-run when mobile state changes
+    }, [isMobile, position]); // Added position to dependencies
 
     // handle when the user clicks blue-bar
     const handleMouseDown = (e) => {
@@ -47,30 +76,32 @@ function Home() {
             });
         }
     };
+
     // handle the movement of the mouse
-    // blocks the user from pulling window outside of viewport 
     const handleMouseMove = (e) => {
-    if (isDragging && windowRef.current) {
-        const windowWidth = windowRef.current.offsetWidth;
-        const windowHeight = windowRef.current.offsetHeight;
-        
-        // Calculate new position with boundaries
-        let newX = e.clientX - dragOffset.x;
-        let newY = e.clientY - dragOffset.y;
-        
-        // Constrain to viewport boundaries
-        newX = Math.max(0, Math.min(newX, window.innerWidth - windowWidth));
-        newY = Math.max(0, Math.min(newY, window.innerHeight - windowHeight));
-        
-        setPosition({
-            x: newX,
-            y: newY
-        });
-    }
-};
+        if (isDragging && windowRef.current) {
+            const windowWidth = windowRef.current.offsetWidth;
+            const windowHeight = windowRef.current.offsetHeight;
+            
+            // Calculate new position with boundaries
+            let newX = e.clientX - dragOffset.x;
+            let newY = e.clientY - dragOffset.y;
+            
+            // Constrain to viewport boundaries
+            newX = Math.max(0, Math.min(newX, window.innerWidth - windowWidth));
+            newY = Math.max(0, Math.min(newY, window.innerHeight - windowHeight));
+            
+            setPosition({
+                x: newX,
+                y: newY
+            });
+        }
+    };
+
     const handleMouseUp = () => {
         setIsDragging(false);
     };
+
     useEffect(() => {
         if (isDragging) {
             document.addEventListener('mousemove', handleMouseMove);
@@ -86,7 +117,6 @@ function Home() {
         };
     }, [isDragging, dragOffset]);
 
-    
     return (
         <>
         <div className={`window ${isVisible ? 'visible' : ''}`}
@@ -99,7 +129,6 @@ function Home() {
                 } : undefined }
                 onMouseDown={isMobile ? undefined : handleMouseDown}
         >
-
             {/* HEADER */}
             <header>
                 <section className='blue-bar'>
@@ -139,52 +168,45 @@ function Home() {
                         </a></li>   
                     </ul>
                 </nav>
-
             </header>
             
-                {/* URL BAR*/}
-                <div className='url-container'>
-                    <div className = 'url-bar'>
-                        <div className = 'url-bar-small-1'>Address</div>
-                        <div className = 'url-bar-large'>
-                            {/* you need this to ensure the button doesn't leave the url-bar when position:absolute is applied */}
-                            <div className='dropdown-container'>
-                                <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
-                            </div>
-                            <button className='url-dropdown-button'>▼</button>
+            {/* URL BAR*/}
+            <div className='url-container'>
+                <div className = 'url-bar'>
+                    <div className = 'url-bar-small-1'>Address</div>
+                    <div className = 'url-bar-large'>
+                        <div className='dropdown-container'>
+                            <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
                         </div>
-                        <div className = 'url-bar-small-2'>Links</div>
+                        <button className='url-dropdown-button'>▼</button>
                     </div>
+                    <div className = 'url-bar-small-2'>Links</div>
                 </div>
+            </div>
             
-                {/* CONTENT */}
-                <div className='content'>
-                <p className='banner'>Welcome to my lil corner of the internet!</p>
+            {/* CONTENT */}
+            <div className='content'>
+                <p className='banner'>Welcome to my Portfolio!</p>
 
-                {/* BIO SECTION */}
-                <div className='bio-section'>
-                    <img src="/src/assets/mee.jpg" className='bio-image'></img>
-
-                    <p className='bio-p'>This site is my homage to vintage web design. </p>
+                {/* PORTFOLIO CONTENT WOULD GO HERE */}
+                <div className='portfolio-items'>
+                    {/* Your portfolio items would be rendered here */}
+                    <p>Portfolio items coming soon!</p>
                 </div>
 
                 {/* CONTENT FOOTER */}
-                {/* use the footer section for the border styling */}
                 <div className="footer">
                     <div className='footer-section footer-large'></div>
                     <div className = 'footer-section footer-small'></div>
                     <div className = 'footer-section footer-small'></div>
                     <div className = 'footer-section footer-small'></div>
                     <div className='footer-section footer-medium'>
-                    <img src="/src/assets/earth.ico" className='content-footer-icon'></img>
-                    <p className='footer-section-text'>Internet</p>
+                        <img src="/src/assets/earth.ico" className='content-footer-icon'></img>
+                        <p className='footer-section-text'>Internet</p>
                     </div>
                 </div>
-
-                </div>
-                {/* end content section*/}
             </div>
-        {/* end of window */}
+        </div>
         
         {/* Windows 98 Taskbar */}
         <div className="taskbar">
@@ -195,7 +217,7 @@ function Home() {
             <div className="taskbar-items">
                 <div className="taskbar-item">test</div>
                 <div className="clock">
-                {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                    {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                 </div>
             </div>
         </div>
@@ -203,4 +225,4 @@ function Home() {
     )
 }
 
-export default Home
+export default Portfolio

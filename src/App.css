@@ -265,6 +265,7 @@ nav ul li a p{
   height: 26px;
 }
 .url-bar-small-1 {
+  text-align: center;
   width: 10%;
   color: black;
   border-top: 1px solid #ffffff;
@@ -322,6 +323,7 @@ nav ul li a p{
   border-bottom: 1px solid #808080;
 }
 .url-bar-small-2 {
+  text-align: center;
   width: 10%;
   color: black;
   border-top: 1px solid #ffffff;

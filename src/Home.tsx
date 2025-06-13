@@ -66,7 +66,7 @@ function Home() {
         <>
             {isVisible && (
                 <div 
-                    className="window"
+                    className={`window ${isVisible ? 'visible' : ''}`}
                     ref={windowRef}
                     style={{
                         position: 'absolute',
@@ -86,7 +86,9 @@ function Home() {
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
                             </div>
                         </section>
-                        {/* Navigation */}
+
+
+                        {/* NAVBAR */}
                         <nav className='navbar'>
                             <ul>
                                 <li className='button left-button'>

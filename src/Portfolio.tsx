@@ -128,7 +128,7 @@ function Portfolio() {
                     cursor: isDragging ? 'grabbing' : 'default'
                 } : undefined }
                 onMouseDown={isMobile ? undefined : handleMouseDown}
-        >
+            >
             {/* HEADER */}
             <header>
                 <section className='blue-bar'>

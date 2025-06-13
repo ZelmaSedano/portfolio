@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import './App.css'
 
 function Home() {
-    const [isRotated, setIsRotated] = useState(false);
-    const [showMessage, setShowMessage] = useState(false);
     // move window around
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
@@ -20,32 +18,6 @@ function Home() {
         setIsVisible(false);
         console.log('working')
     };
-
-    // useEffect(() => {
-    //     // when something isn't working or is acting weird, console.log inside the function to test
-    //     console.log('test useEffect')
-    //     // declare a timer variable
-    //     let timer;
-    //     // if showMessage boolean is true, set timer to timeout after 5000 milliseconds
-    //     if (showMessage) {
-    //     timer = setTimeout(() => {
-    //         setShowMessage(false);
-    //     }, 1500);
-    //     }
-    //     return () => clearTimeout(timer);
-    // }, [showMessage]);
-
-    // drag window
-    // Check for mobile view on mount and resize
-    // useEffect(() => {
-    //     const checkIfMobile = () => {
-    //         setIsMobile(window.innerWidth <= 768);
-    //     };
-
-    //     checkIfMobile(); // Initial check
-    //     window.addEventListener('resize', checkIfMobile);
-    //     return () => window.removeEventListener('resize', checkIfMobile);
-    // }, []);
     
     // puts the window in the middle of viewport
     useEffect(() => {
@@ -130,43 +102,43 @@ function Home() {
 
             {/* HEADER */}
             <header>
-            <section className='blue-bar'>
-                <img src="/src/assets/connections.ico" className='icon'></img>
-                <section className='blue-bar-text'>Valentia Sedano</section>
+                <section className='blue-bar'>
+                    <img src="/src/assets/connections.ico" className='icon'></img>
+                    <section className='blue-bar-text'>Valentia Sedano</section>
 
-                {/* ROTATING BUTTON */}
-                <div className="button-container">
-                <button className= 'x-button' onClick={handleClick}>
-                    ✕
-                </button>
-                </div>
-            </section>
+                    {/* ROTATING BUTTON */}
+                    <div className="button-container">
+                        <button className= 'x-button' onClick={handleClick}>
+                            ✕
+                        </button>
+                    </div>
+                </section>
 
-            {/* NAVBAR */}
-            <nav className='navbar'>
-                <ul>
-                    <li className='button left-button'>
-                        <Link to="/">
-                            <img src="/src/assets/Starfield.ico" className='home-icon'></img>
-                            <p>Home</p>
-                        </Link>
-                    </li>
-                    <li className='button'>
-                        <Link to="/portfolio">
-                            <img src="/src/assets/painting.ico" className='paint-icon'></img>
-                            <p>Portfolio</p>
-                        </Link>
-                    </li>
-                    <li className='button'><a>
-                        <img src="/src/assets/resume.png" className='resume-icon'></img>
-                        <p>Resume</p>
-                    </a></li>
-                    <li className='button'><a>
-                        <img src="/src/assets/send.png" className='contact-icon'></img>
-                        <p>Contact</p>
-                    </a></li>   
-                </ul>
-            </nav>
+                {/* NAVBAR */}
+                <nav className='navbar'>
+                    <ul>
+                        <li className='button left-button'>
+                            <Link to="/">
+                                <img src="/src/assets/Starfield.ico" className='home-icon'></img>
+                                <p>Home</p>
+                            </Link>
+                        </li>
+                        <li className='button'>
+                            <Link to="/portfolio">
+                                <img src="/src/assets/painting.ico" className='paint-icon'></img>
+                                <p>Portfolio</p>
+                            </Link>
+                        </li>
+                        <li className='button'><a>
+                            <img src="/src/assets/resume.png" className='resume-icon'></img>
+                            <p>Resume</p>
+                        </a></li>
+                        <li className='button'><a>
+                            <img src="/src/assets/send.png" className='contact-icon'></img>
+                            <p>Contact</p>
+                        </a></li>   
+                    </ul>
+                </nav>
 
             </header>
             

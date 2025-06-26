@@ -242,7 +242,6 @@ nav ul li a p{
   
   /* positioning */
   position: relative;
-  padding-top: 20px;
   width: 70vw;
   height: 70vh;
   
@@ -254,6 +253,70 @@ nav ul li a p{
   box-shadow: 
     inset 1px 1px 0px #808080,
     0 0 0 0px #c3c3c3;
+
+
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+}
+/* Custom Windows 98-style scrollbar for .content */
+.content::-webkit-scrollbar {
+  width: 16px; /* Classic Windows scrollbar width */
+  background-color: #c0c0c0; /* Classic gray background */
+}
+
+.content::-webkit-scrollbar-track {
+  background: repeating-conic-gradient(
+    #c0c0c0 0% 25%, 
+    #ffffff 0% 50%
+  ) 50% / 2px 2px; /* Classic dotted pattern */
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  box-shadow: 
+    inset -1px -1px 0px #000000,
+    inset 1px 1px 0px #dfdfdf;
+}
+
+.content::-webkit-scrollbar-button {
+  height: 16px;
+  width: 16px;
+  background-color: #c0c0c0;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Up arrow */
+.content::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpolygon points='0,4 4,0 8,4' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Down arrow */
+.content::-webkit-scrollbar-button:vertical:increment {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpolygon points='0,0 4,4 8,0' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Left arrow (if horizontal scroll) */
+.content::-webkit-scrollbar-button:horizontal:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='8' viewBox='0 0 4 8'%3E%3Cpolygon points='4,0 0,4 4,8' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Right arrow (if horizontal scroll) */
+.content::-webkit-scrollbar-button:horizontal:increment {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='8' viewBox='0 0 4 8'%3E%3Cpolygon points='0,0 4,4 0,8' fill='black'/%3E%3C/svg%3E");
 }
 
 
@@ -350,6 +413,7 @@ nav ul li a p{
 }
 
 
+
 .img-grid {
   /* makes the elements inside display as a grid */
   display: grid;
@@ -357,13 +421,18 @@ nav ul li a p{
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding: 20px;
+  /* Add these lines */
+  flex-grow: 1; /* Take up available space */
+  min-height: min-content; /* Minimum height needed for content */
+  overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 .img-grid img {
   width: 100%;
   height: auto;
   max-width: 250px; /* Maintains a reasonable maximum size */
-  aspect-ratio: 16/9; /* Maintains the 16:9 aspect ratio */
+  aspect-ratio: 16/9;
+  object-fit: cover; /* Ensure images maintain aspect ratio */
 }
 
 

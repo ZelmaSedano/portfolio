@@ -62,112 +62,129 @@ function Portfolio() {
     // 5. Toggle visibility
     const toggleWindow = () => setIsVisible(!isVisible);
 
+    const images = [
+    '5RpPTRcz1no', // Example video ID
+    'NcSil8NeQq8',
+    'mYrPNvVhKLU',
+    'rpEg4LS3CT0',
+    'rRq14ZBYwus',
+    'RRzfsbIkSoo',
+  ];
+
     return (
-        <>
-            {isVisible && (
-                <div 
-                    className={`window ${isVisible ? 'visible' : ''}`}
-                    ref={windowRef}
-                    style={{
-                        position: 'absolute',
-                        left: `${position.x}px`,
-                        top: `${position.y}px`,
-                        cursor: isDragging ? 'grabbing' : 'default'
-                    }}
-                    onMouseDown={handleMouseDown}
-                >
-                    {/* HEADER */}
-                    <header>
-                        <section className='blue-bar'>
-                            <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>Valentia Sedano</section>
+    <>
+        {isVisible && (
+            <div 
+                className={`window ${isVisible ? 'visible' : ''}`}
+                ref={windowRef}
+                style={{
+                    position: 'absolute',
+                    left: `${position.x}px`,
+                    top: `${position.y}px`,
+                    cursor: isDragging ? 'grabbing' : 'default'
+                }}
+                onMouseDown={handleMouseDown}
+            >
+                {/* HEADER */}
+                <header>
+                    <section className='blue-bar'>
+                        <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
+                        <section className='blue-bar-text'>Valentia Sedano</section>
+                        <div className="button-container">
+                            <button className='x-button' onClick={toggleWindow}>✕</button>
+                        </div>
+                    </section>
 
-                            <div className="button-container">
-                                <button className='x-button' onClick={toggleWindow}>✕</button>
-                            </div>
-                        </section>
-
-
-                        {/* NAVBAR */}
-                        <nav className='navbar'>
-                            <ul>
-                                <li className='button left-button'>
-                                    <Link to="/">
-                                        <img src="/src/assets/Starfield.ico" className='home-icon' alt="home"/>
-                                        <p>Home</p>
-                                    </Link>
-                                </li>
-                                <li className='button'>
-                                    <Link to="/portfolio">
-                                        <img src="/src/assets/painting.ico" className='paint-icon' alt="portfolio"/>
-                                        <p>Portfolio</p>
-                                    </Link>
-                                </li>
-                                <li className='button'><a>
-                                    <img src="/src/assets/resume.png" className='resume-icon'></img>
+                    {/* NAVBAR */}
+                    <nav className='navbar'>
+                        <ul>
+                            <li className='button left-button'>
+                                <Link to="/">
+                                    <img src="/src/assets/Starfield.ico" className='home-icon' alt="home"/>
+                                    <p>Home</p>
+                                </Link>
+                            </li>
+                            <li className='button'>
+                                <Link to="/portfolio">
+                                    <img src="/src/assets/painting.ico" className='paint-icon' alt="portfolio"/>
+                                    <p>Portfolio</p>
+                                </Link>
+                            </li>
+                            <li className='button'>
+                                <a href="#resume">
+                                    <img src="/src/assets/resume.png" className='resume-icon' alt="resume"/>
                                     <p>Resume</p>
-                                </a></li>
-                                <li className='button'><a>
-                                    <img src="/src/assets/send.png" className='contact-icon'></img>
+                                </a>
+                            </li>
+                            <li className='button'>
+                                <a href="#contact">
+                                    <img src="/src/assets/send.png" className='contact-icon' alt="contact"/>
                                     <p>Contact</p>
-                                </a></li>   
-                            </ul>
-                        </nav>
-                    </header>
+                                </a>
+                            </li>   
+                        </ul>
+                    </nav>
+                </header>
 
-                    {/* URL BAR*/}
-                    <div className='url-container'>
-                        <div className = 'url-bar'>
-                            <div className = 'url-bar-small-1'>Address</div>
-                            <div className = 'url-bar-large'>
-                                <div className='dropdown-container'>
-                                    <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
-                                </div>
-                                <button className='url-dropdown-button'>▼</button>
+                {/* URL BAR*/}
+                <div className='url-container'>
+                    <div className='url-bar'>
+                        <div className='url-bar-small-1'>Address</div>
+                        <div className='url-bar-large'>
+                            <div className='dropdown-container'>
+                                <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
                             </div>
-                            <div className = 'url-bar-small-2'>Links</div>
+                            <button className='url-dropdown-button'>▼</button>
                         </div>
-                    </div>
-
-
-                    {/* Window Content */}
-                    <div className='content'>
-                        <p className='banner'>Welcome to my lil corner of the internet!</p>
-                        <div className='bio-section'>
-                            <img src="/src/assets/mee.jpg" className='bio-image' alt="bio"/>
-                            <p className='bio-p'>This site is my homage to vintage web design.</p>
-                        </div>
-
-
-                        {/* CONTENT FOOTER */}
-                        <div className="footer">
-                            <div className='footer-section footer-large'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className = 'footer-section footer-small'></div>
-                            <div className='footer-section footer-medium'>
-                                <img src="/src/assets/earth.ico" className='content-footer-icon'></img>
-                                <p className='footer-section-text'>Internet</p>
-                            </div>
-                        </div>
+                        <div className='url-bar-small-2'>Links</div>
                     </div>
                 </div>
-            )}
 
-            {/* Taskbar */}
-            <div className="taskbar">
-                <button className="start-button" onClick={toggleWindow}>
-                    <img src="/src/assets/flag.png" className="start-icon" alt="start"/>
-                    <span className="start-text">Start</span>
-                </button>
-                <div className="taskbar-items">
-                    <div className="clock">
-                        {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                {/* Window Content */}
+                <div className='content'>
+
+                    <div className="img-grid">
+                        {images.map((videoId, index) => (
+                            <div key={index}>
+                                <img
+                                    src={`https://img.youtube.com/vi/${videoId}/0.jpg`}
+                                    title={`YouTube video ${index}`}
+                                    style={{ width: '320px', height: '180px' }}
+                                    alt={`YouTube video thumbnail ${index}`}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                
+                {/* CONTENT FOOTER */}
+                <div className="footer">
+                    <div className='footer-section footer-large'></div>
+                    <div className='footer-section footer-small'></div>
+                    <div className='footer-section footer-small'></div>
+                    <div className='footer-section footer-small'></div>
+                    <div className='footer-section footer-medium'>
+                        <img src="/src/assets/earth.ico" className='content-footer-icon' alt="internet"/>
+                        <p className='footer-section-text'>Internet</p>
                     </div>
                 </div>
             </div>
-        </>
-    );
+        )}
+
+        {/* Taskbar */}
+        <div className="taskbar">
+            <button className="start-button" onClick={toggleWindow}>
+                <img src="/src/assets/flag.png" className="start-icon" alt="start"/>
+                <span className="start-text">Start</span>
+            </button>
+            <div className="taskbar-items">
+                <div className="clock">
+                    {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                </div>
+            </div>
+        </div>
+    </>
+);
 }
 
 export default Portfolio;

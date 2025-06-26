@@ -349,6 +349,25 @@ nav ul li a p{
   margin-left: 10px;
 }
 
+
+.img-grid {
+  /* makes the elements inside display as a grid */
+  display: grid;
+  /* instead of using auto-fill, specify 3 videos wide, otherwise it'll auto-fill to 4 or 5 videos */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+.img-grid img {
+  width: 100%;
+  height: auto;
+  max-width: 250px; /* Maintains a reasonable maximum size */
+  aspect-ratio: 16/9; /* Maintains the 16:9 aspect ratio */
+}
+
+
+
 /* CONTENT FOOTER SECTION */
 .footer {
   position: absolute;
@@ -522,8 +541,15 @@ nav ul li a p{
   outline: rgb(219, 219, 219);
 }
 
+/* Switch to 2 columns when window is less than 1471px wide */
+@media (max-width: 1200px) {
+  .img-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /******** Mobile Design *********/
-@media (max-width: 768px) {
+@media (max-width: 797px) {
   body {
     background: #c0c0c0;
   }
@@ -614,6 +640,10 @@ nav ul li a p{
   .url-bar-small-1, 
   .url-bar-small-2 {
     display: none;
+  }
+
+  .img-grid {
+    grid-template-columns: 1fr;
   }
 
   .footer {

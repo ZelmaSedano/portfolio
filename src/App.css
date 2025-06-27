@@ -237,23 +237,22 @@ nav ul li a p{
   box-shadow: 1.5px 1.5px black;
   outline: rgb(222, 222, 222) 1px solid;
 }
+
+
+
 .content {
   background: url('./assets/purple_zone.png') no-repeat center/cover;
-  
   /* positioning */
   position: relative;
   width: 70vw;
   height: 70vh;
-  
   /* text color */
   color: black;
-
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
   border: none;
   box-shadow: 
     inset 1px 1px 0px #808080,
     0 0 0 0px #c3c3c3;
-
 
   overflow-x: hidden; /* Prevent horizontal scrolling */
   display: flex;
@@ -264,7 +263,6 @@ nav ul li a p{
   width: 16px; /* Classic Windows scrollbar width */
   background-color: #c0c0c0; /* Classic gray background */
 }
-
 .content::-webkit-scrollbar-track {
   background: repeating-conic-gradient(
     #c0c0c0 0% 25%, 
@@ -275,7 +273,6 @@ nav ul li a p{
   border-right: 1px solid #808080;
   border-bottom: 1px solid #808080;
 }
-
 .content::-webkit-scrollbar-thumb {
   background: #c0c0c0;
   border-top: 1px solid #ffffff;
@@ -286,7 +283,6 @@ nav ul li a p{
     inset -1px -1px 0px #000000,
     inset 1px 1px 0px #dfdfdf;
 }
-
 .content::-webkit-scrollbar-button {
   height: 16px;
   width: 16px;
@@ -298,6 +294,8 @@ nav ul li a p{
   background-repeat: no-repeat;
   background-position: center;
 }
+
+
 
 /* Up arrow */
 .content::-webkit-scrollbar-button:vertical:decrement {
@@ -421,10 +419,11 @@ nav ul li a p{
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding: 20px;
-  /* Add these lines */
   flex-grow: 1; /* Take up available space */
   min-height: min-content; /* Minimum height needed for content */
   overflow-y: auto; /* Enable scrolling if content overflows */
+  /* CENTER IMAGES WITHOUT CENTERING THE SCROLLBAR */
+  justify-items: center;
 }
 
 .img-grid img {
@@ -450,6 +449,7 @@ nav ul li a p{
 }
 /* each section has the same border style */
 .footer-section {
+  color: black;
   height: 100%;
   position: relative;
   background: #c3c3c3;
@@ -672,29 +672,13 @@ nav ul li a p{
   }
 
   .content {
-    padding: 10px;
     /* Adjust height accounting 4 header */
-    height: calc(100vh - 80px); 
-    box-sizing: border-box;
-    position: relative;
-    /* Changed from 1.5px to match border width */
-    top: 100px;
-    border: 5px solid #c3c3c3; 
-    height: 89vh;
-    background: url('./assets/purple_zone.png') no-repeat center/cover;
-    top: auto;
-    left: auto;
-    right: auto;
-    /* Account for header + taskbar */
     height: calc(100vh - 130px);
-    /* Space for footer */
-    padding-bottom: 30px;
-    /* overflow-y: auto; */
-    width: 100%; /* Change from 98vw */
-    margin: 0 auto;
-    left: 0; /* Remove the 5px offset */
-    right: 0;
-    box-sizing: border-box; /* Include padding/border in width */
+    width: 99vw;
+    box-sizing: border-box;
+    border: 5px solid #c3c3c3; 
+    background: url('./assets/purple_zone.png') no-repeat center/cover;
+    overflow-y: auto;
   }
 
   .url-container {
@@ -724,6 +708,5 @@ nav ul li a p{
     right: 0;
     z-index: 10;
   }
-
 
 }

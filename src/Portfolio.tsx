@@ -63,13 +63,13 @@ function Portfolio() {
     const toggleWindow = () => setIsVisible(!isVisible);
 
     const images = [
-    '5RpPTRcz1no', // Example video ID
-    'NcSil8NeQq8',
-    'mYrPNvVhKLU',
-    'rpEg4LS3CT0',
-    'rRq14ZBYwus',
-    'RRzfsbIkSoo',
-  ];
+    'me', // Example video ID
+    'mee',
+    'me',
+    'mee',
+    'me',
+    'mee',
+    ];
 
     return (
     <>
@@ -146,11 +146,13 @@ function Portfolio() {
                     <div className="img-grid">
                         {images.map((videoId, index) => (
                             <div key={index}>
+                                {/* <img src="/src/assets/connections.ico" className='icon' alt="icon"/> */}
                                 <img
-                                    src={`https://img.youtube.com/vi/${videoId}/0.jpg`}
-                                    title={`YouTube video ${index}`}
+                                    src={`/src/assets/${videoId}.jpg`}
+                                    title={`${videoId} website`}
                                     style={{ width: '320px', height: '180px' }}
                                     alt={`YouTube video thumbnail ${index}`}
+                                    className='image'
                                 />
                             </div>
                         ))}

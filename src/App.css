@@ -425,13 +425,16 @@ nav ul li a p{
   /* CENTER IMAGES WITHOUT CENTERING THE SCROLLBAR */
   justify-items: center;
 }
-
 .img-grid img {
   width: 100%;
   height: auto;
   max-width: 250px; /* Maintains a reasonable maximum size */
   aspect-ratio: 16/9;
   object-fit: cover; /* Ensure images maintain aspect ratio */
+}
+.image {
+  border: solid 5px #c3c3c3;
+  outline: solid 1px black;
 }
 
 

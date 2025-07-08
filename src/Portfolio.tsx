@@ -146,14 +146,16 @@ function Portfolio() {
                     <div className="img-grid">
                         {images.map((videoId, index) => (
                             <div key={index}>
-                                {/* <img src="/src/assets/connections.ico" className='icon' alt="icon"/> */}
-                                <img
-                                    src={`/src/assets/${videoId}.jpg`}
-                                    title={`${videoId} website`}
-                                    style={{ width: '320px', height: '180px' }}
-                                    alt={`YouTube video thumbnail ${index}`}
-                                    className='image'
-                                />
+                                <div className='image-container' key={index}>
+                                    <div className='image-title'>{`${videoId}`}</div>
+                                        <img
+                                            src={`/src/assets/${videoId}.jpg`}
+                                            title={`${videoId} website`}
+                                            style={{ width: '320px', height: '180px' }}
+                                            alt={`YouTube video thumbnail ${index}`}
+                                            className='image'
+                                        />
+                                    </div>
                             </div>
                         ))}
                     </div>

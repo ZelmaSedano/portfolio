@@ -432,12 +432,33 @@ nav ul li a p{
   aspect-ratio: 16/9;
   object-fit: cover; /* Ensure images maintain aspect ratio */
 }
+/* Add these new styles */
+.image-container {
+  position: relative;
+  display: inline-block;
+  /* filter: drop-shadow(15px 15px 0px rgba(0, 0, 0, 0.3)); */
+}
+.image-title {
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  left: 5px;
+  right: 5px;
+  background-color: #c3c3c3;
+  color: black;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+/* Update your existing image style */
 .image {
   border: solid 5px #c3c3c3;
+  border-top: solid 20px #c3c3c3; /* Space for the title */
   outline: solid 1px black;
+  position: relative;
 }
-
-
 
 /* CONTENT FOOTER SECTION */
 .footer {

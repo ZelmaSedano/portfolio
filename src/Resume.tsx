@@ -114,8 +114,10 @@ function Resume() {
                                     </Link>
                                 </li>
                                 <li className='button'><a>
-                                    <img src="/src/assets/resume.png" className='resume-icon'></img>
-                                    <p>Resume</p>
+                                    <Link to="/resume">
+                                        <img src="/src/assets/resume.png" className='resume-icon'></img>
+                                        <p>Resume</p>
+                                    </Link>
                                 </a></li>
                                 <li className='button'><a>
                                     <img src="/src/assets/send.png" className='contact-icon'></img>
@@ -142,7 +144,19 @@ function Resume() {
 
                     {/* Window Content */}
                     <div className='content'>
-                        <p>resume</p>
+                        <div className="resume-container" style={{ width: '100%', height: '100vh' }}>
+                            <iframe 
+                            src="resume.pdf" 
+                            width="100%" 
+                            height="100%" 
+                            style={{ 
+                                border: 'none',
+                                boxShadow: 'none',
+                                outline: 'none'    
+                            }}>
+
+                            </iframe>
+                        </div>
                     </div>
                 </div>
             )}

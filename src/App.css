@@ -454,7 +454,7 @@ nav ul li a p{
 }
 /* Update your existing image style */
 .image {
-  border-bottom: solid 5px #c3c3c3;
+  border-bottom: solid 10px #c3c3c3;
   border-top: solid 21px #c3c3c3; /* Space for the title */
   outline: solid 1px black;
   position: relative;

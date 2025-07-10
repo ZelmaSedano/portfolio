@@ -12,6 +12,7 @@ function Home() {
         };
     });
 
+    const [currentTime, setCurrentTime] = useState(new Date());
     const [isVisible, setIsVisible] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -22,9 +23,18 @@ function Home() {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
     }, [position]);
 
+    useEffect(() => {
+    const timer = setInterval(() => {
+        setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer); // Cleanup
+}, []);
+
     // 3. Mouse event handlers
     const handleMouseDown = (e) => {
-        if (e.target.closest('.blue-bar') && !e.target.closest('.x-button')) {
+        if (
+            e.target.closest('.blue-bar') && 
+            !e.target.closest('.x-button')) {
             setIsDragging(true);
             const rect = windowRef.current.getBoundingClientRect();
             setDragOffset({
@@ -104,8 +114,10 @@ function Home() {
                                     </Link>
                                 </li>
                                 <li className='button'><a>
-                                    <img src="/src/assets/resume.png" className='resume-icon'></img>
-                                    <p>Resume</p>
+                                    <Link to="/resume">
+                                        <img src="/src/assets/resume.png" className='resume-icon'></img>
+                                        <p>Resume</p>
+                                    </Link>
                                 </a></li>
                                 <li className='button'><a>
                                     <img src="/src/assets/send.png" className='contact-icon'></img>
@@ -162,7 +174,7 @@ function Home() {
                 </button>
                 <div className="taskbar-items">
                     <div className="clock">
-                        {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                        {currentTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                     </div>
                 </div>
             </div>

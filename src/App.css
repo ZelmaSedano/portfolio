@@ -1,6 +1,8 @@
 /* to-do
   - FIX content border scrolling up when user scrolls down the page
-  - make desktop link button look like the ones on this website (Resume icon) 
+  - make desktop .resume-container iframe {
+  border: none !important;
+  filter: none !important;
     - https://www.donchia.tech/
 */
 
@@ -459,6 +461,8 @@ nav ul li a p{
   outline: solid 1px black;
   position: relative;
 }
+
+
 
 /* CONTENT FOOTER SECTION */
 .footer {

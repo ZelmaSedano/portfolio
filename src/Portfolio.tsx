@@ -110,12 +110,12 @@ function Portfolio() {
                                     <p>Portfolio</p>
                                 </Link>
                             </li>
-                            <li className='button'>
-                                <a href="#resume">
-                                    <img src="/src/assets/resume.png" className='resume-icon' alt="resume"/>
-                                    <p>Resume</p>
-                                </a>
-                            </li>
+                            <li className='button'><a>
+                                    <Link to="/resume">
+                                        <img src="/src/assets/resume.png" className='resume-icon'></img>
+                                        <p>Resume</p>
+                                    </Link>
+                            </a></li>
                             <li className='button'>
                                 <a href="#contact">
                                     <img src="/src/assets/send.png" className='contact-icon' alt="contact"/>

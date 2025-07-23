@@ -263,6 +263,31 @@ nav ul li a p{
   width: 16px; /* Classic Windows scrollbar width */
   background-color: #c0c0c0; /* Classic gray background */
 }
+
+.contact-content {
+  background-color: #c3c3c3;
+  /* positioning */
+  position: relative;
+  width: 70vw;
+  height: 70vh;
+  /* text color */
+  color: black;
+  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
+  border: none;
+  box-shadow: 
+    inset 1px 1px 0px #808080,
+    0 0 0 0px #c3c3c3;
+
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+}
+/* Custom Windows 98-style scrollbar for .content */
+.content::-webkit-scrollbar {
+  width: 16px; /* Classic Windows scrollbar width */
+  background-color: #c0c0c0; /* Classic gray background */
+}
+
 .content::-webkit-scrollbar-track {
   background: repeating-conic-gradient(
     #c0c0c0 0% 25%, 
@@ -704,7 +729,15 @@ nav ul li a p{
     width: 99vw;
     box-sizing: border-box;
     border: 5px solid #c3c3c3; 
-    background: url('./assets/purple_zone.png') no-repeat center/cover;
+    overflow-y: auto;
+  }
+
+  .contact-content {
+    /* Adjust height accounting 4 header */
+    height: calc(100vh - 130px);
+    width: 99vw;
+    box-sizing: border-box;
+    border: 5px solid #c3c3c3; 
     overflow-y: auto;
   }
 

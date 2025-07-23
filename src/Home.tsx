@@ -113,16 +113,18 @@ function Home() {
                                         <p>Portfolio</p>
                                     </Link>
                                 </li>
-                                <li className='button'><a>
+                                <li className='button'>
                                     <Link to="/resume">
                                         <img src="/src/assets/resume.png" className='resume-icon'></img>
                                         <p>Resume</p>
                                     </Link>
-                                </a></li>
-                                <li className='button'><a>
-                                    <img src="/src/assets/send.png" className='contact-icon'></img>
-                                    <p>Contact</p>
-                                </a></li>   
+                                </li>
+                                <li className='button'>
+                                    <Link to="/contact">
+                                        <img src="/src/assets/send.png" className='contact-icon'></img>
+                                        <p>Contact</p>
+                                    </Link>
+                                </li>   
                             </ul>
                         </nav>
                     </header>

@@ -145,7 +145,7 @@ function Contact() {
 
 
                     {/* Window Content */}
-                    <div className='content'>
+                    <div className='contact-content'>
                         test
                     </div>
                 </div>

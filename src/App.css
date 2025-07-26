@@ -486,6 +486,36 @@ nav ul li a p{
 }
 
 
+/* CONTACT FORM (extract) */
+.contact-form {
+  margin-top: 20px;;
+}
+
+/* Contact Form Labels */
+.form-row label {
+  min-width: 40px; /* Fixed width for all labels */
+  text-align: center;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+/* Specific styles for To/From labels */
+.to-label, .from-label {
+  /* allows for correct spacing, otherwise it doesn't work */
+  display: inline-block;
+  background-color: #c3c3c3;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  margin: 5px 15px;
+  padding: 5px 25px;
+}
+.subject-label {
+  display: inline-block;
+  margin: 10px 35px;
+}
+
 
 /* CONTENT FOOTER SECTION */
 .footer {

@@ -93,7 +93,7 @@ function Contact() {
         }));
     };
 
-    // handle form submission
+    // handle form submission - added emailjs code to actually send email
     const handleSubmit = (e) => {
         e.preventDefault();
         
@@ -101,15 +101,15 @@ function Contact() {
             'service_fiblai5',
             'template_bzci6ho',
             {
-            to_email: 'webcraftian.laboratory@gmail.com', // Hardcoded recipient
-            from_email: formData.from,                     // Sender's email (from form)
-            subject: formData.subject,                     // Subject (from form)
-            message: formData.message                      // Message (from form)
+            to_email: 'webcraftian.laboratory@gmail.com',
+            from_email: formData.from,
+            subject: formData.subject,
+            message: formData.message
             },
             'kM5UXATQMVrLI690I'
         )
         .then(() => alert("Email sent to webcraftian.laboratory@gmail.com!"))
-        .catch((err) => console.error("Failed to send:", err));
+        .catch((err) => console.error("Failed to send:", err)); // log the error
     };
 
 
@@ -189,38 +189,38 @@ function Contact() {
                         <form onSubmit={handleSubmit} className="contact-form">
                             {/* First row - Recipient email (read-only) */}
                             <div className="form-row">
-                                <label htmlFor="to">To:</label>  {/* Label for the input */}
+                                <label htmlFor="to" className='to-label'>To...</label> 
                                 <input
-                                    type="email"                // Email input type
-                                    id="to"                     // ID for label association
-                                    name="to"                   // Name matches state property
-                                    value={formData.to}         // Value from state
-                                    onChange={handleInputChange} // Change handler
-                                    readOnly                   // User can't modify recipient
-                                    className="form-input"     // CSS class
+                                    type="email"
+                                    id="to"
+                                    name="to"
+                                    value={formData.to}
+                                    onChange={handleInputChange}
+                                    readOnly
+                                    className="form-input"
                                 />
                             </div>
                             
                             {/* Second row - Sender email */}
                             <div className="form-row">
-                                <label htmlFor="from">From:</label>
+                                <label htmlFor="from" className='from-label'>From...</label>
                                 <input
                                     type="email"
                                     id="from"
                                     name="from"
                                     value={formData.from}
                                     onChange={handleInputChange}
-                                    required                   // Field is required
+                                    required                   // ** field required **
                                     className="form-input"
-                                    placeholder="Your email address"  // Hint text
+                                    placeholder="Your email address"  
                                 />
                             </div>
                             
                             {/* Third row - Email subject */}
                             <div className="form-row">
-                                <label htmlFor="subject">Subject:</label>
+                                <label htmlFor="subject" className='subject-label'> Subject:</label>
                                 <input
-                                    type="text"              // Regular text input
+                                    type="text"
                                     id="subject"
                                     name="subject"
                                     value={formData.subject}
@@ -234,15 +234,15 @@ function Contact() {
                             {/* Fourth row - Message body */}
                             <div className="form-row">
                                 <label htmlFor="message">Message:</label>
-                                <textarea                   // Multi-line text input
+                                <textarea
                                     id="message"
                                     name="message"
                                     value={formData.message}
                                     onChange={handleInputChange}
                                     required
-                                    className="form-textarea" // Different class for textarea
+                                    className="form-textarea"
                                     placeholder="Type your message here..."
-                                    rows="6"                 // Initial visible rows
+                                    rows="6" // this determines how many lines the box takes up
                                 />
                             </div>
                             

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 import './App.css';
 
 function Contact() {
@@ -72,6 +73,46 @@ function Contact() {
     // 5. Toggle visibility
     const toggleWindow = () => setIsVisible(!isVisible);
 
+    // form with useful comments
+    const [formData, setFormData] = useState({
+    to: 'webcraftian.laboratory@gmail.com',
+    from: '',
+    subject: '',
+    message: ''
+    });
+
+    // new state for loading indicator
+    const [isSending, setIsSending] = useState(false); 
+
+    // handle input changes in the form fields
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    // handle form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        emailjs.send(
+            'service_fiblai5',
+            'template_bzci6ho',
+            {
+            to_email: 'webcraftian.laboratory@gmail.com', // Hardcoded recipient
+            from_email: formData.from,                     // Sender's email (from form)
+            subject: formData.subject,                     // Subject (from form)
+            message: formData.message                      // Message (from form)
+            },
+            'kM5UXATQMVrLI690I'
+        )
+        .then(() => alert("Email sent to webcraftian.laboratory@gmail.com!"))
+        .catch((err) => console.error("Failed to send:", err));
+    };
+
+
     return (
         <>
             {isVisible && (
@@ -143,10 +184,86 @@ function Contact() {
                         </div>
                     </div>
 
-
                     {/* Window Content */}
                     <div className='contact-content'>
-                        test
+                        <form onSubmit={handleSubmit} className="contact-form">
+                            {/* First row - Recipient email (read-only) */}
+                            <div className="form-row">
+                                <label htmlFor="to">To:</label>  {/* Label for the input */}
+                                <input
+                                    type="email"                // Email input type
+                                    id="to"                     // ID for label association
+                                    name="to"                   // Name matches state property
+                                    value={formData.to}         // Value from state
+                                    onChange={handleInputChange} // Change handler
+                                    readOnly                   // User can't modify recipient
+                                    className="form-input"     // CSS class
+                                />
+                            </div>
+                            
+                            {/* Second row - Sender email */}
+                            <div className="form-row">
+                                <label htmlFor="from">From:</label>
+                                <input
+                                    type="email"
+                                    id="from"
+                                    name="from"
+                                    value={formData.from}
+                                    onChange={handleInputChange}
+                                    required                   // Field is required
+                                    className="form-input"
+                                    placeholder="Your email address"  // Hint text
+                                />
+                            </div>
+                            
+                            {/* Third row - Email subject */}
+                            <div className="form-row">
+                                <label htmlFor="subject">Subject:</label>
+                                <input
+                                    type="text"              // Regular text input
+                                    id="subject"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="form-input"
+                                    placeholder="Message subject"
+                                />
+                            </div>
+                            
+                            {/* Fourth row - Message body */}
+                            <div className="form-row">
+                                <label htmlFor="message">Message:</label>
+                                <textarea                   // Multi-line text input
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="form-textarea" // Different class for textarea
+                                    placeholder="Type your message here..."
+                                    rows="6"                 // Initial visible rows
+                                />
+                            </div>
+                            
+                            {/* Submit button row */}
+                            <div className="form-buttons">
+                                <button 
+                                    type="submit" 
+                                    className="send-button"
+                                    disabled={isSending}
+                                >
+                                    {isSending ? (
+                                        'Sending...'
+                                    ) : (
+                                        <>
+                                            <img src="/src/assets/send.png" className="send-icon" alt="Send"/>
+                                            Send
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             )}

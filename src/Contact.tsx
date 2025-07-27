@@ -224,7 +224,7 @@ function Contact() {
                         <form onSubmit={handleSubmit} className="contact-form">
                             {/* First row - Recipient email (read-only) */}
                             <div className="form-row">
-                                <label htmlFor="to" className='to-label'>To...</label> 
+                                <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
                                 <input
                                     type="email"
                                     id="to"
@@ -238,7 +238,7 @@ function Contact() {
                             
                             {/* Second row - Sender email */}
                             <div className="form-row">
-                                <label htmlFor="from" className='from-label'>From...</label>
+                                <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
                                 <input
                                     type="email"
                                     id="from"
@@ -253,7 +253,7 @@ function Contact() {
                             
                             {/* Third row - Email subject */}
                             <div className="form-row">
-                                <label htmlFor="subject" className='subject-label'> Subject:</label>
+                                <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
                                 <input
                                     type="text"
                                     id="subject"
@@ -268,7 +268,8 @@ function Contact() {
                             
                             {/* Fourth row - Message body */}
                             <div className="form-row">
-                                <label htmlFor="message">Message:</label>
+                                <label htmlFor="message" className='message-label'>
+                                    <span className='underline'>M</span>essage:</label>
                                 <textarea
                                     id="message"
                                     name="message"

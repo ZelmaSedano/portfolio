@@ -149,17 +149,11 @@ function Resume() {
 
                     {/* Window Content */}
                     <div className='content'>
-                        <div className="resume-container" style={{ width: '100%', height: '100vh' }}>
+                        <div className="resume-container">
                             <iframe 
                             src="resume.pdf" 
                             width="100%" 
-                            height="100%" 
-                            style={{ 
-                                border: 'none',
-                                boxShadow: 'none',
-                                outline: 'none'    
-                            }}>
-
+                            height="100%">
                             </iframe>
                         </div>
                     </div>

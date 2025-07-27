@@ -491,6 +491,19 @@ nav ul li a p{
   position: relative;
 }
 
+/* RESUME page */
+.resume-container {
+  width: 100%;
+  position: relative;
+  /* padding-bottom: 141.42%; */
+  height: 100%;
+}
+iframe {
+  object-fit: contain;
+}
+
+
+
 
 /* CONTACT FORM (extract) */
 .contact-form {
@@ -575,6 +588,8 @@ nav ul li a p{
   width: 26px;
   height: 26px;
   margin-right: 5px;
+  /* aligns with 'Send' */
+  margin-top: -3px;
 }
 input:focus, textarea:focus {
   outline: none;

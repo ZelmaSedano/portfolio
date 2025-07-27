@@ -300,7 +300,9 @@ function Contact() {
                                 </button>
                             </div>
                         </form>
+                    {/* contact-content */}
                     </div>
+                {/* window */}
                 </div>
             )}
 

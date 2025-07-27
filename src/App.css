@@ -504,15 +504,10 @@ nav ul li a p{
   margin-bottom: 15px;
   gap: 10px;
 }
-/* GET 2 LABELS TO BE THE SAME SIZE */
+/* GET LABELS TO BE THE SAME SIZE */
 .form-row label {
   display: block;
-  min-width: 35px;
-  text-align: center;
-  margin-right: 15px;
-}
-.subject-label {
-  text-align: right;
+  /* since the labels have varying styling, refrain from using this too much */
 }
 .to-label, .from-label {
   background-color: #c3c3c3;
@@ -522,8 +517,16 @@ nav ul li a p{
   border-left: 2px solid #ffffff;
   margin: 5px 15px;
   padding: 5px 25px;
+  text-align: center;
+  min-width: 35px;
 }
-/* input */
+.subject-label, .message-label {
+  text-align: right;
+  /* slightly larger to look more similar to To & From */
+  font-size: 17px;
+  text-align: right;
+}
+/* input fields */
 .form-input, .form-textarea {
   padding: 5px;
   background-color: white;
@@ -548,7 +551,6 @@ nav ul li a p{
   min-height: 180px;
 }
 .form-button {
-  grid-column: 2;
   display: flex;
   /* moves button to end (remember) */
   justify-content: flex-end;
@@ -581,8 +583,10 @@ input:focus, textarea:focus {
 ::placeholder {
   color: black;
 }
-
-
+.underline {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+}
 
 
 

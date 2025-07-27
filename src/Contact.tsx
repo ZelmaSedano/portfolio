@@ -247,7 +247,7 @@ function Contact() {
                             </div>
                             
                             {/* Submit button row */}
-                            <div className="form-buttons">
+                            <div className="form-button">
                                 <button 
                                     type="submit" 
                                     className="send-button"

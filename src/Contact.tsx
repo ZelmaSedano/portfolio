@@ -4,7 +4,8 @@ import emailjs from '@emailjs/browser';
 import './App.css';
 
 function Contact() {
-    // 1. State initialization with proper defaults
+    // states
+    // window loads in middle of page state
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
         return saved ? JSON.parse(saved) : { 
@@ -12,24 +13,58 @@ function Contact() {
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
-
+    // timer state
     const [currentTime, setCurrentTime] = useState(new Date());
+    // toggle state
     const [isVisible, setIsVisible] = useState(true);
+    // dragging state
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
     const windowRef = useRef(null);
+    // contact window size state - check size of window to resize textarea
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
 
-    // 2. Save state to sessionStorage
+    // useEffects - 'save state to session storage'?
+    // window position - window loads in middle of page
     useEffect(() => {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
     }, [position]);
-
+    // timer 
     useEffect(() => {
-    const timer = setInterval(() => {
-        setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer); // Cleanup
-}, []);
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(timer); // Cleanup
+    }, []);
+    // contact window size - resize textarea
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Calculate available height for textarea
+    const calculateTextareaHeight = () => {
+        // These are approximate values for header, form elements, etc.
+        const otherElementsHeight = 300; 
+        const minHeight = 180;
+        
+        // Calculate available height
+        const availableHeight = windowSize.height - otherElementsHeight - position.y;
+        
+        // Return the larger of available height or minimum height
+        return Math.max(minHeight, availableHeight);
+    };
+
 
     // 3. Mouse event handlers
     const handleMouseDown = (e) => {
@@ -242,7 +277,7 @@ function Contact() {
                                     required
                                     className="form-textarea"
                                     placeholder="Type your message here..."
-                                    rows="6" // this determines how many lines the box takes up
+                                    style={{ height: `${calculateTextareaHeight()}px` }}
                                 />
                             </div>
                             

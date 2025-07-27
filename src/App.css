@@ -494,8 +494,7 @@ nav ul li a p{
 
 /* CONTACT FORM (extract) */
 .contact-form {
-  margin-top: 20px;
-  padding: 10px;
+  padding: 20px;
 }
 .form-row {
   /* FIXED THE MISALIGNED INPUT BOXES */
@@ -532,14 +531,21 @@ nav ul li a p{
   color: black;
   /* why isn't default font being picked up? */
   font-family: 'MS Sans Serif', sans-serif;
+  font-size: 15px;
+  
   border-top: 2px solid black;
   border-left: 2px solid black;
   border-bottom: 2px solid #ffffff;
   border-right: 2px solid #ffffff;
+
+  box-shadow: 
+    inset 1px 1px 0px #ffffff,
+    inset -1px -1px 0px #c3c3c3;
 }
 .form-textarea {
-  resize: vertical;
-  min-height: 120px;
+  /* removes default resizing */
+  resize: none;
+  min-height: 180px;
 }
 .form-button {
   grid-column: 2;
@@ -548,17 +554,36 @@ nav ul li a p{
   justify-content: flex-end;
 }
 .send-button {
+  color: black;
+  /* allows you to align items horizontally */
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
   background-color: #c3c3c3;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
-  color: black;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+}
+.send-icon {
+  width: 26px;
+  height: 26px;
+  margin-right: 5px;
+}
+input:focus, textarea:focus {
+  outline: none;
 }
 
 ::placeholder {
   color: black;
 }
+
+
+
 
 
 /* CONTENT FOOTER SECTION */
@@ -736,7 +761,19 @@ nav ul li a p{
   outline: rgb(219, 219, 219);
 }
 
-/* Switch to 2 columns when window is less than 1471px wide */
+
+@media (max-width: 1920px) {
+  .form-textarea {
+    max-height: 350px;
+  }
+}
+@media (max-width: 1440px) {
+  .form-textarea {
+    max-height: 180px;
+  }
+}
+
+/* Switch to 2 columns when window is less than 1200px wide */
 @media (max-width: 1200px) {
   .img-grid {
     grid-template-columns: repeat(2, 1fr);

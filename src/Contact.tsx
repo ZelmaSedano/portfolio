@@ -5,11 +5,12 @@ import './App.css';
 
 function Contact() {
     // states
-    // window loads in middle of page state
+    const windowRef = useRef(null);
+    // states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
         return saved ? JSON.parse(saved) : { 
-            x: Math.max(0, (window.innerWidth - 800) / 2),
+            x: Math.max(0, (window.innerWidth - 1000) / 2),
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
@@ -20,7 +21,7 @@ function Contact() {
     // dragging state
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-    const windowRef = useRef(null);
+
     // contact window size state - check size of window to resize textarea
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,

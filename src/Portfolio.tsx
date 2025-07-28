@@ -4,10 +4,12 @@ import './App.css';
 
 function Portfolio() {
     // 1. State initialization with proper defaults
+    const windowRef = useRef(null);
+    // states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
         return saved ? JSON.parse(saved) : { 
-            x: Math.max(0, (window.innerWidth - 800) / 2),
+            x: Math.max(0, (window.innerWidth - 1000) / 2),
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
@@ -15,7 +17,6 @@ function Portfolio() {
     const [isVisible, setIsVisible] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-    const windowRef = useRef(null);
 
     // 2. Save state to sessionStorage
     useEffect(() => {

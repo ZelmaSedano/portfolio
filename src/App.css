@@ -708,6 +708,42 @@ input:focus, textarea:focus {
   width: 25px;
   margin-right: 5px;
 }
+.connections-icon {
+  width: 20px;
+  height: 20px;
+}
+.devscape-button {
+  margin-right: 30px;
+  color: black;
+  font-size: 18px;
+  height: 106%;
+  display: flex;
+  /* aligns horizontally */
+  align-items: center;
+  padding: 0 10px;
+  background-color: #c3c3c3;
+  border-right: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  border-top: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  box-shadow: 
+    inset -1px -1px 0 #000,
+    inset 1px 1px 0 #dfdfdf;
+}
+/* when isVisible is true (content is visible) */
+.devscape-button.window-visible {
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-right: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  box-shadow: 
+    inset -1px -1px 0 #dfdfdf,
+    inset 1px 1px 0 #000;
+}
+.devscape-text {
+  margin-left: 5px;
+}
+
 .taskbar-items {
   display: flex;
   flex-grow: 1;
@@ -715,21 +751,7 @@ input:focus, textarea:focus {
   align-items: center;
   padding-left: 5px;
 }
-.taskbar-item {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0 8px;
-  background: #c0c0c0;
-  border-top: 1px solid #ffffff;
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #808080;
-  border-bottom: 1px solid #808080;
-  margin-left: 5px;
-  box-shadow: 
-    inset -1px -1px 0 #000,
-    inset 1px 1px 0 #dfdfdf;
-}
+
 .clock {
   height: 103%;
   margin-bottom: -1px;
@@ -744,7 +766,7 @@ input:focus, textarea:focus {
   border-right: 1px solid #808080;
   border-bottom: 1px solid #808080;
   font-family: 'MS Sans Serif', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   box-shadow: 
     inset -1px -1px 0 #000,
     inset 1px 1px 0 #dfdfdf;
@@ -778,7 +800,7 @@ input:focus, textarea:focus {
     max-height: 350px;
   }
 }
-@media (max-width: 1440px) {
+@media (max-width: 1450px) {
   .form-textarea {
     max-height: 180px;
   }
@@ -794,7 +816,7 @@ input:focus, textarea:focus {
 /******** Mobile Design *********/
 @media (max-width: 797px) {
   body {
-    background: #c0c0c0;
+    background: url('./assets/boop.png') no-repeat center/cover;;
   }
   
   .window {

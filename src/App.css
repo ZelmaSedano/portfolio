@@ -40,16 +40,8 @@ html, body {
 
 /************ Desktop Design ***********/
 
-.window {
-  user-select: none;
-  z-index: 100;
-}
-.window {
-    display: block; /* Default state */
-    /* other styles */
-}
 .window.hidden {
-    display: none;
+  display: none;
 }
 
 /* desktop view */

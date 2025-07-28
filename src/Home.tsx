@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import './App.css';
 
 function Home() {
-    // 1. State initialization with proper defaults
+    const windowRef = useRef(null);
+    // states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
         return saved ? JSON.parse(saved) : { 
-            x: Math.max(0, (window.innerWidth - 800) / 2),
+            x: Math.max(0, (window.innerWidth - 1000) / 2),
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
@@ -16,21 +17,30 @@ function Home() {
     const [isVisible, setIsVisible] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-    const windowRef = useRef(null);
 
-    // 2. Save state to sessionStorage
+
+    // save the position of the window to session storage
     useEffect(() => {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
     }, [position]);
 
     useEffect(() => {
-    const timer = setInterval(() => {
-        setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer); // Cleanup
-}, []);
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isDragging, dragOffset]);
 
-    // 3. Mouse event handlers
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(timer); // Cleanup
+    }, []);
+
+    // event handler functions
     const handleMouseDown = (e) => {
         if (
             e.target.closest('.blue-bar') && 
@@ -59,17 +69,7 @@ function Home() {
 
     const handleMouseUp = () => setIsDragging(false);
 
-    // 4. Event listeners
-    useEffect(() => {
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
-        };
-    }, [isDragging, dragOffset]);
-
-    // 5. Toggle visibility
+    // toggle visibility
     const toggleWindow = () => setIsVisible(!isVisible);
 
     return (

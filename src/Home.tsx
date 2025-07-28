@@ -2,11 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 
+// component imports
+import Taskbar from './components/Taskbar'
+
 function Home() {
     const windowRef = useRef(null);
     // states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
+        // if there isn't a saved position, center the window on default load
         return saved ? JSON.parse(saved) : { 
             x: Math.max(0, (window.innerWidth - 1000) / 2),
             y: Math.max(0, (window.innerHeight - 600) / 2)
@@ -90,7 +94,7 @@ function Home() {
                     <header>
                         <section className='blue-bar'>
                             <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>Valentia Sedano</section>
+                            <section className='blue-bar-text'>DevScape - Valentia Sedano</section>
 
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
@@ -169,17 +173,11 @@ function Home() {
             )}
 
             {/* Taskbar */}
-            <div className="taskbar">
-                <button className="start-button" onClick={toggleWindow}>
-                    <img src="/src/assets/flag.png" className="start-icon" alt="start"/>
-                    <span className="start-text">Start</span>
-                </button>
-                <div className="taskbar-items">
-                    <div className="clock">
-                        {currentTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                    </div>
-                </div>
-            </div>
+            <Taskbar 
+                isVisible={isVisible} 
+                toggleWindow={toggleWindow}
+                currentTime={currentTime}
+            />
         </>
     );
 }

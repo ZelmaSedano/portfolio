@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 
+import Taskbar from './components/Taskbar'
+
 function Resume() {
     const windowRef = useRef(null);
     // states
@@ -93,7 +95,7 @@ function Resume() {
                     <header>
                         <section className='blue-bar'>
                             <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>Valentia Sedano</section>
+                            <section className='blue-bar-text'>DevScape - Valentia Sedano</section>
 
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
@@ -157,21 +159,27 @@ function Resume() {
                             </iframe>
                         </div>
                     </div>
+
+                    {/* CONTENT FOOTER */}
+                        <div className="footer">
+                            <div className='footer-section footer-large'></div>
+                            <div className = 'footer-section footer-small'></div>
+                            <div className = 'footer-section footer-small'></div>
+                            <div className = 'footer-section footer-small'></div>
+                            <div className='footer-section footer-medium'>
+                                <img src="/src/assets/earth.ico" className='content-footer-icon'></img>
+                                <p className='footer-section-text'>Internet</p>
+                            </div>
+                        </div>
                 </div>
             )}
 
             {/* Taskbar */}
-            <div className="taskbar">
-                <button className="start-button" onClick={toggleWindow}>
-                    <img src="/src/assets/flag.png" className="start-icon" alt="start"/>
-                    <span className="start-text">Start</span>
-                </button>
-                <div className="taskbar-items">
-                    <div className="clock">
-                        {currentTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                    </div>
-                </div>
-            </div>
+            <Taskbar 
+                isVisible={isVisible} 
+                toggleWindow={toggleWindow}
+                currentTime={currentTime}
+            />
         </>
     );
 }

@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 
+import Taskbar from './components/Taskbar'
+
 function Portfolio() {
     // 1. State initialization with proper defaults
     const windowRef = useRef(null);
@@ -14,6 +16,7 @@ function Portfolio() {
         };
     });
 
+    const [currentTime, setCurrentTime] = useState(new Date());
     const [isVisible, setIsVisible] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -90,7 +93,7 @@ function Portfolio() {
                 <header>
                     <section className='blue-bar'>
                         <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
-                        <section className='blue-bar-text'>Valentia Sedano</section>
+                        <section className='blue-bar-text'>DevScape - Valentia Sedano</section>
                         <div className="button-container">
                             <button className='x-button' onClick={toggleWindow}>✕</button>
                         </div>
@@ -177,17 +180,11 @@ function Portfolio() {
         )}
 
         {/* Taskbar */}
-        <div className="taskbar">
-            <button className="start-button" onClick={toggleWindow}>
-                <img src="/src/assets/flag.png" className="start-icon" alt="start"/>
-                <span className="start-text">Start</span>
-            </button>
-            <div className="taskbar-items">
-                <div className="clock">
-                    {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                </div>
-            </div>
-        </div>
+        <Taskbar 
+            isVisible={isVisible} 
+            toggleWindow={toggleWindow}
+            currentTime={currentTime}
+        />
     </>
 );
 }

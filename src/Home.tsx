@@ -4,6 +4,9 @@ import './App.css';
 
 // component imports
 import Taskbar from './components/Taskbar'
+import './components/Taskbar.css'
+import DesktopIcon from './components/DesktopIcon';
+import './components/DesktopIcon.css'; // contains both icon + modal styles
 
 function Home() {
     const windowRef = useRef(null);
@@ -21,6 +24,7 @@ function Home() {
     const [isVisible, setIsVisible] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+    const [showModal, setShowModal] = useState(false);
 
 
     // save the position of the window to session storage
@@ -78,6 +82,28 @@ function Home() {
 
     return (
         <>
+            <div className="desktop">
+                <DesktopIcon
+                    icon="/src/assets/resume.png"
+                    label="Resume"
+                    x={100}
+                    y={200}
+                    onClick={() => setShowModal(true)}
+                />
+
+                {showModal && (
+                    <div className="modal-overlay" onClick={() => setShowModal(false)}>
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                        <span>Test Modal</span>
+                        <button onClick={() => setShowModal(false)}>X</button>
+                        </div>
+                        <div className="modal-body">test test</div>
+                    </div>
+                    </div>
+                )}
+            </div>
+
             {isVisible && (
                 <div 
                     className={`window ${isVisible ? 'visible' : ''}`}

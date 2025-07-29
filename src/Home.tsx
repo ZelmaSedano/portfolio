@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 
+// hi justine, feel free to look at the comments in the modal section to learn more about how to render modals.  the component is in DesktopIcon.tsx :)
+
 // component imports
 import Taskbar from './components/Taskbar'
 import './components/Taskbar.css'
@@ -83,6 +85,7 @@ function Home() {
     return (
         <>
             <div className="desktop">
+                {/* when you click the desktop icon, setShowModal is set to true */}
                 <DesktopIcon
                     icon="/src/assets/cat.png"
                     label="Cat Icon"
@@ -92,15 +95,20 @@ function Home() {
                 />
 
                 {showModal && (
-                    <div className="modal-overlay" onClick={() => setShowModal(false)}>
+                    <div className="modal-overlay" onClick={() => setShowModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
+                    {/* if you click inside the modal, then setShowModal ISN'T set to false */}
+                    {/* onClick takes the event, and returns 'don't propogate this event' function */}
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                        <span>Question...</span>
-                        <button className='x-button' onClick={() => setShowModal(false)}>✕</button>
-
+                            {/* modal header text */}
+                            <span>Question...</span>
+                            {/* 'x' close button */}
+                            <button className='x-button' onClick={() => setShowModal(false)}>✕</button>
                         </div>
+                        {/* body of modal */}
                         <div className="modal-body">Do you like cats?</div>
-                    </div>
+                        {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
+                        </div>
                     </div>
                 )}
             </div>

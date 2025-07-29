@@ -84,10 +84,10 @@ function Home() {
         <>
             <div className="desktop">
                 <DesktopIcon
-                    icon="/src/assets/resume.png"
-                    label="Resume"
-                    x={100}
-                    y={200}
+                    icon="/src/assets/cat.png"
+                    label="Cat Icon"
+                    x={50}
+                    y={100}
                     onClick={() => setShowModal(true)}
                 />
 
@@ -95,10 +95,11 @@ function Home() {
                     <div className="modal-overlay" onClick={() => setShowModal(false)}>
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                        <span>Test Modal</span>
-                        <button onClick={() => setShowModal(false)}>X</button>
+                        <span>Question...</span>
+                        <button className='x-button' onClick={() => setShowModal(false)}>✕</button>
+
                         </div>
-                        <div className="modal-body">test test</div>
+                        <div className="modal-body">Do you like cats?</div>
                     </div>
                     </div>
                 )}

@@ -1,0 +1,55 @@
+.desktop-icon {
+    width: 80px;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-family: 'MS Sans Serif';
+    text-shadow: 1px 1px black;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
+}
+
+.desktop-icon img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 4px;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    width: 300px;
+    background: #c0c0c0;
+    border: 2px solid black;
+    box-shadow: 4px 4px black;
+    font-family: 'MS Sans Serif';
+}
+
+.modal-header {
+    background: #000080;
+    color: white;
+    padding: 4px 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-header button {
+    background: #c0c0c0;
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.modal-body {
+    background: #ececec;
+    padding: 12px;
+    }

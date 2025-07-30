@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 
+import wassup from './assets/wassup.gif'
+
 // hi justine, feel free to look at the comments in the modal section to learn more about how to render modals.  the component is in DesktopIcon.tsx :)
 
 // component imports
@@ -11,6 +13,7 @@ import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css'; // contains both icon + modal styles
 
 function Home() {
+    // JUSTINE: useRef is used to access DOM nodes, this line initiates a useRef hook with the value of null
     const windowRef = useRef(null);
     // states
     const [position, setPosition] = useState(() => {
@@ -26,7 +29,10 @@ function Home() {
     const [isVisible, setIsVisible] = useState(true);
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-    const [showModal, setShowModal] = useState(false);
+    const [showCatModal, setShowCatModal] = useState(false);
+    const [showScreamModal, setShowScreamModal] = useState(false);
+    const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
+    
 
 
     // save the position of the window to session storage
@@ -56,6 +62,7 @@ function Home() {
             e.target.closest('.blue-bar') && 
             !e.target.closest('.x-button')) {
             setIsDragging(true);
+            // gets the draggable window's current position/size via the DOM ref
             const rect = windowRef.current.getBoundingClientRect();
             setDragOffset({
                 x: e.clientX - rect.left,
@@ -84,18 +91,19 @@ function Home() {
 
     return (
         <>
+            {/* cat icon */}
             <div className="desktop">
                 {/* when you click the desktop icon, setShowModal is set to true */}
                 <DesktopIcon
                     icon="/src/assets/cat.png"
-                    label="Cat Icon"
+                    label="meowdy"
                     x={50}
                     y={100}
-                    onClick={() => setShowModal(true)}
+                    onClick={() => setShowCatModal(true)}
                 />
 
-                {showModal && (
-                    <div className="modal-overlay" onClick={() => setShowModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
+                {showCatModal && (
+                    <div className="modal-overlay" onClick={() => setShowCatModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
                     {/* if you click inside the modal, then setShowModal ISN'T set to false */}
                     {/* onClick takes the event, and returns 'don't propogate this event' function */}
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -103,7 +111,7 @@ function Home() {
                             {/* modal header text */}
                             <span>Question...</span>
                             {/* 'x' close button */}
-                            <button className='x-button' onClick={() => setShowModal(false)}>✕</button>
+                            <button className='x-button' onClick={() => setShowCatModal(false)}>✕</button>
                         </div>
                         {/* body of modal */}
                         <div className="modal-body">Do you like cats?</div>
@@ -113,6 +121,63 @@ function Home() {
                 )}
             </div>
 
+            {/* scream icon */}
+            <div className="desktop">
+                <DesktopIcon
+                    icon="/src/assets/scream.png"
+                    label="RING RING"
+                    x={50}
+                    y={200}
+                    onClick={() => setShowScreamModal(true)}
+                />
+
+                {showScreamModal && (
+                    <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
+
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>I know what you did last summer</span>
+                            <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                        </div>
+
+                        <div className="modal-body">
+                            <img src='/src/assets/wassup.gif' className='gif'></img>
+                        </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* horoscope icon */}
+            <div className="desktop">
+                <DesktopIcon
+                    icon="/src/assets/crystal_ball.png"
+                    label="horoscope"
+                    x={50}
+                    y={300}
+                    onClick={() => setShowHoroscopeModal(true)}
+                    className=''
+                    imgClassName='horoscope-icon'
+                />
+
+                {showHoroscopeModal && (
+                    <div className="modal-overlay" onClick={() => setShowHoroscopeModal(false)}>
+
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>I know what you did last summer</span>
+                            <button className='x-button' onClick={() => setShowHoroscopeModal(false)}>✕</button>
+                        </div>
+
+                        <div className="modal-body">
+                            test
+                        </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* if isVisible is true, */}
             {isVisible && (
                 <div 
                     className={`window ${isVisible ? 'visible' : ''}`}

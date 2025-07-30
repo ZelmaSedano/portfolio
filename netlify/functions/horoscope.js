@@ -1,21 +1,30 @@
 const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
-  // 1. Get the zodiac sign from query params
-    const { sign } = event.queryStringParameters;
-    
-    // 2. Fetch from Aztro API
-    const response = await fetch(
-        `https://aztro.sameerkumar.website/?sign=${sign}&day=today`,
+    try {
+        const { sign } = event.queryStringParameters;
+        
+        const response = await fetch(
+        `https://aztro.sameerkumar.website/?sign=${sign}&day=today`, 
         { method: 'POST' }
-    );
-    
-    // 3. Return data with CORS headers
-    return {
+        );
+        
+        const data = await response.json();
+        
+        return {
         statusCode: 200,
-        body: JSON.stringify(await response.json()),
+        body: JSON.stringify(data),
         headers: {
-        'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*'
         }
-    };
+        };
+    } catch (error) {
+        return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Horoscope unavailable" }),
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
+        };
+    }
 };

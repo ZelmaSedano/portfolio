@@ -101,6 +101,9 @@ const fetchHoroscope = async (sign: string) => {
   }
 };
 
+const handleGetHoroscope = () => {
+  fetchHoroscope(sign); // This calls the fetch function when the button is clicked
+};
     // event handler functions
     const handleMouseDown = (e) => {
         if (

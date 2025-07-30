@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 
-import wassup from './assets/wassup.gif'
-
 // hi justine, feel free to look at the comments in the modal section to learn more about how to render modals.  the component is in DesktopIcon.tsx :)
 
 // component imports
@@ -12,9 +10,21 @@ import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css'; // contains both icon + modal styles
 
+type HoroscopeData = {
+    date_range: string;
+    current_date: string;
+    description: string;
+    compatibility: string;
+    mood: string;
+    color: string;
+    lucky_number: string;
+    lucky_time: string;
+};
+
 function Home() {
     // JUSTINE: useRef is used to access DOM nodes, this line initiates a useRef hook with the value of null
     const windowRef = useRef(null);
+
     // states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
@@ -24,14 +34,22 @@ function Home() {
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
-
+    // taskbar clock
     const [currentTime, setCurrentTime] = useState(new Date());
+    // window visibility
     const [isVisible, setIsVisible] = useState(true);
+    // drag the content window
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+    // icons
     const [showCatModal, setShowCatModal] = useState(false);
     const [showScreamModal, setShowScreamModal] = useState(false);
     const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
+    // horoscope API states
+    const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [sign, setSign] = useState('aries'); // Default sign
     
 
 
@@ -55,6 +73,33 @@ function Home() {
         }, 1000);
         return () => clearInterval(timer); // Cleanup
     }, []);
+
+    // fetch
+// Correct implementation:
+const fetchHoroscope = async (sign: string) => {
+  setIsLoading(true);
+  try {
+    const response = await fetch(
+      `/.netlify/functions/horoscope?sign=${sign.toLowerCase()}`
+    );
+    const data = await response.json();
+    
+    setHoroscopeData({
+      date_range: data.date_range,
+      current_date: data.current_date,
+      description: data.description,
+      compatibility: data.compatibility,
+      mood: data.mood,
+      color: data.color,
+      lucky_number: data.lucky_number,
+      lucky_time: data.lucky_time
+    });
+  } catch (error) {
+    setError("Failed to fetch horoscope");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
     // event handler functions
     const handleMouseDown = (e) => {
@@ -162,15 +207,61 @@ function Home() {
 
                 {showHoroscopeModal && (
                     <div className="modal-overlay" onClick={() => setShowHoroscopeModal(false)}>
-
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                            <span>I know what you did last summer</span>
+                            <span>Your Horoscope</span>
                             <button className='x-button' onClick={() => setShowHoroscopeModal(false)}>✕</button>
                         </div>
 
                         <div className="modal-body">
-                            test
+                            <div className="horoscope-controls">
+                                <select 
+                                    value={sign} 
+                                    onChange={(e) => setSign(e.target.value)}
+                                    className="horoscope-select"
+                                >
+                                    <option value="aries">Aries</option>
+                                    <option value="taurus">Taurus</option>
+                                    <option value="gemini">Gemini</option>
+                                    <option value="cancer">Cancer</option>
+                                    <option value="leo">Leo</option>
+                                    <option value="virgo">Virgo</option>
+                                    <option value="libra">Libra</option>
+                                    <option value="scorpio">Scorpio</option>
+                                    <option value="sagittarius">Sagittarius</option>
+                                    <option value="capricorn">Capricorn</option>
+                                    <option value="aquarius">Aquarius</option>
+                                    <option value="pisces">Pisces</option>
+                                </select>
+                                
+                                <button 
+                                    onClick={handleGetHoroscope}
+                                    className="horoscope-button"
+                                    disabled={isLoading}
+                                >
+                                    Get Horoscope
+                                </button>
+                            </div>
+
+                            {isLoading && <div className="loading">Loading...</div>}
+                            {error && <div className="error">{error}</div>}
+
+                            {horoscopeData && (
+                                <div className="horoscope-results">
+                                    <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
+                                    <p><strong>Date Range:</strong> {horoscopeData.date_range}</p>
+                                    <p><strong>Current Date:</strong> {horoscopeData.current_date}</p>
+                                    <p><strong>Description:</strong> {horoscopeData.description}</p>
+                                    <p><strong>Compatibility:</strong> {horoscopeData.compatibility}</p>
+                                    <p><strong>Mood:</strong> {horoscopeData.mood}</p>
+                                    <p><strong>Color:</strong> {horoscopeData.color}</p>
+                                    <p><strong>Lucky Number:</strong> {horoscopeData.lucky_number}</p>
+                                    <p><strong>Lucky Time:</strong> {horoscopeData.lucky_time}</p>
+                                </div>
+                            )}
+
+
+
                         </div>
                         </div>
                     </div>

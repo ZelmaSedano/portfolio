@@ -75,34 +75,25 @@ function Home() {
     }, []);
 
     // fetch
-// Correct implementation:
-const fetchHoroscope = async (sign: string) => {
-  setIsLoading(true);
-  try {
-    const response = await fetch(
-      `/.netlify/functions/horoscope?sign=${sign.toLowerCase()}`
-    );
-    const data = await response.json();
-    
-    setHoroscopeData({
-      date_range: data.date_range,
-      current_date: data.current_date,
-      description: data.description,
-      compatibility: data.compatibility,
-      mood: data.mood,
-      color: data.color,
-      lucky_number: data.lucky_number,
-      lucky_time: data.lucky_time
-    });
-  } catch (error) {
-    setError("Failed to fetch horoscope");
-  } finally {
-    setIsLoading(false);
-  }
-};
+    const fetchHoroscope = async (sign: string) => {
+        setIsLoading(true);
+        setError(null);
+        
+        try {
+            const response = await fetch(`/api/horoscope?sign=${sign.toLowerCase()}`); // <-- No full URL needed
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            
+            const data = await response.json();
+            setHoroscopeData(data);
+        } catch (error) {
+            setError(error.message || "Failed to fetch horoscope");
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
 const handleGetHoroscope = () => {
-  fetchHoroscope(sign); // This calls the fetch function when the button is clicked
+  fetchHoroscope(sign);
 };
     // event handler functions
     const handleMouseDown = (e) => {
@@ -210,65 +201,53 @@ const handleGetHoroscope = () => {
 
                 {showHoroscopeModal && (
                     <div className="modal-overlay" onClick={() => setShowHoroscopeModal(false)}>
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
                             <span>Your Horoscope</span>
                             <button className='x-button' onClick={() => setShowHoroscopeModal(false)}>✕</button>
                         </div>
-
                         <div className="modal-body">
                             <div className="horoscope-controls">
-                                <select 
-                                    value={sign} 
-                                    onChange={(e) => setSign(e.target.value)}
-                                    className="horoscope-select"
-                                >
-                                    <option value="aries">Aries</option>
-                                    <option value="taurus">Taurus</option>
-                                    <option value="gemini">Gemini</option>
-                                    <option value="cancer">Cancer</option>
-                                    <option value="leo">Leo</option>
-                                    <option value="virgo">Virgo</option>
-                                    <option value="libra">Libra</option>
-                                    <option value="scorpio">Scorpio</option>
-                                    <option value="sagittarius">Sagittarius</option>
-                                    <option value="capricorn">Capricorn</option>
-                                    <option value="aquarius">Aquarius</option>
-                                    <option value="pisces">Pisces</option>
-                                </select>
-                                
-                                <button 
-                                    onClick={handleGetHoroscope}
-                                    className="horoscope-button"
-                                    disabled={isLoading}
-                                >
-                                    Get Horoscope
-                                </button>
+                            <select 
+                                value={sign} 
+                                onChange={(e) => setSign(e.target.value)}
+                                className="horoscope-select"
+                            >
+                                {["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].map((sign) => (
+                                <option key={sign} value={sign}>
+                                    {sign.charAt(0).toUpperCase() + sign.slice(1)}
+                                </option>
+                                ))}
+                            </select>
+                            
+                            <button 
+                                onClick={handleGetHoroscope}
+                                className="horoscope-button"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? "Loading..." : "Get Horoscope"}
+                            </button>
                             </div>
 
-                            {isLoading && <div className="loading">Loading...</div>}
                             {error && <div className="error">{error}</div>}
 
                             {horoscopeData && (
-                                <div className="horoscope-results">
-                                    <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
-                                    <p><strong>Date Range:</strong> {horoscopeData.date_range}</p>
-                                    <p><strong>Current Date:</strong> {horoscopeData.current_date}</p>
-                                    <p><strong>Description:</strong> {horoscopeData.description}</p>
-                                    <p><strong>Compatibility:</strong> {horoscopeData.compatibility}</p>
-                                    <p><strong>Mood:</strong> {horoscopeData.mood}</p>
-                                    <p><strong>Color:</strong> {horoscopeData.color}</p>
-                                    <p><strong>Lucky Number:</strong> {horoscopeData.lucky_number}</p>
-                                    <p><strong>Lucky Time:</strong> {horoscopeData.lucky_time}</p>
-                                </div>
+                            <div className="horoscope-results">
+                                <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
+                                <p><strong>Date Range:</strong> {horoscopeData.date_range}</p>
+                                <p><strong>Current Date:</strong> {horoscopeData.current_date}</p>
+                                <p><strong>Description:</strong> {horoscopeData.description}</p>
+                                <p><strong>Compatibility:</strong> {horoscopeData.compatibility}</p>
+                                <p><strong>Mood:</strong> {horoscopeData.mood}</p>
+                                <p><strong>Color:</strong> {horoscopeData.color}</p>
+                                <p><strong>Lucky Number:</strong> {horoscopeData.lucky_number}</p>
+                                <p><strong>Lucky Time:</strong> {horoscopeData.lucky_time}</p>
+                            </div>
                             )}
-
-
-
                         </div>
                         </div>
                     </div>
-                )}
+                    )}
             </div>
 
             {/* if isVisible is true, */}

@@ -70,7 +70,7 @@ function Home() {
         return () => clearInterval(timer); // Cleanup
     }, []);
 
-    // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT TIME
+    // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT
     const fetchHoroscope = async (sign: string) => {
         setIsLoading(true);
         setError(null);
@@ -231,8 +231,8 @@ const handleGetHoroscope = () => {
                             {horoscopeData && (
                             <div className="horoscope-results">
                                 <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
-                                <p><strong>Date:</strong> {horoscopeData.date}</p>
-                                <p><strong>Horoscope Data:</strong> {horoscopeData.horoscope_data}</p>
+                                <p><strong>Date:</strong> {horoscopeData.data.date}</p>
+                                <p><strong>Horoscope Data:</strong> {horoscopeData.data.horoscope_data}</p>
                             </div>
                             )}
                         </div>

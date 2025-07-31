@@ -11,14 +11,10 @@ import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css'; // contains both icon + modal styles
 
 type HoroscopeData = {
-    date_range: string;
-    current_date: string;
-    description: string;
-    compatibility: string;
-    mood: string;
-    color: string;
-    lucky_number: string;
-    lucky_time: string;
+    data: {
+        date: string;
+        horoscope_data: string;
+    };
 };
 
 function Home() {
@@ -74,7 +70,7 @@ function Home() {
         return () => clearInterval(timer); // Cleanup
     }, []);
 
-    // fetch
+    // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT TIME
     const fetchHoroscope = async (sign: string) => {
         setIsLoading(true);
         setError(null);
@@ -82,11 +78,12 @@ function Home() {
         try {
             const response = await fetch(`/api/horoscope?sign=${sign.toLowerCase()}`); // <-- No full URL needed
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            
+
             const data = await response.json();
             setHoroscopeData(data);
         } catch (error) {
-            setError(error.message || "Failed to fetch horoscope");
+            const errorMessage = error instanceof Error ? error.message : "Failed to fetch horoscope";
+            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }
@@ -234,14 +231,8 @@ const handleGetHoroscope = () => {
                             {horoscopeData && (
                             <div className="horoscope-results">
                                 <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
-                                <p><strong>Date Range:</strong> {horoscopeData.date_range}</p>
-                                <p><strong>Current Date:</strong> {horoscopeData.current_date}</p>
-                                <p><strong>Description:</strong> {horoscopeData.description}</p>
-                                <p><strong>Compatibility:</strong> {horoscopeData.compatibility}</p>
-                                <p><strong>Mood:</strong> {horoscopeData.mood}</p>
-                                <p><strong>Color:</strong> {horoscopeData.color}</p>
-                                <p><strong>Lucky Number:</strong> {horoscopeData.lucky_number}</p>
-                                <p><strong>Lucky Time:</strong> {horoscopeData.lucky_time}</p>
+                                <p><strong>Date:</strong> {horoscopeData.date}</p>
+                                <p><strong>Horoscope Data:</strong> {horoscopeData.horoscope_data}</p>
                             </div>
                             )}
                         </div>

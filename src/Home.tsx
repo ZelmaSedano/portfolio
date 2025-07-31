@@ -89,9 +89,10 @@ function Home() {
         }
     };
 
-const handleGetHoroscope = () => {
-  fetchHoroscope(sign);
-};
+    const handleGetHoroscope = () => {
+    fetchHoroscope(sign);
+    };
+    
     // event handler functions
     const handleMouseDown = (e) => {
         if (

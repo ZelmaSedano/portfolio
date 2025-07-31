@@ -1,6 +1,6 @@
 /* to-do
   - FIX content border scrolling up when user scrolls down the page
-  - make desktop link button look like the ones on this website (Resume icon) 
+  - make desktop button look like the ones on this website (Resume icon) 
     - https://www.donchia.tech/
 */
 
@@ -245,6 +245,50 @@ nav ul li a p{
   display: flex;
   flex-direction: column;
 }
+
+.resume-content {
+  background-color: #c3c3c3;
+  /* positioning */
+  position: relative;
+  width: 70vw;
+  height: 70vh;
+  /* text color */
+  color: black;
+  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
+  border: none;
+  box-shadow: 
+    inset 1px 1px 0px #808080,
+    0 0 0 0px #c3c3c3;
+
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+}
+.resume-container {
+  width: 100%;
+  display: flex;
+}
+.resume-column-1 {
+  border-top: 3px solid grey;
+  border-right: 3px solid grey;
+  /* border-bottom: 3px solid grey;
+  height: 93.8%; */
+  width: 33.33%;
+}
+.resume-column-2 {
+  border-top: 3px solid grey;
+  border-right: 3px solid grey;
+  /* border-bottom: 3px solid grey; */
+  height: 98%;
+  width: 33.33%;
+}
+.resume-column-3 {
+  border-top: 3px solid grey;
+  /* border-bottom: 3px solid grey; */
+  height: 98%;
+  width: 33.33%;
+}
+
 /* Custom Windows 98-style scrollbar for .content */
 .content::-webkit-scrollbar {
   width: 16px; /* Classic Windows scrollbar width */
@@ -676,6 +720,17 @@ input:focus, textarea:focus {
 @media (max-width: 1450px) {
   .form-textarea {
     max-height: 180px;
+  }
+}
+@media (min-width: 1445px) {
+  .resume-column-2 {
+    display: none;
+  }
+  .resume-column-1 {
+    width: 50%;
+  }
+  .resume-column-3 {
+    width: 50%;
   }
 }
 

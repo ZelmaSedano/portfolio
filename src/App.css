@@ -61,7 +61,7 @@ body {
 }
 
 /* icons */
-.gif {
+.wassupp {
   height: 191px;
   width: 280px;
 }
@@ -246,54 +246,12 @@ nav ul li a p{
   flex-direction: column;
 }
 
-.resume-content {
-  background-color: #c3c3c3;
-  /* positioning */
-  position: relative;
-  width: 70vw;
-  height: 70vh;
-  /* text color */
-  color: black;
-  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
-  border: none;
-  box-shadow: 
-    inset 1px 1px 0px #808080,
-    0 0 0 0px #c3c3c3;
-
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  display: flex;
-  flex-direction: column;
-}
-.resume-container {
-  width: 100%;
-  display: flex;
-}
-.resume-column-1 {
-  border-top: 3px solid grey;
-  border-right: 3px solid grey;
-  /* border-bottom: 3px solid grey;
-  height: 93.8%; */
-  width: 33.33%;
-}
-.resume-column-2 {
-  border-top: 3px solid grey;
-  border-right: 3px solid grey;
-  /* border-bottom: 3px solid grey; */
-  height: 98%;
-  width: 33.33%;
-}
-.resume-column-3 {
-  border-top: 3px solid grey;
-  /* border-bottom: 3px solid grey; */
-  height: 98%;
-  width: 33.33%;
-}
-
 /* Custom Windows 98-style scrollbar for .content */
 .content::-webkit-scrollbar {
   width: 16px; /* Classic Windows scrollbar width */
   background-color: #c0c0c0; /* Classic gray background */
 }
+
 
 .contact-content {
   background-color: #c3c3c3;
@@ -628,6 +586,172 @@ input:focus, textarea:focus {
   text-decoration-thickness: 1.5px;
 }
 
+
+
+/* resume: EXTRACT */
+.resume-content {
+  background-color: #c3c3c3;
+  /* positioning */
+  position: relative;
+  width: 70vw;
+  height: 70vh;
+  /* text color */
+  color: black;
+  /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
+  border: none;
+  box-shadow: 
+    inset 1px 1px 0px #808080,
+    0 0 0 0px #c3c3c3;
+  display: flex;
+  flex-direction: column;
+
+}
+.resume-container {
+  width: 100%;
+  display: flex;
+  height: calc(100%); 
+  min-height: 0; /* Allows children to shrink */
+}
+.resume-column-1 {
+  display: flex;
+  flex-direction: column;
+  border-top: 3px solid grey;
+  border-right: 3px solid grey;
+  width: 33.33%;
+  /* fit into parent */
+  height: 100%;
+}
+.gif {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.obra-dinn {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.top-resume-column-1 {
+  /* set this, or it will be huge */
+  height: 200px;
+  /* flex-grow, flex-shrink, flex-basis */
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid grey; 
+}
+.middle-resume-column-1 {
+  /* optional - flex: 1 to take up remaining space */
+  height: 110px; 
+  padding: 10px;
+  border-bottom: 3px solid grey;
+}
+.bottom-resume-column-1 {
+  /* flex-grow (takes up leftover space) */
+  flex: 1;
+  padding: 10px;
+  min-height: 0;
+  padding-bottom: 28px;
+}
+.resume-column-2 {
+  border-top: 3px solid grey;
+  border-right: 3px solid grey;
+  /* border-bottom: 3px solid grey; */
+  height: 98%;
+  width: 33.33%;
+}
+.resume-column-3 {
+  border-top: 3px solid grey;
+  /* border-bottom: 3px solid grey; */
+  height: 98%;
+  width: 33.33%;
+}
+.stats-section-text {
+  display: flex;
+}
+.resume-blue-text, 
+.resume-big-black-text {
+  margin: 3px;
+}
+.resume-blue-text {
+  color: blue;
+}
+.resume-about-section {
+  margin: 0;
+}
+.resume-about-title {
+  text-align: center;
+  margin: 0 auto;
+}
+.resume-about-text {
+  margin: 0;
+  text-align: center;
+}
+
+.employment-title {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.employment-job-title,
+.employment-job-location,
+.employment-job-description {
+  margin: 5px;
+}
+
+.employment-job-description {
+  margin-top: -10px;
+}
+.employment-job-description-1 {
+  margin-top: 0px;
+}
+
+.job-title-underline {
+  text-decoration: underline;
+}
+
+.education-title {
+  text-align: center;
+  margin: 5px;
+}
+.education-title-text {
+  text-align: center;
+  margin: 5px;
+}
+
+.top-resume-column-3 {
+  /* flex-grow (takes up leftover space) */
+  flex: 1;
+  padding: 10px;
+  min-height: 0;
+  padding-bottom: 28px;
+  border-bottom: 3px solid grey;
+}
+.middle-resume-column-3 {
+  /* set this, or it will be huge */
+  height: 200px;
+  /* flex-grow, flex-shrink, flex-basis */
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid grey; 
+}
+.bottom-resume-column-3 {
+  flex: 1;
+  padding: 10px;
+  min-height: 0;
+  padding-bottom: 28px;
+}
+
+.skills {
+  display: flex;
+  justify-content: center;
+}
+.unordered-list {
+  margin: 5px 5px -10px -10px;
+}
 
 
 /* CONTENT FOOTER SECTION */

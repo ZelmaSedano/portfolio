@@ -153,7 +153,13 @@ function Home() {
                         {/* body of modal */}
                         <div className="modal-body">Do you like cats?</div>
                         {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
-                        </div>
+                        <button>
+                            Yes
+                        </button>
+                        <button>
+                            Yes, I do 
+                        </button>
+                            </div>
                     </div>
                 )}
             </div>
@@ -178,7 +184,7 @@ function Home() {
                         </div>
 
                         <div className="modal-body">
-                            <img src='/src/assets/wassup.gif' className='gif'></img>
+                            <img src='/src/assets/wassup.gif' className='wassupp'></img>
                         </div>
                         </div>
                     </div>

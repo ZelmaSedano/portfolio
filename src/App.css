@@ -577,6 +577,8 @@ iframe {
     inset -1px -1px 0px #c3c3c3;
 }
 .form-textarea {
+  display: flex;
+  flex: 1;
   /* removes default resizing */
   resize: none;
   min-height: 180px;
@@ -592,7 +594,7 @@ iframe {
   display: flex;
   justify-items: center;
   align-items: center;
-
+  margin-top: -6px;
   background-color: #c3c3c3;
   border-right: 2px solid black;
   border-bottom: 2px solid black;

@@ -126,7 +126,7 @@ function Portfolio() {
                 icon="/src/assets/cat.png"
                 label="meowdy"
                 x={50}
-                y={100}
+                y={75}
                 onClick={() => setShowCatModal(true)}
             />
 
@@ -163,7 +163,7 @@ function Portfolio() {
                     icon="/src/assets/scream.png"
                     label="RING RING"
                     x={50}
-                    y={200}
+                    y={175}
                     onClick={() => setShowScreamModal(true)}
                 />
 
@@ -190,7 +190,7 @@ function Portfolio() {
                     icon="/src/assets/crystal_ball.png"
                     label="horoscope"
                     x={50}
-                    y={300}
+                    y={275}
                     onClick={() => setShowHoroscopeModal(true)}
                     className=''
                     imgClassName='horoscope-icon'

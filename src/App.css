@@ -602,12 +602,14 @@ input:focus, textarea:focus {
   box-shadow: 
     inset 1px 1px 0px #808080,
     0 0 0 0px #c3c3c3;
+  overflow: visible;
   display: flex;
   flex-direction: column;
 
 }
 .resume-container {
   width: 100%;
+  height: 100%;
   display: flex;
   height: calc(100%); 
   min-height: 0; /* Allows children to shrink */
@@ -753,6 +755,19 @@ input:focus, textarea:focus {
   margin: 5px 5px -10px -10px;
 }
 
+.resume-column-1,
+.resume-column-2,
+.resume-column-3 {
+  flex: 1;
+  min-height: 0; /* Allow shrinking */
+  overflow-y: auto; /* Scroll only if content overflows */
+  border-top: 3px solid grey;
+}
+
+.resume-column-1,
+.resume-column-2 {
+  border-right: 3px solid grey;
+}
 
 /* CONTENT FOOTER SECTION */
 .footer {

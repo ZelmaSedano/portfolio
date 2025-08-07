@@ -14,6 +14,19 @@
     user-select: none;
     /* content should be able to be dragged ABOVE icon */
     z-index: 0;
+    /* keeps contents icon from shifting when selected */
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    padding-top: 6px;
+}
+.desktop-icon * {
+    pointer-events: none;
+}
+.desktop-icon.active {
+    background-color: #000080; /* Classic Windows blue */
+    color: white;
+    /* when selected, the transparent border becomes visible */
+    border: 1px dotted #ffffff;
 }
 
 .desktop-icon img {
@@ -28,6 +41,10 @@ you can just add the more specific selector in that case in front of the one tha
 .desktop-icon img.horoscope-icon {
     width: 50px;
     height: 60px;
+}
+.desktop-icon.selected {
+    background-color: rgba(0, 0, 128, 0.5); /* Classic Windows selection color */
+    outline: 1px dotted white;
 }
 
 .modal-overlay {

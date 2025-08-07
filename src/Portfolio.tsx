@@ -143,13 +143,15 @@ function Portfolio() {
                     </div>
                     {/* body of modal */}
                     <div className="modal-body">Do you like cats?</div>
-                    {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
-                    <button>
-                        Yes
-                    </button>
-                    <button>
-                        Yes, I do 
-                    </button>
+                        {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
+                        <div className='cat-buttons'>
+                            <button className='cat-button'>
+                                Yes
+                            </button>
+                            <button className='cat-button'>
+                                Yes, I do 
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

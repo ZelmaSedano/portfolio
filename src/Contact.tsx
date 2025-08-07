@@ -212,20 +212,20 @@ function Contact() {
                 {/* onClick takes the event, and returns 'don't propogate this event' function */}
                 <div className="modal" onClick={(e) => e.stopPropagation()}>
                     <div className="modal-header">
-                        {/* modal header text */}
                         <span>Question...</span>
-                        {/* 'x' close button */}
                         <button className='x-button' onClick={() => setShowCatModal(false)}>✕</button>
                     </div>
                     {/* body of modal */}
                     <div className="modal-body">Do you like cats?</div>
-                    {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
-                    <button>
-                        Yes
-                    </button>
-                    <button>
-                        Yes, I do 
-                    </button>
+                        {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
+                        <div className='cat-buttons'>
+                            <button className='cat-button'>
+                                Yes
+                            </button>
+                            <button className='cat-button'>
+                                Yes, I do 
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

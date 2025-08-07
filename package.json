@@ -3,15 +3,27 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start-backend": "node server.js",
+    "dev-full": "concurrently \"npm run dev\" \"npm run start-backend\""
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@react-pdf/renderer": "^4.3.0",
+    "axios": "^1.11.0",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2",
+    "pdfjs-dist": "^5.3.31",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-pdf": "^10.0.1",
     "react-router-dom": "^6.30.0"
   },
   "devDependencies": {

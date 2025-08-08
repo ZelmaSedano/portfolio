@@ -24,6 +24,7 @@ function Resume() {
             y: Math.max(0, (window.innerHeight - 600) / 2)
         };
     });
+    const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 1445);
 
     const [currentTime, setCurrentTime] = useState(new Date());
     const [isVisible, setIsVisible] = useState(true);
@@ -43,19 +44,19 @@ function Resume() {
     const [error, setError] = useState<string | null>(null);
     const [sign, setSign] = useState('aries'); // Default sign
 
-    // 2. Save state to sessionStorage
+    // save state to session storage
     useEffect(() => {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
     }, [position]);
 
     useEffect(() => {
-    const timer = setInterval(() => {
-        setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer); // Cleanup
-}, []);
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(timer); // Cleanup
+    }, []);
 
-        // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT
+    // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT
     const fetchHoroscope = async (sign: string) => {
         setIsLoading(true);
         setError(null);
@@ -105,9 +106,8 @@ function Resume() {
         }
     };
 
-    const handleMouseUp = () => setIsDragging(false);
 
-    // 4. Event listeners
+    // useEffects
     useEffect(() => {
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', handleMouseUp);
@@ -117,9 +117,20 @@ function Resume() {
         };
     }, [isDragging, dragOffset]);
 
-    // 5. Toggle visibility
+    // when the window is above 1445 setIsWideScreen is set
+    useEffect(() => {
+        const handleResize = () => {
+            setIsWideScreen(window.innerWidth > 1445);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // toggle content window visibility
     const toggleWindow = () => setIsVisible(!isVisible);
 
+    const handleMouseUp = () => setIsDragging(false);
 
 
     // RENDERED PART
@@ -176,37 +187,36 @@ function Resume() {
             )}
         </div>
         {/* define what showYesModal is */}
-            {showYesModal && (
-                <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
-                    <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span>Smart Answer</span>
-                            <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="image-container">
-                                <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
-                            </div>
+        {showYesModal && (
+            <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
+                <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-header">
+                        <span>Smart Answer</span>
+                        <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="image-container">
+                            <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
                         </div>
                     </div>
                 </div>
-            )}
-
-            {showLoveModal && (
-                <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
-                    <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span>That's right, MINION</span>
-                            <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="image-container">
-                                <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
-                            </div>
+            </div>
+        )}
+        {showLoveModal && (
+            <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
+                <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-header">
+                        <span>That's right, MINION</span>
+                        <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="image-container">
+                            <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
                         </div>
                     </div>
                 </div>
-            )}
+            </div>
+        )}
 
         {/* scream icon */}
         <div className="desktop">
@@ -217,7 +227,6 @@ function Resume() {
                 y={175}
                 onClick={() => setShowScreamModal(true)}
             />
-
             {showScreamModal && (
                 <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
 
@@ -246,7 +255,6 @@ function Resume() {
                 className=''
                 imgClassName='horoscope-icon'
             />
-
             {showHoroscopeModal && (
                 <div className="modal-overlay" onClick={() => setShowHoroscopeModal(false)}>
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -366,34 +374,47 @@ function Resume() {
             <div className='resume-content'>
                 <div className="resume-container">
                     <div className='resume-column-1'>
-                        <div className='top-resume-column-1'>
-                            <img src='/src/assets/matrix.gif' className='gif'></img>
+                        {/* widescreen version */}
+                        {isWideScreen ? (
+                            <>
+                                <img src='/src/assets/matrix.gif' className='gif' />
+                                <p className='resume-big-black-text'>Extra Details Only on Wide Screens</p>
+                            </>
+                            ) : (
+                            <>
+                                {/* normal content */}
+                                <div className='top-resume-column-1'>
+                                    <img src='/src/assets/matrix.gif' className='gif'></img>
+                                </div>
+                                <div className='middle-resume-column-1'>
+                                    <div className='stats-section-text'>
+                                        <p className='resume-blue-text'>NAME:</p>
+                                        <p className='resume-big-black-text'>Valentia Sedano</p>
+                                    </div>
+                                    <div className='stats-section-text'>
+                                        <p className='resume-blue-text'>LOCATION:</p>
+                                        <p className='resume-big-black-text'>Chicagoland, USA</p>
+                                    </div>
+                                    <div className='stats-section-text'>
+                                        <p className='resume-blue-text'>EMAIL:</p>
+                                        <p className='resume-big-black-text'>zvsedano@gmail.com</p>
+                                    </div>
+                                    <div className='stats-section-text'>
+                                        <p className='resume-blue-text'>MOBILE:</p>
+                                        <p className='resume-big-black-text'>+1 (224) 482-8189</p>
+                                    </div>
+                                    </div>
+                                <div className='bottom-resume-column-1'>
+                                    <p className='resume-about-section'>
+                                        <p className='resume-about-title'>ABOUT</p>
+                                        <p className='resume-about-text'>Passionate about both design and development, Valentia is someone who is able to inspire devs & clients alike</p>
+                                    </p>
+                                </div>
+                            </>
+                        )}
                         </div>
-                        <div className='middle-resume-column-1'>
-                            <div className='stats-section-text'>
-                                <p className='resume-blue-text'>NAME:</p>
-                                <p className='resume-big-black-text'>Valentia Sedano</p>
-                            </div>
-                            <div className='stats-section-text'>
-                                <p className='resume-blue-text'>LOCATION:</p>
-                                <p className='resume-big-black-text'>Chicagoland, USA</p>
-                            </div>
-                            <div className='stats-section-text'>
-                                <p className='resume-blue-text'>EMAIL:</p>
-                                <p className='resume-big-black-text'>zvsedano@gmail.com</p>
-                            </div>
-                            <div className='stats-section-text'>
-                                <p className='resume-blue-text'>MOBILE:</p>
-                                <p className='resume-big-black-text'>+1 (224) 482-8189</p>
-                            </div>
-                        </div>
-                        <div className='bottom-resume-column-1'>
-                            <p className='resume-about-section'>
-                                <p className='resume-about-title'>ABOUT</p>
-                                <p className='resume-about-text'>Passionate about both design and development, Valentia is someone who is able to inspire devs & clients alike</p>
-                            </p>
-                        </div>
-                    </div>
+                    
+                    {/* NOT VISIBLE IN WIDESCREEN */}
                     <div className='resume-column-2'>
                         <p className='employment-title'>EMPLOYMENT HISTORY</p>
 
@@ -408,45 +429,53 @@ function Resume() {
                             <li className='employment-job-description'>Contribute features, maintain, and test client-side web applications</li>
                             <li className='employment-job-description-1'>Identify test cases and testing strategies for the PS5 console using PyTest. Utilize technologies such as WebDrivers & XPATH to test the UI of the console.</li>
                         </ul>
-
                     </div>
 
                     <div className='resume-column-3'>
-                        <div className='top-resume-column-3'>
-                            <p className='education-title'>EDUCATION</p>
-                            
-                            <div>
-                                <p className='education-title-text'><span className='job-title-underline'>Techtonica</span> | Engineering Certificate - 2021</p>
-                                <p className='education-title-text'><span className='job-title-underline'>Ole Miss</span> | B.A. in Psychology - 2011</p>
-                            </div>
-                        </div>
-                        <div className='middle-resume-column-3'>
-                            <img src='/src/assets/world.gif' className='obra-dinn'></img>
-                        </div>
-                        <div className='bottom-resume-column-3'>
-                            <p className='resume-about-section'>
-                                <p className='resume-about-title'>SKILLS</p>
-                                <div className='skills'>
-                                    <ul className='unordered-list'>
-                                        <li>React.js</li>
-                                        <li>TypeScript</li>
-                                        <li>Jest</li>
-                                    </ul>
-                                    <ul className='unordered-list'>
-                                        <li>Redux.js</li>
-                                        <li>Python</li>
-                                        <li>PyTest</li>
-                                    </ul>
-                                    <ul className='unordered-list'>
-                                        <li>Git</li>
-                                        <li>SQL</li>
-                                    </ul>
+                        {/* widescreen version */}
+                        {isWideScreen ? (
+                            <>
+                                <img src='/src/assets/matrix.gif' className='gif' />
+                                <p className='resume-big-black-text'>Extra Details Only on Wide Screens</p>
+                            </>
+                            ) : (
+                            <>
+                            <div className='top-resume-column-3'>
+                                <p className='education-title'>EDUCATION</p>
+                                
+                                <div>
+                                    <p className='education-title-text'><span className='job-title-underline'>Techtonica</span> | Engineering Certificate - 2021</p>
+                                    <p className='education-title-text'><span className='job-title-underline'>Ole Miss</span> | B.A. in Psychology - 2011</p>
                                 </div>
-                            </p>
-                        </div>
-                    </div>
-                    
+                            </div>
+                            <div className='middle-resume-column-3'>
+                                <img src='/src/assets/world.gif' className='obra-dinn'></img>
+                            </div>
+                            <div className='bottom-resume-column-3'>
+                                <p className='resume-about-section'>
+                                    <p className='resume-about-title'>SKILLS</p>
+                                    <div className='skills'>
+                                        <ul className='unordered-list'>
+                                            <li>React.js</li>
+                                            <li>TypeScript</li>
+                                            <li>Jest</li>
+                                        </ul>
+                                        <ul className='unordered-list'>
+                                            <li>Redux.js</li>
+                                            <li>Python</li>
+                                            <li>PyTest</li>
+                                        </ul>
+                                        <ul className='unordered-list'>
+                                            <li>Git</li>
+                                            <li>SQL</li>
+                                        </ul>
+                                    </div>
+                                </p>
+                            </div>
+                        </>
+                    )}
                 </div>
+            </div>
             </div>
 
                 {/* CONTENT FOOTER */}

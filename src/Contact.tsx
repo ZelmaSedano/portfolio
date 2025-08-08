@@ -34,7 +34,11 @@ function Contact() {
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
     const [showCatModal, setShowCatModal] = useState(false);
+    const [showYesModal, setShowYesModal] = useState(false);
+    const [showLoveModal, setShowLoveModal] = useState(false);
+    
     const [showScreamModal, setShowScreamModal] = useState(false);
+    
     const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
     // horoscope API states
     const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
@@ -219,10 +223,22 @@ function Contact() {
                     <div className="modal-body">Do you like cats?</div>
                         {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
                         <div className='cat-buttons'>
-                            <button className='cat-button'>
+                            <button 
+                                className='cat-button'
+                                onClick={() => {
+                                    setShowCatModal(false);
+                                    setShowYesModal(true);
+                                }}
+                            >
                                 Yes
                             </button>
-                            <button className='cat-button'>
+                            <button 
+                                className='cat-button'
+                                onClick={() => {
+                                    setShowCatModal(false);
+                                    setShowLoveModal(true);
+                                }}
+                            >
                                 Yes, I do 
                             </button>
                         </div>
@@ -230,6 +246,38 @@ function Contact() {
                 </div>
             )}
         </div>
+        {/* define what showYesModal is */}
+            {showYesModal && (
+                <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
+                    <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>Smart Answer</span>
+                            <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="image-container">
+                                <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showLoveModal && (
+                <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
+                    <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>That's right, MINION</span>
+                            <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="image-container">
+                                <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         
         {/* scream icon */}
         <div className="desktop">

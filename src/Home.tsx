@@ -39,7 +39,11 @@ function Home() {
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
     // icons
     const [showCatModal, setShowCatModal] = useState(false);
+    const [showYesModal, setShowYesModal] = useState(false);
+    const [showLoveModal, setShowLoveModal] = useState(false);
+
     const [showScreamModal, setShowScreamModal] = useState(false);
+    
     const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
     // horoscope API states
     const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
@@ -152,10 +156,22 @@ function Home() {
                             <div className="modal-body">Do you like cats?</div>
                             {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
                             <div className='cat-buttons'>
-                                <button className='cat-button'>
+                                <button 
+                                className='cat-button'
+                                onClick={() => {
+                                    setShowCatModal(false);
+                                    setShowYesModal(true);
+                                }}
+                                >
                                     Yes
                                 </button>
-                                <button className='cat-button'>
+                                <button 
+                                    className='cat-button'
+                                    onClick={() => {
+                                        setShowCatModal(false);
+                                        setShowLoveModal(true);
+                                    }}
+                                >
                                     Yes, I do 
                                 </button>
                             </div>
@@ -163,6 +179,38 @@ function Home() {
                     </div>
                 )}
             </div>
+            {/* define what showYesModal is */}
+            {showYesModal && (
+                <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
+                    <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>Smart Answer</span>
+                            <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="image-container">
+                                <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showLoveModal && (
+                <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
+                    <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>That's right, MINION</span>
+                            <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="image-container">
+                                <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* scream icon */}
             <div className="desktop">
@@ -184,7 +232,7 @@ function Home() {
                         </div>
 
                         <div className="modal-body">
-                            <img src='/src/assets/wassup.gif' className='wassupp'></img>
+                            <img src='/src/assets/wassup.gif' className='wassupp' alt='wassup_gif'></img>
                         </div>
                         </div>
                     </div>
@@ -278,25 +326,25 @@ function Home() {
                             <ul>
                                 <li className='button left-button'>
                                     <Link to="/">
-                                        <img src="/src/assets/Starfield.ico" className='home-icon' alt="home"/>
+                                        <img src="/src/assets/Starfield.ico" className='home-icon' alt='home'/>
                                         <p>Home</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
                                     <Link to="/portfolio">
-                                        <img src="/src/assets/painting.ico" className='paint-icon' alt="portfolio"/>
+                                        <img src="/src/assets/painting.ico" className='paint-icon' alt='portfolio'/>
                                         <p>Portfolio</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
                                     <Link to="/resume">
-                                        <img src="/src/assets/resume.png" className='resume-icon'></img>
+                                        <img src="/src/assets/resume.png" className='resume-icon' alt='resume'></img>
                                         <p>Resume</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
                                     <Link to="/contact">
-                                        <img src="/src/assets/send.png" className='contact-icon'></img>
+                                        <img src="/src/assets/send.png" className='contact-icon' alt='contact'></img>
                                         <p>Contact</p>
                                     </Link>
                                 </li>   
@@ -335,7 +383,7 @@ function Home() {
                             <div className = 'footer-section footer-small'></div>
                             <div className = 'footer-section footer-small'></div>
                             <div className='footer-section footer-medium'>
-                                <img src="/src/assets/earth.ico" className='content-footer-icon'></img>
+                                <img src="/src/assets/earth.ico" className='content-footer-icon' alt='content_footer'></img>
                                 <p className='footer-section-text'>Internet</p>
                             </div>
                         </div>

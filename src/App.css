@@ -924,6 +924,23 @@ input:focus, textarea:focus {
   .resume-column-3 {
     width: 50%;
   }
+
+  .middle-resume-column-1 {
+    /* keep height the same as content, diff from laptop view  */ 
+    height: auto;
+  }
+
+  .resume-column-2 {
+    border-top: 3px solid grey;
+    border-right: 3px solid grey;
+    /* border-bottom: 3px solid grey; */
+    height: 98%;
+    width: 33.33%;
+  }
+  .widescreen-employment-section {
+    border-bottom: 3px solid grey;
+  }
+
 }
 
 /* Switch to 2 columns when window is less than 1200px wide */

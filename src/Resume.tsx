@@ -122,7 +122,6 @@ function Resume() {
         const handleResize = () => {
             setIsWideScreen(window.innerWidth > 1445);
         };
-
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -186,7 +185,7 @@ function Resume() {
                 </div>
             )}
         </div>
-        {/* define what showYesModal is */}
+        {/* depending on which answer you click, a diff popup will occur - jk, they're the same popup lul */}
         {showYesModal && (
             <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
                 <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
@@ -389,6 +388,7 @@ function Resume() {
                                 </div>
                                 
                                 <div className='middle-resume-column-1'>
+                                    <p className='resume-contact-title'>CONTACT</p>
                                     <div className='widescreen-contact'>
                                         <div className='stats-section-text'>
                                             <p className='resume-blue-text'>NAME:</p>
@@ -423,14 +423,12 @@ function Resume() {
                                 <div className='top-resume-column-1'>
                                     <img src='/src/assets/matrix.gif' className='gif'></img>
                                 </div>
+
                                 <div className='middle-resume-column-1'>
+                                    <p className='resume-contact-title'>CONTACT</p>
                                     <div className='stats-section-text'>
                                         <p className='resume-blue-text'>NAME:</p>
                                         <p className='resume-big-black-text'>Valentia Sedano</p>
-                                    </div>
-                                    <div className='stats-section-text'>
-                                        <p className='resume-blue-text'>LOCATION:</p>
-                                        <p className='resume-big-black-text'>Chicagoland, USA</p>
                                     </div>
                                     <div className='stats-section-text'>
                                         <p className='resume-blue-text'>EMAIL:</p>
@@ -441,6 +439,7 @@ function Resume() {
                                         <p className='resume-big-black-text'>+1 (224) 482-8189</p>
                                     </div>
                                 </div>
+                                
                                 <div className='bottom-resume-column-1'>
                                     <div className='resume-about-section'>
                                         <p className='resume-about-title'>ABOUT</p>
@@ -489,23 +488,30 @@ function Resume() {
                                 </div>
 
                                 <div className='bottom-resume-column-3'>
-                                    <div className='resume-about-section'>
-                                        <p className='resume-about-title'>SKILLS</p>
-                                        <div className='skills'>
-                                            <ul className='unordered-list'>
-                                                <li>React.js</li>
-                                                <li>TypeScript</li>
-                                                <li>Jest</li>
-                                            </ul>
-                                            <ul className='unordered-list'>
-                                                <li>Redux.js</li>
-                                                <li>Python</li>
-                                                <li>PyTest</li>
-                                            </ul>
-                                            <ul className='unordered-list'>
-                                                <li>Git</li>
-                                                <li>SQL</li>
-                                            </ul>
+                                    <div className='skills-section'>
+                                        <div className='resume-about-section'>
+                                            <p className='resume-about-title'>SKILLS</p>
+                                            <div className='skills'>
+                                                <ul className='unordered-list'>
+                                                    <li>React.js</li>
+                                                    <li>TypeScript</li>
+                                                    <li>Jest</li>
+                                                </ul>
+                                                <ul className='unordered-list'>
+                                                    <li>Redux.js</li>
+                                                    <li>Python</li>
+                                                    <li>PyTest</li>
+                                                </ul>
+                                                <ul className='unordered-list'>
+                                                    <li>Git</li>
+                                                    <li>SQL</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='image-section'>
+                                        <div className='widescreen-image'>
+                                            <img src='/src/assets/world.gif' className='obra-dinn'></img>
                                         </div>
                                     </div>
                                 </div>

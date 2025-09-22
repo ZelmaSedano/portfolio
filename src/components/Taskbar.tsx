@@ -41,7 +41,7 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
 
     return (
         <div className="taskbar">
-            <button 
+            <button
                 ref={startButtonRef}
                 className={`start-button ${isStartMenuOpen ? 'active' : ''}`}
                 onClick={toggleStartMenu}

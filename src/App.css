@@ -632,7 +632,7 @@ input:focus, textarea:focus {
 }
 
 ::placeholder {
-  color: black;
+  color: grey;
 }
 .underline {
   text-decoration: underline;
@@ -698,9 +698,9 @@ input:focus, textarea:focus {
 }
 .middle-resume-column-1 {
   /* optional - flex: 1 to take up remaining space */
-  height: 110px; 
   padding: 10px;
-  border-bottom: 3px solid grey;
+  text-align: center;
+  margin: 0 auto;
 }
 .bottom-resume-column-1 {
   /* flex-grow (takes up leftover space) */
@@ -708,6 +708,7 @@ input:focus, textarea:focus {
   padding: 10px;
   min-height: 0;
   padding-bottom: 28px;
+  border-top: 3px solid grey;
 }
 .resume-column-2 {
   border-top: 3px solid grey;
@@ -721,6 +722,12 @@ input:focus, textarea:focus {
   /* border-bottom: 3px solid grey; */
   height: 98%;
   width: 33.33%;
+}
+
+/* laptop view (not widescreen) */
+.resume-contact-title {
+  text-align: center;
+  margin: 0px;
 }
 .stats-section-text {
   display: flex;
@@ -915,31 +922,56 @@ input:focus, textarea:focus {
   }
 }
 @media (min-width: 1445px) {
+  /* left column */
   .resume-column-2 {
     display: none;
   }
   .resume-column-1 {
     width: 50%;
   }
+  .middle-resume-column-1 {
+    /* keep height the same as content, diff from laptop view  */ 
+    height: auto;
+    padding: 20px;
+  }
+  .resume-contact-title {
+    text-align: center;
+    margin: 0px;
+  }
+  .stats-section-text {
+    display: flex;
+    justify-content: center;
+  }
+  /* right column */
   .resume-column-3 {
     width: 50%;
   }
 
-  .middle-resume-column-1 {
-    /* keep height the same as content, diff from laptop view  */ 
-    height: auto;
+  .widescreen-employment-section {
+    /* keep the section from growing wider, so skill section doesn't move */
+    max-width: 505px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .bottom-resume-column-3 {
+    display: flex;
+    border-top: 3px solid grey;
+    margin-left: -20px;
+  }
+  .skills-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align the top a bit with image top */
+    margin-top: -15px;
+  }
+  .image-section {
+    width: 130px;
+    margin: 10px 20px 0 0;
   }
 
-  .resume-column-2 {
-    border-top: 3px solid grey;
-    border-right: 3px solid grey;
-    /* border-bottom: 3px solid grey; */
-    height: 98%;
-    width: 33.33%;
-  }
-  .widescreen-employment-section {
-    border-bottom: 3px solid grey;
-  }
+
 
 }
 

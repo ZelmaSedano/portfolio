@@ -40,12 +40,15 @@ function Contact() {
     const [showScreamModal, setShowScreamModal] = useState(false);
     
     const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
+
     // horoscope API states
     const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [sign, setSign] = useState('aries'); // Default sign
 
+    // Send button active state
+    const [isButtonActive, setIsButtonActive] = useState(false);
     // contact window size state - check size of window to resize textarea
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
@@ -76,6 +79,16 @@ function Contact() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+    // send button useEffect
+    useEffect(() => {
+        if (isButtonActive) {
+            const timer = setTimeout(() => {
+                setIsButtonActive(false);
+            }, 2000); // 2 seconds
+
+            return () => clearTimeout(timer);
+        }
+    }, [isButtonActive]);
 
     // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT
     const fetchHoroscope = async (sign: string) => {
@@ -179,6 +192,7 @@ function Contact() {
     // handle form submission - added emailjs code to actually send email
     const handleSubmit = (e) => {
         e.preventDefault();
+        setIsButtonActive(true); // Trigger the color change
         
         emailjs.send(
             'service_fiblai5',
@@ -498,8 +512,8 @@ function Contact() {
                             {/* Submit button row */}
                             <div className="form-button">
                                 <button 
-                                    type="submit" 
-                                    className="send-button"
+                                    type="submit"
+                                    className={`send-button ${isButtonActive ? 'active' : ''}`}
                                     disabled={isSending}
                                 >
                                     {isSending ? (

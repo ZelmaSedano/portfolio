@@ -460,7 +460,7 @@ function Contact() {
                                     onChange={handleInputChange}
                                     required                   // ** field required **
                                     className="form-input"
-                                    placeholder="Your email address"  
+                                    placeholder="your email"  
                                 />
                             </div>
                             
@@ -475,7 +475,7 @@ function Contact() {
                                     onChange={handleInputChange}
                                     required
                                     className="form-input"
-                                    placeholder="Message subject"
+                                    placeholder="subject matter"
                                 />
                             </div>
                             
@@ -490,7 +490,7 @@ function Contact() {
                                     onChange={handleInputChange}
                                     required
                                     className="form-textarea"
-                                    placeholder="Type your message here..."
+                                    placeholder='"what a kewl portfolio, you&apos;re hired!"'
                                     style={{ height: `${calculateTextareaHeight()}px` }}
                                 />
                             </div>

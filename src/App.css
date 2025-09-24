@@ -711,6 +711,7 @@ input:focus, textarea:focus {
   padding: 10px;
   text-align: center;
   margin: 0 auto;
+  border-bottom: 3px solid grey;
 }
 .bottom-resume-column-1 {
   /* flex-grow (takes up leftover space) */
@@ -718,7 +719,8 @@ input:focus, textarea:focus {
   padding: 10px;
   min-height: 0;
   padding-bottom: 28px;
-  border-top: 3px solid grey;
+  text-align: center;
+  margin: 0 auto;
 }
 .resume-column-2 {
   border-top: 3px solid grey;
@@ -958,6 +960,18 @@ input:focus, textarea:focus {
   .resume-column-3 {
     width: 50%;
   }
+  .middle-resume-column-1 {
+    border: none;
+  }
+  .widescreen-middle-resume-column-1 {
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+    border-bottom: 3px solid grey;
+  }
+  .widescreen-bottom-resume-column-1 {
+    border-top: 3px solid grey;
+  }
 
   .widescreen-employment-section {
     /* keep the section from growing wider, so skill section doesn't move */
@@ -1084,9 +1098,27 @@ input:focus, textarea:focus {
     grid-template-columns: 1fr;
   }
 
+  /* RESUME */
+  .resume-content {
+    width: 100vw;
+    height: 100vh;
+  }
   .resume-container {
     flex-direction: column;
-    height: auto;
+  }
+  .resume-column-1, .resume-column-2, .resume-column-3 {
+    width: 100%;
+  }
+  .resume-content .resume-container .resume-column-2 {
+    height: 400px;
+    flex: none;
+  }
+
+  /* remove gifs & skill section */
+  .top-resume-column-1,
+  .middle-resume-column-3,
+  .bottom-resume-column-3 {
+    display: none;
   }
 
   .footer {

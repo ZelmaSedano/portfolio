@@ -619,6 +619,7 @@ iframe {
   font-family: 'MS Sans Serif', sans-serif;
   font-size: 18px;
   cursor: pointer;
+  outline: none;
 }
 .send-button.active {
   border-top: 1px solid #808080;
@@ -749,7 +750,9 @@ input:focus, textarea:focus {
   color: blue;
 }
 .resume-about-section {
-  margin: 0;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 }
 .resume-about-title {
   text-align: center;
@@ -1079,6 +1082,11 @@ input:focus, textarea:focus {
 
   .img-grid {
     grid-template-columns: 1fr;
+  }
+
+  .resume-container {
+    flex-direction: column;
+    height: auto;
   }
 
   .footer {

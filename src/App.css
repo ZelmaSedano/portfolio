@@ -541,7 +541,7 @@ iframe {
 
 /* CONTACT FORM (extract) */
 .contact-form {
-  padding: 20px;
+  padding: 20px 20px 20px 0px;
 }
 .form-row {
   /* FIXED THE MISALIGNED INPUT BOXES */
@@ -1113,13 +1113,29 @@ input:focus, textarea:focus {
     height: 400px;
     flex: none;
   }
-
+  /* change the height of Contact section */
+  .resume-column-1 {
+    flex: none;
+    height: auto;
+  }
+  .resume-column-1 .bottom-resume-column-1 {
+    height: 95px;
+    min-height: 95px;
+    flex: none;
+  }
   /* remove gifs & skill section */
   .top-resume-column-1,
   .middle-resume-column-3,
   .bottom-resume-column-3 {
     display: none;
   }
+
+
+  /* CONTACT */
+  .form-textarea {
+    max-height: 375px;
+  }
+
 
   .footer {
     /* Change from absolute */
@@ -1131,4 +1147,26 @@ input:focus, textarea:focus {
     z-index: 10;
   }
 
+}
+
+@media (max-width: 430px) {
+  .button {
+
+  }
+}
+
+@media (max-width: 400px) {
+  .left-button {
+    margin-left: 0px;
+  }
+
+  .button {
+    margin: 3px 0px 3px 0px;
+  }
+}
+
+@media (max-height: 667px) {
+  .form-textarea {
+    max-height: 230px;
+  }
 }

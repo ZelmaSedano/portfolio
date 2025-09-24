@@ -380,7 +380,7 @@ function Resume() {
                                 <div className='top-resume-column-1'>
                                     <img src='/src/assets/matrix.gif' className='gif' />
                                 </div>
-                                <div className='middle-resume-column-1'>
+                                <div className='widescreen-middle-resume-column-1'>
                                     <div className='resume-about-section'>
                                         <p className='resume-about-title'>ABOUT</p>
                                         <p className='resume-about-text'>Passionate about both design and development, Valentia is someone who is able to inspire devs & clients alike.  You should probs hire her :) </p>
@@ -408,7 +408,7 @@ function Resume() {
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div className='widescreen-bottom-resume-column-1'>
                                     <p className='education-title'>EDUCATION</p>
                                     
                                     <div>
@@ -425,6 +425,12 @@ function Resume() {
                                 </div>
 
                                 <div className='middle-resume-column-1'>
+                                    <div className='resume-about-section'>
+                                        <p className='resume-about-title'>ABOUT</p>
+                                        <p className='resume-about-text'>Passionate about both design and development, Valentia is someone who is able to inspire devs & clients alike</p>
+                                    </div>
+                                </div>
+                                <div className='bottom-resume-column-1'>
                                     <p className='resume-contact-title'>CONTACT</p>
                                     <div className='stats-section-text'>
                                         <p className='resume-blue-text'>NAME:</p>
@@ -439,13 +445,7 @@ function Resume() {
                                         <p className='resume-big-black-text'>+1 (224) 482-8189</p>
                                     </div>
                                 </div>
-                                
-                                <div className='bottom-resume-column-1'>
-                                    <div className='resume-about-section'>
-                                        <p className='resume-about-title'>ABOUT</p>
-                                        <p className='resume-about-text'>Passionate about both design and development, Valentia is someone who is able to inspire devs & clients alike</p>
-                                    </div>
-                                </div>
+                            
                             </>
                         )}
                     </div>

@@ -629,6 +629,7 @@ iframe {
     box-shadow: 
         inset -1px -1px 0 #dfdfdf,
         inset 1px 1px 0 #000;
+    outline: none;
 }
 .send-icon {
   width: 26px;
@@ -983,6 +984,7 @@ input:focus, textarea:focus {
     display: flex;
     border-top: 3px solid grey;
     margin-left: -20px;
+    padding: 0px;
   }
   .skills-section {
     flex: 1;
@@ -1129,6 +1131,10 @@ input:focus, textarea:focus {
   .bottom-resume-column-3 {
     display: none;
   }
+  .top-resume-column-3 {
+    border-bottom: none;
+  }
+  
 
 
   /* CONTACT */
@@ -1144,16 +1150,11 @@ input:focus, textarea:focus {
     bottom: 30px;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 0;
   }
 
 }
 
-@media (max-width: 430px) {
-  .button {
-
-  }
-}
 
 @media (max-width: 400px) {
   .left-button {

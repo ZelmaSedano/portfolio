@@ -928,7 +928,7 @@ input:focus, textarea:focus {
 
 @media (max-width: 1920px) {
   .form-textarea {
-    max-height: 350px;
+    max-height: 300px;
   }
 }
 @media (max-width: 1450px) {

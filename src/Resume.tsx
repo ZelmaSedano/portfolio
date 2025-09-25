@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './App.css';
 
 import Taskbar from './components/Taskbar'
@@ -16,6 +16,8 @@ type HoroscopeData = {
 
 function Resume() {
     const windowRef = useRef(null);
+    const location = useLocation();
+
     // states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
@@ -338,7 +340,7 @@ function Resume() {
                                 <p>Portfolio</p>
                             </Link>
                         </li>
-                        <li className='button'>
+                        <li className={`button ${location.pathname === '/resume' ? 'active-home' : ''}`}>
                             <Link to="/resume">
                                 <img src="/src/assets/resume.png" className='resume-icon'></img>
                                 <p>Resume</p>

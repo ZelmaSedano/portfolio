@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './App.css';
 
 // hi justine, feel free to look at the comments in the modal section to learn more about how to render modals.  the component is in DesktopIcon.tsx :)
@@ -20,6 +20,7 @@ type HoroscopeData = {
 function Home() {
     // JUSTINE: useRef is used to access DOM nodes, this line initiates a useRef hook with the value of null
     const windowRef = useRef(null);
+    const location = useLocation();
 
     // states
     const [position, setPosition] = useState(() => {
@@ -324,7 +325,8 @@ function Home() {
                         {/* NAVBAR */}
                         <nav className='navbar'>
                             <ul>
-                                <li className='button left-button'>
+                                {/* allows you to style the Home button when it's the router path */}
+                                <li className={`button left-button ${location.pathname === '/' ? 'active-home' : ''}`}>
                                     <Link to="/">
                                         <img src="/src/assets/Starfield.ico" className='home-icon' alt='home'/>
                                         <p>Home</p>

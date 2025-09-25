@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './App.css';
 
 import Taskbar from './components/Taskbar'
@@ -14,8 +14,10 @@ type HoroscopeData = {
     };
 };
 function Portfolio() {
-    // 1. State initialization with proper defaults
     const windowRef = useRef(null);
+    const location = useLocation();
+
+
     // states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
@@ -320,7 +322,7 @@ function Portfolio() {
                                     <p>Home</p>
                                 </Link>
                             </li>
-                            <li className='button'>
+                            <li className={`button ${location.pathname === '/portfolio' ? 'active-portfolio' : ''}`}>
                                 <Link to="/portfolio">
                                     <img src="/src/assets/painting.ico" className='paint-icon' alt="portfolio"/>
                                     <p>Portfolio</p>

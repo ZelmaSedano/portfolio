@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import './App.css';
 
@@ -16,8 +16,9 @@ type HoroscopeData = {
 };
 
 function Contact() {
-    // states
     const windowRef = useRef(null);
+    const location = useLocation();
+
     // states
     const [position, setPosition] = useState(() => {
         const saved = sessionStorage.getItem('windowPosition');
@@ -422,7 +423,7 @@ function Contact() {
                                         <p>Resume</p>
                                     </Link>
                                 </li>
-                                <li className='button'>
+                                <li className={`button ${location.pathname === '/contact' ? 'active-contact' : ''}`}>
                                     <Link to="/contact">
                                         <img src="/src/assets/send.png" className='contact-icon'></img>
                                         <p>Contact</p>

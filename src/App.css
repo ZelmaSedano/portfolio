@@ -477,8 +477,11 @@ nav ul li a p{
 .bio-section img{
   /* keeps this element from interfering with the flow of other elements */
   /* position: absolute; */
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  bottom: 70px;
+  right: 50px;
 }
 .bio-p {
   margin-left: 10px;
@@ -541,9 +544,7 @@ nav ul li a p{
   /* padding-bottom: 141.42%; */
   height: 100%;
 }
-iframe {
-  object-fit: contain;
-}
+
 
 
 
@@ -945,6 +946,15 @@ input:focus, textarea:focus {
   }
 }
 @media (min-width: 1445px) {
+  .bio-section img{
+    /* keeps this element from interfering with the flow of other elements */
+    /* position: absolute; */
+    height: 350px;
+    width: 350px;
+    position: absolute;
+    bottom: 70px;
+    right: 50px;
+  }
   /* left column */
   .resume-column-2 {
     display: none;
@@ -1102,6 +1112,15 @@ input:focus, textarea:focus {
   .url-bar-small-1, 
   .url-bar-small-2 {
     display: none;
+  }
+
+  .bio-section img{
+    height: 250px;
+    width: 250px;
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .img-grid {

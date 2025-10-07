@@ -371,12 +371,15 @@ function Home() {
 
                     {/* Window Content */}
                     <div className='content'>
-                        <p className='banner'>Welcome to my lil corner of the internet!</p>
+                        <div className='homepage-banners'>
+                            <p className='banner'>Cozy Corner</p>
+                            <p className='banner-1'>Welcome to my lil corner of the internet!</p>
+                            <p className='bio-p'>This site is an homage to vintage web design</p>
+                        </div>
                         <div className='bio-section'>
                             <img src="/src/assets/mee.jpg" className='bio-image' alt="bio"/>
-                            <p className='bio-p'>This site is my homage to vintage web design.</p>
+                            <p className='sub-bio-text'>hi</p>
                         </div>
-
 
                         {/* CONTENT FOOTER */}
                         <div className="footer">

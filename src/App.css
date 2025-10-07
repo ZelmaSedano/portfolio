@@ -490,7 +490,7 @@ nav ul li a p{
 .bio-section{
   display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
   box-sizing: border-box;
   margin-top: 20px;
@@ -958,6 +958,7 @@ input:focus, textarea:focus {
     max-height: 180px;
   }
 }
+/* widescreen */
 @media (min-width: 1445px) {
   /* left column */
   .resume-column-2 {
@@ -1020,9 +1021,12 @@ input:focus, textarea:focus {
     width: 130px;
     margin: 10px 20px 0 0;
   }
+}
 
-
-
+@media (max-width: 1400px) {
+  .bio-section {
+    width: 70%;
+  }
 }
 
 /* Switch to 2 columns when window is less than 1200px wide */
@@ -1032,8 +1036,14 @@ input:focus, textarea:focus {
   }
 }
 
+@media (max-width: 1000px) {
+  .bio-section {
+    width: 80%;
+  }
+}
+
 /******** Mobile Design *********/
-@media (max-width: 797px) {
+@media (max-width: 787px) {
   body {
     background: url('./assets/boop.png') no-repeat center/cover;;
   }

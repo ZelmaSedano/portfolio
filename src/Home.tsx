@@ -285,14 +285,12 @@ function Home() {
                         <div className='bio-section'>
                             <img src="/src/assets/mee.jpg" className='bio-image' alt="bio"/>
                             <div className='sub-bio-section'>
-                                <p className='sub-bio-text'>I love Technology</p>
-                                <p className='sub-bio-text'>this site was built with:</p>
+                                <p className='sub-bio-text'>Lovingly built with:</p>
                                 <ul>
                                     <li>React.js</li>
                                     <li>TypeScript</li>
-                                    <li>vanilla CSS</li>
+                                    <li>Old School CSS</li>
                                 </ul>
-                                <p>inspired by:</p>
                             </div>
                         </div>
 

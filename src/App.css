@@ -468,6 +468,7 @@ nav ul li a p{
   border-bottom: 1px solid #808080;
 }
 
+
 /* homepage */
 .homepage-banners .banner,
 .homepage-banners .banner-1 {
@@ -479,6 +480,9 @@ nav ul li a p{
   padding-top: 25px;
   text-shadow: 2px 2px 5px rgba(24, 22, 173, 0.7);
   text-align: center;
+}
+.homepage-banners .banner {
+  padding-top: 0;
 }
 .homepage-banners .banner-1 {
   padding-top: 0;
@@ -499,9 +503,22 @@ nav ul li a p{
 .bio-section img{
   height: 300px;
   width: 300px;
+  border-radius: 200px 100px;
+  border: solid 3px #871cd4;
+}
+.sub-bio-text {
+  text-align: center;
 }
 
 
+/* portfolio page */
+.portfolio-banner {
+  font-family: "Single Day", cursive;
+  /* color: #1816ad; */
+  color: #AF1CD4;
+  font-size: 28px;
+  text-align: center;
+}
 .img-grid {
   /* makes the elements inside display as a grid */
   display: grid;
@@ -1096,12 +1113,16 @@ input:focus, textarea:focus {
     left: 0;
     position: absolute;
     width: 100%;
-    justify-content: space-around;
+    gap: 1px;
   }
   nav ul li {
     list-style: none;
     padding-right: 10px;
     color: black;
+    margin: 0;
+  }
+  .button {
+    margin: 3px 0;
   }
 
   .content {
@@ -1220,6 +1241,11 @@ input:focus, textarea:focus {
 
 }
 
+@media (max-height: 667px) {
+  .form-textarea {
+    max-height: 230px;
+  }
+}
 
 @media (max-width: 400px) {
   .left-button {
@@ -1231,8 +1257,7 @@ input:focus, textarea:focus {
   }
 }
 
-@media (max-height: 667px) {
-  .form-textarea {
-    max-height: 230px;
-  }
+@media (max-width: 369px) {
+
 }
+

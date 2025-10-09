@@ -5,7 +5,7 @@ import './App.css';
 import Taskbar from './components/Taskbar'
 import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
-import './components/DesktopIcon.css'; // contains both icon + modal 
+import './components/DesktopIcon.css';
 
 
 function Portfolio() {
@@ -81,18 +81,22 @@ function Portfolio() {
     const images = [
         {
             id: 'websites',
-            url: 'https://example.com/project1'
+            path: '/sublink1', // Use route path, not file path
+            url: '' // Keep url for external links
         },
         {
             id: 'design',
-            url: 'https://example.com/project1'
+            path: '/sublink2', // Use route path, not file path
+            url: '' // Keep url for external links
         },
         {
             id: 'GitHub',
-            url: 'https://example.com/project1'
+            path: '/sublink3', // Use route path, not file path
+            url: '' // Keep url for external links
         },
         {
             id: 'inspiration',
+            path: '/sublink4', // Use route path, not file path
             url: 'https://www.pinterest.com/pin/9077636744660963/'
         }
     ];
@@ -279,24 +283,41 @@ function Portfolio() {
                 <div className='content'>
                 <div className='portfolio-banner'>NEW FEATURE: click image below to see my work & inspirations</div>
 
-                    <div className="img-grid">
-                        {images.map((image, index) => (
-                            <div key={index}>
-                                <div className='image-container'>
-                                    <div className='image-title'>{image.id}</div>
-                                    <a href={image.url} target="_blank" rel="noopener noreferrer">
-                                        <img
-                                            src={`/src/assets/${image.id}.jpg`}
-                                            title={`${image.id} website`}
-                                            style={{ width: '320px', height: '180px' }}
-                                            alt={image.id}
-                                            className='image clickable-image'  // Added class for styling
-                                        />
-                                    </a>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                <div className="img-grid">
+    {images.map((image, index) => (
+        <div key={index}>
+            <div className='image-container'>
+                <div className='image-title'>{image.id}</div>
+                {image.path ? (
+                    // Use Link for internal routes
+                    <Link to={image.path}>
+                        <img
+                            src={`/src/assets/${image.id}.jpg`}
+                            title={`${image.id} website`}
+                            style={{ width: '320px', height: '180px' }}
+                            alt={image.id}
+                            className='image clickable-image'
+                        />
+                    </Link>
+                ) : (
+                    // Use regular <a> for external links
+                    <a href={image.url} target="_blank" rel="noopener noreferrer">
+                        <img
+                            src={`/src/assets/${image.id}.jpg`}
+                            title={`${image.id} website`}
+                            style={{ width: '320px', height: '180px' }}
+                            alt={image.id}
+                            className='image clickable-image'
+                        />
+                    </a>
+                )}
+            </div>
+        </div>
+    ))}
+</div>
+                    
+
+
                 </div>
                 
                 {/* CONTENT FOOTER */}

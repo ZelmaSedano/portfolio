@@ -79,12 +79,22 @@ function Portfolio() {
     const toggleWindow = () => setIsVisible(!isVisible);
 
     const images = [
-    'me', // Example video ID
-    'mee',
-    'me',
-    'mee',
-    'me',
-    'mee',
+        {
+            id: 'websites',
+            url: 'https://example.com/project1'
+        },
+        {
+            id: 'design',
+            url: 'https://example.com/project1'
+        },
+        {
+            id: 'GitHub',
+            url: 'https://example.com/project1'
+        },
+        {
+            id: 'inspiration',
+            url: 'https://www.pinterest.com/pin/9077636744660963/'
+        }
     ];
 
     return (
@@ -267,20 +277,23 @@ function Portfolio() {
 
                 {/* Window Content */}
                 <div className='content'>
+                <div className='portfolio-banner'>NEW FEATURE: click image below to see my work & inspirations</div>
 
                     <div className="img-grid">
-                        {images.map((videoId, index) => (
+                        {images.map((image, index) => (
                             <div key={index}>
-                                <div className='image-container' key={index}>
-                                    <div className='image-title'>{`${videoId}`}</div>
+                                <div className='image-container'>
+                                    <div className='image-title'>{image.id}</div>
+                                    <a href={image.url} target="_blank" rel="noopener noreferrer">
                                         <img
-                                            src={`/src/assets/${videoId}.jpg`}
-                                            title={`${videoId} website`}
+                                            src={`/src/assets/${image.id}.jpg`}
+                                            title={`${image.id} website`}
                                             style={{ width: '320px', height: '180px' }}
-                                            alt={`YouTube video thumbnail ${index}`}
-                                            className='image'
+                                            alt={image.id}
+                                            className='image clickable-image'  // Added class for styling
                                         />
-                                    </div>
+                                    </a>
+                                </div>
                             </div>
                         ))}
                     </div>

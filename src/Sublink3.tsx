@@ -8,7 +8,7 @@ import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css';
 
 
-function Sublink2() {
+function Sublink3() {
     const windowRef = useRef(null);
     const location = useLocation();
 
@@ -281,7 +281,7 @@ function Sublink2() {
 
                 {/* Window Content */}
                 <div className='content'>
-                <div className='portfolio-banner'>Sublink2</div>
+                <div className='portfolio-banner'>Sublink3</div>
 
                 <div className="img-grid">
                     {images.map((image, index) => (
@@ -342,4 +342,4 @@ function Sublink2() {
 );
 }
 
-export default Sublink2;
+export default Sublink3;

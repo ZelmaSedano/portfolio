@@ -216,7 +216,7 @@ function Home() {
                     }}
                     onMouseDown={handleMouseDown}
                 >
-                    {/* HEADER */}
+                    {/* header */}
                     <header>
                         <section className='blue-bar'>
                             <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
@@ -260,7 +260,7 @@ function Home() {
                         </nav>
                     </header>
 
-                    {/* URL BAR*/}
+                    {/* URL bar */}
                     <div className='url-container'>
                         <div className = 'url-bar'>
                             <div className = 'url-bar-small-1'>Address</div>
@@ -275,7 +275,7 @@ function Home() {
                     </div>
 
 
-                    {/* Window Content */}
+                    {/* window content */}
                     <div className='content'>
                         <div className='homepage-banners'>
                             <p className='banner'>Cozy Corner</p>
@@ -295,7 +295,7 @@ function Home() {
                         </div>
 
 
-                        {/* CONTENT FOOTER */}
+                        {/* content footer */}
                         <div className="footer">
                             <div className='footer-section footer-large'></div>
                             <div className = 'footer-section footer-small'></div>
@@ -310,7 +310,7 @@ function Home() {
                 </div>
             )}
 
-            {/* Taskbar */}
+            {/* taskbar */}
             <Taskbar 
                 isVisible={isVisible} 
                 toggleWindow={toggleWindow}

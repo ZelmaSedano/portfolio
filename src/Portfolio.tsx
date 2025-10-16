@@ -33,12 +33,14 @@ function Portfolio() {
 
     const [showScreamModal, setShowScreamModal] = useState(false);
 
-    // 2. Save state to sessionStorage
+
+    // save the state to sessionStorage
     useEffect(() => {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
     }, [position]);
 
-    // 3. Mouse event handlers
+
+    // mouse event handlers
     const handleMouseDown = (e) => {
         if (e.target.closest('.blue-bar') && !e.target.closest('.x-button')) {
             setIsDragging(true);
@@ -49,7 +51,6 @@ function Portfolio() {
             });
         }
     };
-
     const handleMouseMove = (e) => {
         if (isDragging && windowRef.current) {
             const newX = e.clientX - dragOffset.x;
@@ -62,10 +63,10 @@ function Portfolio() {
             });
         }
     };
-
     const handleMouseUp = () => setIsDragging(false);
 
-    // 4. Event listeners
+
+    // event listeners
     useEffect(() => {
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', handleMouseUp);
@@ -75,28 +76,25 @@ function Portfolio() {
         };
     }, [isDragging, dragOffset]);
 
-    // 5. Toggle visibility
+
+    // toggle visibility
     const toggleWindow = () => setIsVisible(!isVisible);
 
     const images = [
         {
             id: 'websites',
-            path: '/sublink1', // Use route path, not file path
-            url: '' // Keep url for external links
+            url: 'https://www.pinterest.com/pin/9077636744660963/' // Keep url for external links
+        },
+        {
+            id: 'python',
+            url: 'https://www.pinterest.com/pin/9077636744660963/' // Keep url for external links
         },
         {
             id: 'design',
-            path: '/sublink2', // Use route path, not file path
-            url: '' // Keep url for external links
-        },
-        {
-            id: 'GitHub',
-            path: '/sublink3', // Use route path, not file path
-            url: '' // Keep url for external links
+            url: 'https://www.pinterest.com/pin/9077636744660963/' // Keep url for external links
         },
         {
             id: 'inspiration',
-            path: '/sublink4', // Use route path, not file path
             url: 'https://www.pinterest.com/pin/9077636744660963/'
         }
     ];
@@ -224,7 +222,7 @@ function Portfolio() {
                 }}
                 onMouseDown={handleMouseDown}
             >
-                {/* HEADER */}
+                {/* header */}
                 <header>
                     <section className='blue-bar'>
                         <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
@@ -234,7 +232,7 @@ function Portfolio() {
                         </div>
                     </section>
 
-                    {/* NAVBAR */}
+                    {/* navbar */}
                     <nav className='navbar'>
                         <ul>
                             <li className='button left-button'>
@@ -265,7 +263,7 @@ function Portfolio() {
                     </nav>
                 </header>
 
-                {/* URL BAR*/}
+                {/* URL bar */}
                 <div className='url-container'>
                     <div className='url-bar'>
                         <div className='url-bar-small-1'>Address</div>
@@ -279,42 +277,44 @@ function Portfolio() {
                     </div>
                 </div>
 
-                {/* Window Content */}
+                {/* window content */}
                 <div className='content'>
-                <div className='portfolio-banner'>NEW FEATURE: click image below to see my work & inspirations</div>
+                    <div className='portfolio-banner'>PORTFOLIO</div>
 
                 <div className="img-grid">
-    {images.map((image, index) => (
-        <div key={index}>
-            <div className='image-container'>
-                <div className='image-title'>{image.id}</div>
-                {image.path ? (
-                    // Use Link for internal routes
-                    <Link to={image.path}>
-                        <img
-                            src={`/src/assets/${image.id}.jpg`}
-                            title={`${image.id} website`}
-                            style={{ width: '320px', height: '180px' }}
-                            alt={image.id}
-                            className='image clickable-image'
-                        />
-                    </Link>
-                ) : (
-                    // Use regular <a> for external links
-                    <a href={image.url} target="_blank" rel="noopener noreferrer">
-                        <img
-                            src={`/src/assets/${image.id}.jpg`}
-                            title={`${image.id} website`}
-                            style={{ width: '320px', height: '180px' }}
-                            alt={image.id}
-                            className='image clickable-image'
-                        />
-                    </a>
-                )}
-            </div>
-        </div>
-    ))}
-</div>
+                    {images.map((image, index) => (
+                        <div key={index}>
+                            <div className='image-container'>
+                                <div className='image-title'>{image.id}</div>
+
+                                {image.url ? (
+                                    // Use Link for internal routes
+                                    <Link to={image.url}>
+                                        <img
+                                            src={`/src/assets/${image.id}.jpg`}
+                                            title={`${image.id} website`}
+                                            style={{ width: '320px', height: '180px' }}
+                                            alt={image.id}
+                                            className='image clickable-image'
+                                        />
+                                    </Link>
+                                ) : (
+                                    // Use regular <a> for external links
+                                    <a href={image.url} target="_blank" rel="noopener noreferrer">
+                                        <img
+                                            src={`/src/assets/${image.id}.jpg`}
+                                            title={`${image.id} website`}
+                                            style={{ width: '320px', height: '180px' }}
+                                            alt={image.id}
+                                            className='image clickable-image'
+                                        />
+                                    </a>
+                                )}
+
+                            </div>
+                        </div>
+                    ))}
+                </div>
                     
 
 
@@ -334,7 +334,7 @@ function Portfolio() {
             </div>
         )}
 
-        {/* Taskbar */}
+        {/* taskbar */}
         <Taskbar 
             isVisible={isVisible} 
             toggleWindow={toggleWindow}

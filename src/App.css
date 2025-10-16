@@ -5,19 +5,13 @@
 */
 
 /* NOTES:
-  - grid is good for alignment
+  - grid is good for aligning images
+  - gap is good for setting distance between 
   - flexbox is good for moving things to the end of an area
-
+  - unicode & ASCII letter aren't the same shape
 */
 
 @import url('./fonts/fontStyles.css');
-
-/* #root {
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  font-family: 'MS Sans Serif';
-} */
 
 html, body {
   font-family: 'MS Sans Serif';
@@ -38,7 +32,9 @@ html, body {
   width: 5px; 
 }
 
-/************ Desktop Design ***********/
+
+
+/****************** Desktop Design *******************/
 .window {
   background-color: #c3c3c3;
   border-top: solid rgb(250, 250, 250) 2px;
@@ -53,29 +49,23 @@ html, body {
   display: none;
 }
 
-/* desktop view */
 body {
-  /* image doesn't repeat, centers the pic horizontal & vertical */
-  /* center/cover centers the pic & covers the entire background */
   background: url('./assets/boop.png') no-repeat center/cover;
 }
 
 
-
 /* icons */
-
 .modal .modal-body {
   background-color: #c3c3c3;
 }
 .cat-response-modal {
-    width: 350px; /* Fixed width for consistency */
+    width: 350px;
 }
 .cat-buttons {
   display: flex;
   align-items: center;
   margin: 0 auto;
   justify-content: center;
-  /* remember to use this instead of margins sometimes */
   gap: 20px;
 }
 .cat-button {
@@ -92,14 +82,13 @@ body {
 }
 .image-container img {
     max-width: 100%;
-    max-height: 200px; /* Adjust based on your preference */
+    max-height: 200px;
     object-fit: contain;
 }
 .wassupp {
   height: 191px;
   width: 280px;
 }
-
 .horoscope-select {
   background-color: white;
   color: black;
@@ -113,12 +102,10 @@ body {
 
 
 
-
 /* content window */
 header {
   margin: 0px 0px 40px 0px;
 }
-
 .blue-bar {
   cursor: grab;
   width: 70vw;
@@ -276,7 +263,6 @@ nav ul li a p{
 }
 
 /************ entire window ***************/
-
 .window {
   background-color: #c3c3c3;
   border-top: solid rgb(250, 250, 250) 2px;
@@ -290,11 +276,9 @@ nav ul li a p{
 
 .content {
   background: url('./assets/purple_zone.png') no-repeat center/cover;
-  /* positioning */
   position: relative;
   width: 70vw;
   height: 70vh;
-  /* text color */
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
   border: none;
@@ -302,15 +286,15 @@ nav ul li a p{
     inset 1px 1px 0px #808080,
     0 0 0 0px #c3c3c3;
 
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
-
-/* Custom Windows 98-style scrollbar for .content */
+/* custom Windows 98-style scrollbar for .content */
 .content::-webkit-scrollbar {
-  width: 16px; /* Classic Windows scrollbar width */
-  background-color: #c0c0c0; /* Classic gray background */
+  width: 16px;
+  background-color: #c0c0c0;
 }
 
 
@@ -337,7 +321,6 @@ nav ul li a p{
   width: 16px; /* Classic Windows scrollbar width */
   background-color: #c0c0c0; /* Classic gray background */
 }
-
 .content::-webkit-scrollbar-track {
   background: repeating-conic-gradient(
     #c0c0c0 0% 25%, 
@@ -372,22 +355,22 @@ nav ul li a p{
 
 
 
-/* Up arrow */
+/* up arrow */
 .content::-webkit-scrollbar-button:vertical:decrement {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpolygon points='0,4 4,0 8,4' fill='black'/%3E%3C/svg%3E");
 }
 
-/* Down arrow */
+/* down arrow */
 .content::-webkit-scrollbar-button:vertical:increment {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' viewBox='0 0 8 4'%3E%3Cpolygon points='0,0 4,4 8,0' fill='black'/%3E%3C/svg%3E");
 }
 
-/* Left arrow (if horizontal scroll) */
+/* left arrow (if horizontal scroll) */
 .content::-webkit-scrollbar-button:horizontal:decrement {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='8' viewBox='0 0 4 8'%3E%3Cpolygon points='4,0 0,4 4,8' fill='black'/%3E%3C/svg%3E");
 }
 
-/* Right arrow (if horizontal scroll) */
+/* right arrow (if horizontal scroll) */
 .content::-webkit-scrollbar-button:horizontal:increment {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='8' viewBox='0 0 4 8'%3E%3Cpolygon points='0,0 4,4 0,8' fill='black'/%3E%3C/svg%3E");
 }
@@ -473,7 +456,6 @@ nav ul li a p{
 .homepage-banners .banner,
 .homepage-banners .banner-1 {
   font-family: "Single Day", cursive;
-  /* color: #1816ad; */
   color: #AF1CD4;
   font-size: 45px;
   margin: 0 auto;
@@ -499,7 +481,6 @@ nav ul li a p{
   box-sizing: border-box;
   margin-top: 20px;
 }
-/* pic */
 .bio-section img{
   height: 300px;
   width: 300px;
@@ -514,7 +495,6 @@ nav ul li a p{
 /* portfolio page */
 .portfolio-banner {
   font-family: "Single Day", cursive;
-  /* color: #1816ad; */
   color: #AF1CD4;
   font-size: 28px;
   text-align: center;
@@ -526,20 +506,20 @@ nav ul li a p{
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding: 20px;
-  flex-grow: 1; /* Take up available space */
-  min-height: min-content; /* Minimum height needed for content */
-  overflow-y: auto; /* Enable scrolling if content overflows */
+  flex-grow: 1; /* take up available space */
+  min-height: min-content; /* minimum height needed for content */
+  overflow-y: auto; /* enable scrolling if content overflows */
   /* CENTER IMAGES WITHOUT CENTERING THE SCROLLBAR */
   justify-items: center;
 }
 .img-grid img {
   width: 100%;
   height: auto;
-  max-width: 250px; /* Maintains a reasonable maximum size */
+  max-width: 250px; /* maintains a reasonable maximum size */
   aspect-ratio: 16/9;
-  object-fit: cover; /* Ensure images maintain aspect ratio */
+  object-fit: cover; /* ensure images maintain aspect ratio */
 }
-/* Add these new styles */
+/* add these new styles */
 .image-container {
   position: relative;
   display: inline-block;
@@ -559,20 +539,12 @@ nav ul li a p{
   text-overflow: ellipsis;
   z-index: 1;
 }
-/* Update your existing image style */
+/* update your existing image style */
 .image {
   border-bottom: solid 10px #c3c3c3;
   border-top: solid 21px #c3c3c3; /* Space for the title */
   outline: solid 1px black;
   position: relative;
-}
-
-/* RESUME page */
-.resume-container {
-  width: 100%;
-  position: relative;
-  /* padding-bottom: 141.42%; */
-  height: 100%;
 }
 
 
@@ -691,6 +663,13 @@ input:focus, textarea:focus {
 
 
 
+/* RESUME page */
+.resume-container {
+  width: 100%;
+  position: relative;
+  /* padding-bottom: 141.42%; */
+  height: 100%;
+}
 /* resume: EXTRACT */
 .resume-content {
   background-color: #c3c3c3;
@@ -765,17 +744,14 @@ input:focus, textarea:focus {
 .resume-column-2 {
   border-top: 3px solid grey;
   border-right: 3px solid grey;
-  /* border-bottom: 3px solid grey; */
   height: 98%;
   width: 33.33%;
 }
 .resume-column-3 {
   border-top: 3px solid grey;
-  /* border-bottom: 3px solid grey; */
   height: 98%;
   width: 33.33%;
 }
-
 /* laptop view (not widescreen) */
 .resume-contact-title {
   text-align: center;
@@ -805,11 +781,11 @@ input:focus, textarea:focus {
   text-align: center;
 }
 
+
 .employment-title {
   text-align: center;
   margin-bottom: 8px;
 }
-
 .employment-job-title,
 .employment-job-location,
 .employment-job-description {
@@ -822,11 +798,9 @@ input:focus, textarea:focus {
 .employment-job-description-1 {
   margin-top: 0px;
 }
-
 .job-title-underline {
   text-decoration: underline;
 }
-
 .education-title {
   text-align: center;
   margin: 5px;
@@ -873,8 +847,8 @@ input:focus, textarea:focus {
 .resume-column-2,
 .resume-column-3 {
   flex: 1;
-  min-height: 0; /* Allow shrinking */
-  overflow-y: auto; /* Scroll only if content overflows */
+  min-height: 0; /* allow shrinking */
+  overflow-y: auto; /* scroll only if content overflows */
   border-top: 3px solid grey;
 }
 
@@ -886,7 +860,6 @@ input:focus, textarea:focus {
 /* CONTENT FOOTER SECTION */
 .footer {
   position: absolute;
-  /* */
   display: flex;
   bottom: 0;
   left: 0;
@@ -912,12 +885,10 @@ input:focus, textarea:focus {
     left: 0;
     right: 0;
     bottom: 0;
-
     border-top: 1px solid #959595;
     border-left: 1px solid #959595;
     border-right: 1px solid #fff;
     border-bottom: 1px solid #fff;
-    /* margin: 1px; */
   }
 }
 /* how wide each section is */
@@ -1126,7 +1097,7 @@ input:focus, textarea:focus {
   }
 
   .content {
-    /* Adjust height accounting 4 header */
+    /* adjust height accounting 4 header */
     height: calc(100vh - 130px);
     width: 99vw;
     box-sizing: border-box;
@@ -1135,7 +1106,7 @@ input:focus, textarea:focus {
   }
 
   .contact-content {
-    /* Adjust height accounting 4 header */
+    /* adjust height accounting 4 header */
     height: calc(100vh - 130px);
     width: 99vw;
     box-sizing: border-box;
@@ -1186,6 +1157,7 @@ input:focus, textarea:focus {
     grid-template-columns: 1fr;
   }
 
+  
   /* RESUME */
   .resume-content {
     width: 100vw;

@@ -78,21 +78,21 @@ function Contact() {
         }
     }, [isButtonActive]);
 
-    // Calculate available height for textarea
+    // calculate available height for textarea
     const calculateTextareaHeight = () => {
-        // These are approximate values for header, form elements, etc.
+        // approximate values for header, form elements, etc.
         const otherElementsHeight = 300; 
         const minHeight = 180;
         
-        // Calculate available height
+        // calculate available height
         const availableHeight = windowSize.height - otherElementsHeight - position.y;
         
-        // Return the larger of available height or minimum height
+        // return the larger of available height or minimum height
         return Math.max(minHeight, availableHeight);
     };
 
 
-    // 3. Mouse event handlers
+    // mouse event handlers
     const handleMouseDown = (e) => {
         if (
             e.target.closest('.blue-bar') && 
@@ -121,7 +121,7 @@ function Contact() {
 
     const handleMouseUp = () => setIsDragging(false);
 
-    // 4. Event listeners
+    // event listeners
     useEffect(() => {
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', handleMouseUp);
@@ -131,7 +131,7 @@ function Contact() {
         };
     }, [isDragging, dragOffset]);
 
-    // 5. Toggle visibility
+    // toggle visibility
     const toggleWindow = () => setIsVisible(!isVisible);
 
     // form with useful comments
@@ -299,7 +299,8 @@ function Contact() {
                     }}
                     onMouseDown={handleMouseDown}
                 >
-                    {/* HEADER */}
+                    
+                    {/* header */}
                     <header>
                         <section className='blue-bar'>
                             <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
@@ -311,7 +312,7 @@ function Contact() {
                         </section>
 
 
-                        {/* NAVBAR */}
+                        {/* navbar */}
                         <nav className='navbar'>
                             <ul>
                                 <li className='button left-button'>
@@ -342,7 +343,7 @@ function Contact() {
                         </nav>
                     </header>
 
-                    {/* URL BAR*/}
+                    {/* URL bar */}
                     <div className='url-container'>
                         <div className = 'url-bar'>
                             <div className = 'url-bar-small-1'>Address</div>
@@ -356,10 +357,10 @@ function Contact() {
                         </div>
                     </div>
 
-                    {/* Window Content */}
+                    {/* window content */}
                     <div className='contact-content'>
                         <form onSubmit={handleSubmit} className="contact-form">
-                            {/* First row - Recipient email (read-only) */}
+                            {/* first row - Recipient email (read-only) */}
                             <div className="form-row">
                                 <label htmlFor="to" className='to-label'>T<span className='underline'>o.</span>..</label> 
                                 <input
@@ -373,7 +374,7 @@ function Contact() {
                                 />
                             </div>
                             
-                            {/* Second row - Sender email */}
+                            {/* second row - sender email */}
                             <div className="form-row">
                                 <label htmlFor="from" className='from-label'><span className='underline'>F</span>rom...</label>
                                 <input
@@ -382,13 +383,13 @@ function Contact() {
                                     name="from"
                                     value={formData.from}
                                     onChange={handleInputChange}
-                                    required                   // ** field required **
+                                    required                   
                                     className="form-input"
                                     placeholder="your email"  
                                 />
                             </div>
                             
-                            {/* Third row - Email subject */}
+                            {/* third row - email subject */}
                             <div className="form-row">
                                 <label htmlFor="subject" className='subject-label'> S<span className='underline'>u</span>bject:</label>
                                 <input
@@ -403,7 +404,7 @@ function Contact() {
                                 />
                             </div>
                             
-                            {/* Fourth row - Message body */}
+                            {/* fourth row - message body */}
                             <div className="form-row">
                                 <label htmlFor="message" className='message-label'>
                                     <span className='underline'>M</span>essage:</label>
@@ -419,7 +420,7 @@ function Contact() {
                                 />
                             </div>
                             
-                            {/* Submit button row */}
+                            {/* submit button row */}
                             <div className="form-button">
                                 <button 
                                     type="submit"
@@ -454,7 +455,7 @@ function Contact() {
                 </div>
             )}
 
-            {/* Taskbar */}
+            {/* taskbar */}
             <Taskbar 
                 isVisible={isVisible} 
                 toggleWindow={toggleWindow}

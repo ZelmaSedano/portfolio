@@ -45,7 +45,7 @@ function Resume() {
         return () => clearInterval(timer); // Cleanup
     }, []);
 
-    // 3. Mouse event handlers
+    // mouse event handlers
     const handleMouseDown = (e) => {
         if (
             e.target.closest('.blue-bar') && 
@@ -222,7 +222,7 @@ function Resume() {
                 }}
                 onMouseDown={handleMouseDown}
             >
-                {/* HEADER */}
+                {/* header */}
             <header>
                 <section className='blue-bar'>
                     <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
@@ -234,7 +234,7 @@ function Resume() {
                 </section>
 
 
-                {/* NAVBAR */}
+                {/* navbar */}
                 <nav className='navbar'>
                     <ul>
                         <li className='button left-button'>
@@ -265,7 +265,7 @@ function Resume() {
                 </nav>
             </header>
 
-            {/* URL BAR*/}
+            {/* URL bar */}
             <div className='url-container'>
                 <div className = 'url-bar'>
                     <div className = 'url-bar-small-1'>Address</div>
@@ -280,7 +280,7 @@ function Resume() {
             </div>
 
 
-            {/* Window Content */}
+            {/* window content */}
             <div className='resume-content'>
                 <div className="resume-container">
 
@@ -468,7 +468,7 @@ function Resume() {
             </div>
             </div>
 
-                {/* CONTENT FOOTER */}
+                {/* content footer */}
                 <div className="footer">
                     <div className='footer-section footer-large'></div>
                     <div className = 'footer-section footer-small'></div>
@@ -482,7 +482,7 @@ function Resume() {
             </div>
         )}
 
-            {/* Taskbar */}
+            {/* taskbar */}
             <Taskbar 
                 isVisible={isVisible} 
                 toggleWindow={toggleWindow}

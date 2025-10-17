@@ -496,8 +496,9 @@ nav ul li a p{
 .portfolio-banner {
   font-family: "Single Day", cursive;
   color: #AF1CD4;
-  font-size: 28px;
+  font-size: 30px;
   text-align: center;
+  margin-bottom: -20px;
 }
 .img-grid {
   /* makes the elements inside display as a grid */

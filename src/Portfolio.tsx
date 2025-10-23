@@ -82,19 +82,19 @@ function Portfolio() {
 
     const images = [
         {
-            id: 'websites',
+            id: 'webcraft',
             url: 'https://www.pinterest.com/pin/9077636744660963/' // Keep url for external links
         },
         {
-            id: 'python',
+            id: 'scandique',
             url: 'https://www.pinterest.com/pin/9077636744660963/' // Keep url for external links
         },
         {
-            id: 'design',
+            id: 'figma',
             url: 'https://www.pinterest.com/pin/9077636744660963/' // Keep url for external links
         },
         {
-            id: 'inspiration',
+            id: 'AI',
             url: 'https://www.pinterest.com/pin/9077636744660963/'
         }
     ];

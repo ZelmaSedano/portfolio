@@ -60,7 +60,7 @@ const Taskbar: React.FC<TaskbarProps> = ({isVisible, toggleWindow, currentTime})
                         <a href='http://www.github.com/ZelmaSedano' target='_blank' className="start-menu-item">
                             <span className='underline'>G</span>itHub
                         </a>
-                        <div className="start-menu-item"><span className='underline'>W</span>ebCraftian Labs</div>
+                        <div className="start-menu-item"><span className='underline'>W</span>ebCraft Labs</div>
                     </div>
                 </div>
             )}

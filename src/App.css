@@ -496,15 +496,16 @@ nav ul li a p{
 .portfolio-banner {
   font-family: "Single Day", cursive;
   color: #AF1CD4;
-  font-size: 30px;
+  font-size: 28px;
   text-align: center;
   margin-bottom: -20px;
+  margin-top: -3px;
 }
 .img-grid {
   /* makes the elements inside display as a grid */
   display: grid;
   /* instead of using auto-fill, specify 3 videos wide, otherwise it'll auto-fill to 4 or 5 videos */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   padding: 20px;
   flex-grow: 1; /* take up available space */

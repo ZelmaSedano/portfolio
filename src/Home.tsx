@@ -278,7 +278,7 @@ function Home() {
                     {/* window content */}
                     <div className='content'>
                         <div className='homepage-banners'>
-                            <p className='banner'>Cozy Corner</p>
+                            <p className='banner'>Val's Amazing Portfolio</p>
                             <p className='banner-1'>Welcome to my lil corner of the internet!</p>
                             <p className='bio-p'>This site is an homage to vintage web design</p>
                         </div>
@@ -289,7 +289,7 @@ function Home() {
                                 <ul>
                                     <li>React.js</li>
                                     <li>TypeScript</li>
-                                    <li>Old School CSS</li>
+                                    <li>Vanilla CSS</li>
                                 </ul>
                             </div>
                         </div>

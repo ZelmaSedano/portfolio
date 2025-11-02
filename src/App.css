@@ -482,14 +482,11 @@ nav ul li a p{
   box-sizing: border-box;
   margin-top: 20px;
 }
-.bio-section img{
+.bio-section .bio-image{
   height: 300px;
   width: 300px;
   border-radius: 200px 100px;
   border: solid 3px #871cd4;
-}
-.sub-bio-text {
-  text-align: center;
 }
 
 

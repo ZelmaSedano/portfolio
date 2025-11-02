@@ -282,11 +282,14 @@ function Home() {
                             <p className='banner-1'>Welcome to my lil corner of the internet!</p>
                             <p className='bio-p'>This site is an homage to vintage web design</p>
                         </div>
+
                         <div className='bio-section'>
                             <img src="/src/assets/mee.jpg" className='bio-image' alt="bio"/>
+
                             <div className='sub-bio-section'>
-                                <p className='sub-bio-text'>Lovingly built with:</p>
-                                <ul>
+                                <img src="/src/assets/computer_1.png" alt="evil_cat" />
+                                <p className='sub-bio-text'>Lovingly crafted with:</p>
+                                <ul className='sub-bio-ul'>
                                     <li>React.js</li>
                                     <li>TypeScript</li>
                                     <li>Vanilla CSS</li>

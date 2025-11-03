@@ -490,6 +490,18 @@ nav ul li a p{
 }
 .sub-bio-section {
   margin-top: -10px;
+  text-align: center;
+}
+
+.sub-bio-text {
+  margin-top: -5px;
+}
+.sub-bio-p {
+  width: 80%;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: -10px;
 }
 
 

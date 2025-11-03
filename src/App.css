@@ -285,7 +285,7 @@ nav ul li a p{
   box-shadow: 
     inset 1px 1px 0px #808080,
     0 0 0 0px #c3c3c3;
-
+  z-index: 0;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -298,12 +298,12 @@ nav ul li a p{
 }
 
 
+
 .contact-content {
   background-color: #c3c3c3;
   /* positioning */
   position: relative;
   width: 70vw;
-  height: 70vh;
   /* text color */
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
@@ -488,6 +488,9 @@ nav ul li a p{
   border-radius: 200px 100px;
   border: solid 3px #871cd4;
 }
+.sub-bio-section {
+  margin-top: -10px;
+}
 
 
 /* portfolio page */
@@ -508,7 +511,7 @@ nav ul li a p{
   padding: 20px;
   flex-grow: 1; /* take up available space */
   min-height: min-content; /* minimum height needed for content */
-  overflow-y: auto; /* enable scrolling if content overflows */
+  overflow-y: hidden; /* enable scrolling if content overflows */
   /* CENTER IMAGES WITHOUT CENTERING THE SCROLLBAR */
   justify-items: center;
 }
@@ -1156,6 +1159,7 @@ input:focus, textarea:focus {
   /* portfolio page */
   .img-grid {
     grid-template-columns: 1fr;
+    overflow: auto;
   }
 
   

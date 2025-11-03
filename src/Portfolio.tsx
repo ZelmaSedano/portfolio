@@ -288,7 +288,7 @@ function Portfolio() {
 
                 {/* window content */}
                 <div className='content'>
-                    <div className='portfolio-banner'>PORTFOLIO</div>
+                    {/* <div className='portfolio-banner'>PORTFOLIO</div> */}
 
                     <div className="img-grid">
                         {images.map((image, index) => (

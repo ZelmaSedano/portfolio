@@ -280,7 +280,6 @@ function Home() {
                         <div className='homepage-banners'>
                             <p className='banner'>Val's Amazing Portfolio</p>
                             <p className='banner-1'>Welcome to my lil corner of the internet!</p>
-                            <p className='bio-p'>This site is an homage to vintage web design</p>
                         </div>
 
                         <div className='bio-section'>

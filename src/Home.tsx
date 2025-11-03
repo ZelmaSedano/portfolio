@@ -287,12 +287,10 @@ function Home() {
 
                             <div className='sub-bio-section'>
                                 <img src="/src/assets/computer_1.png" alt="evil_cat" />
-                                <p className='sub-bio-text'>Lovingly crafted with:</p>
-                                <ul className='sub-bio-ul'>
-                                    <li>React.js</li>
-                                    <li>TypeScript</li>
-                                    <li>Vanilla CSS</li>
-                                </ul>
+                                <p className='sub-bio-text'>About Me:</p>
+                                <p className='sub-bio-p'>
+                                    Greetings! I am a passionate Frontend Developer who dabbles in Python/AI at her newest position.  I am open to offers for any positions that keep me learning and engaged.
+                                </p>
                             </div>
                         </div>
 

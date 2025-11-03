@@ -289,7 +289,10 @@ function Home() {
                                 <img src="/src/assets/computer_1.png" alt="evil_cat" />
                                 <p className='sub-bio-text'>About Me:</p>
                                 <p className='sub-bio-p'>
-                                    Greetings! I am a passionate Frontend Developer who dabbles in Python/AI at her newest position.  I am open to offers for any positions that keep me learning and engaged.
+                                    Greetings! I am a passionate Software Engineer who dabbles in both backend Python/AI and frontend UX/UI solutions.
+                                </p>
+                                <p className='sub-bio-p-1'>
+                                    Current obsession: <span>image classifiers</span>
                                 </p>
                             </div>
                         </div>

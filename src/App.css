@@ -489,12 +489,13 @@ nav ul li a p{
   border: solid 3px #871cd4;
 }
 .sub-bio-section {
-  margin-top: -10px;
+  margin-top: -20px;
   text-align: center;
 }
-
 .sub-bio-text {
   margin-top: -5px;
+  font-size: 20px;
+  text-decoration: underline;
 }
 .sub-bio-p {
   width: 80%;
@@ -502,6 +503,9 @@ nav ul li a p{
   align-items: center;
   margin: 0 auto;
   margin-top: -10px;
+}
+.sub-bio-p-1 {
+  margin-top: 7px;
 }
 
 

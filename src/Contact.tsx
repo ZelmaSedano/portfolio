@@ -333,6 +333,12 @@ function Contact() {
                                         <p>Resume</p>
                                     </Link>
                                 </li>
+                                <li className='button'>
+                                    <Link to="/about">
+                                        <img src="/src/assets/resume.png" className='resume-icon' alt='about'></img>
+                                        <p>About</p>
+                                    </Link>
+                                </li>
                                 <li className={`button ${location.pathname === '/contact' ? 'active-contact' : ''}`}>
                                     <Link to="/contact">
                                         <img src="/src/assets/send.png" className='contact-icon'></img>

@@ -249,10 +249,16 @@ function Resume() {
                                 <p>Portfolio</p>
                             </Link>
                         </li>
-                        <li className={`button ${location.pathname === '/resume' ? 'active-home' : ''}`}>
+                        <li className={`button ${location.pathname === '/resume' ? 'active-resume' : ''}`}>
                             <Link to="/resume">
                                 <img src="/src/assets/resume.png" className='resume-icon'></img>
                                 <p>Resume</p>
+                            </Link>
+                        </li>
+                        <li className='button'>
+                            <Link to="/about">
+                                <img src="/src/assets/resume.png" className='resume-icon' alt='about'></img>
+                                <p>About</p>
                             </Link>
                         </li>
                         <li className='button'>

@@ -228,7 +228,7 @@ function Home() {
                         </section>
 
 
-                        {/* NAVBAR */}
+                        {/* *************************** NAVBAR ************************/}
                         <nav className='navbar'>
                             <ul>
                                 {/* allows you to style the Home button when it's the router path */}
@@ -248,6 +248,12 @@ function Home() {
                                     <Link to="/resume">
                                         <img src="/src/assets/resume.png" className='resume-icon' alt='resume'></img>
                                         <p>Resume</p>
+                                    </Link>
+                                </li>
+                                <li className='button'>
+                                    <Link to="/about">
+                                        <img src="/src/assets/resume.png" className='resume-icon' alt='about'></img>
+                                        <p>About</p>
                                     </Link>
                                 </li>
                                 <li className='button'>
@@ -297,7 +303,6 @@ function Home() {
                             </div>
                         </div>
 
-
                         {/* content footer */}
                         <div className="footer">
                             <div className='footer-section footer-large'></div>
@@ -314,7 +319,7 @@ function Home() {
             )}
 
             {/* taskbar */}
-            <Taskbar 
+            <Taskbar
                 isVisible={isVisible} 
                 toggleWindow={toggleWindow}
                 currentTime={currentTime}

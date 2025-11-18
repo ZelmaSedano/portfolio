@@ -89,7 +89,7 @@ function Portfolio() {
         {
             title:'WebCraft Labs',
             id: 'webcraft_labs',
-            url: '/' // Keep url for external links
+            url: 'https://www.figma.com/design/229APkMFR2DqP819VYDmyY/WebCraft?m=auto&t=vZjGYwJcDZPGZLwW-1' // Keep url for external links
         },
         {
             title:'Personal Projects',
@@ -302,30 +302,15 @@ function Portfolio() {
                                 <div className='image-container'>
                                     <div className='image-title'>{image.title}</div>
 
-                                    {image.url ? (
-                                        // Use Link for internal routes
-                                        <Link to={image.url}>
-                                            <img
-                                                src={`/src/assets/${image.id}.jpg`}
-                                                title={`${image.id} website`}
-                                                style={{ width: '320px', height: '180px' }}
-                                                alt={image.id}
-                                                className='image clickable-image'
-                                            />
-                                        </Link>
-                                    ) : (
-                                        // Use regular <a> for external links
-                                        <a href={image.url} target="_blank" rel="noopener noreferrer">
-                                            <img
-                                                src={`/src/assets/${image.id}.jpg`}
-                                                title={`${image.id} website`}
-                                                style={{ width: '320px', height: '180px' }}
-                                                alt={image.id}
-                                                className='image clickable-image'
-                                            />
-                                        </a>
-                                    )}
-
+                                    <a href={image.url} target="_blank" rel="noopener noreferrer">
+                                        <img
+                                            src={`/src/assets/${image.id}.jpg`}
+                                            title={`${image.id} website`}
+                                            style={{ width: '320px', height: '180px' }}
+                                            alt={image.id}
+                                            className='image clickable-image'
+                                        />
+                                    </a>
                                 </div>
                             </div>
                         ))}

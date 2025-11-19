@@ -467,9 +467,11 @@ nav ul li a p{
   text-shadow: 2px 2px 5px rgba(24, 22, 173, 0.7);
   text-align: center;
 }
-
+.homepage-banners .banner {
+  padding-top: 0;
+}
 .homepage-banners .banner-1 {
-
+  padding-top: 0;
   font-size: 35px;
   margin-top: -10px;
 }
@@ -516,27 +518,25 @@ nav ul li a p{
   /* make sure this wraps so the entire page is scrollable */
   overflow-y: auto;
 }
-/* creates the 90's sidebar */
 .portfolio-container {
   display: flex;
 }
 .portfolio-ul {
-  margin-top: 0;
-  padding: 5px;
-  background-color: black;
-  color: white;
-  height: 100vh;
+  display: flex;
   list-style: none;
-  padding-left: 5px;
   font-family: "Single Day", cursive;
-  font-size: 20px;
-
+  color: #AF1CD4;
+  font-size: 28px;
+  justify-content: center;
+  margin: 5px 0;
+  /* where is this coming from? */
+  padding-left: 0;
 }
 
-
-.img-grid-section {
-  margin: 0 auto;
+.portfolio-ul li {
+  padding: 0 25px;
 }
+
 .portfolio-banner {
   font-family: "Single Day", cursive;
   color: #AF1CD4;
@@ -545,18 +545,21 @@ nav ul li a p{
   margin-bottom: -20px;
   margin-top: -3px;
 }
+
 .img-grid {
   /* makes the elements inside display as a grid */
   display: grid;
   /* instead of using auto-fill, specify 3 videos wide, otherwise it'll auto-fill to 4 or 5 videos */
   grid-template-columns: repeat(2, 1fr);
-  gap: 50px;
-  padding: 20px;
+  gap: 16px;
+  padding: 5px 20px;
   flex-grow: 1; /* take up available space */
   min-height: min-content; /* minimum height needed for content */
 
   /* CENTER IMAGES WITHOUT CENTERING THE SCROLLBAR */
   justify-items: center;
+  max-width: 80%;
+  margin: 0 auto;
 }
 .img-grid img {
   width: 100%;
@@ -592,8 +595,6 @@ nav ul li a p{
   outline: solid 1px black;
   position: relative;
 }
-
-
 
 
 
@@ -1071,23 +1072,34 @@ input:focus, textarea:focus {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1033px) {
   .bio-section {
     width: 80%;
   }
+
+  .portfolio-ul {
+    font-size: 25px;
+  }
+
+  .portfolio-ul li {
+    padding: 0 15px;
+  }
 }
 
-@media (max-width: 820px) {
+@media (max-width: 914px) {
   .homepage-banners .banner-1 {
     font-size: 30px;
   }
   .bio-section {
     width: 85%;
   }
+    .portfolio-ul li {
+    padding: 0 10px;
+  }
 }
 
 /******** Mobile Design *********/
-@media (max-width: 787px) {
+@media (max-width: 901px) {
   body {
     background: url('./assets/boop.png') no-repeat center/cover;;
   }
@@ -1271,6 +1283,8 @@ input:focus, textarea:focus {
   .left-button {
     margin-left: 0px;
   }
+
+
 
   .button {
     margin: 3px 0px 3px 0px;

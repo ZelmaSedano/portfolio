@@ -307,6 +307,7 @@ nav ul li a p{
   /* positioning */
   position: relative;
   width: 70vw;
+  height: 70vh;
   /* text color */
   color: black;
   /* keeps the grey border inside the content window WITHOUT pushing the window out (keeps border inside) */
@@ -466,11 +467,9 @@ nav ul li a p{
   text-shadow: 2px 2px 5px rgba(24, 22, 173, 0.7);
   text-align: center;
 }
-.homepage-banners .banner {
-  padding-top: 0;
-}
+
 .homepage-banners .banner-1 {
-  padding-top: 0;
+
   font-size: 35px;
   margin-top: -10px;
 }
@@ -513,6 +512,31 @@ nav ul li a p{
 
 
 /* portfolio page */
+.portfolio-content {
+  /* make sure this wraps so the entire page is scrollable */
+  overflow-y: auto;
+}
+/* creates the 90's sidebar */
+.portfolio-container {
+  display: flex;
+}
+.portfolio-ul {
+  margin-top: 0;
+  padding: 5px;
+  background-color: black;
+  color: white;
+  height: 100vh;
+  list-style: none;
+  padding-left: 5px;
+  font-family: "Single Day", cursive;
+  font-size: 20px;
+
+}
+
+
+.img-grid-section {
+  margin: 0 auto;
+}
 .portfolio-banner {
   font-family: "Single Day", cursive;
   color: #AF1CD4;
@@ -526,11 +550,11 @@ nav ul li a p{
   display: grid;
   /* instead of using auto-fill, specify 3 videos wide, otherwise it'll auto-fill to 4 or 5 videos */
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 50px;
   padding: 20px;
   flex-grow: 1; /* take up available space */
   min-height: min-content; /* minimum height needed for content */
-  overflow-y: hidden; /* enable scrolling if content overflows */
+
   /* CENTER IMAGES WITHOUT CENTERING THE SCROLLBAR */
   justify-items: center;
 }

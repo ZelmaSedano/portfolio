@@ -284,7 +284,6 @@ function Home() {
                     {/* window content */}
                     <div className='content'>
                         <div className='homepage-banners'>
-                            <p className='banner'>About Valentia Sedano</p>
                             <p className='banner-1'>Welcome to my lil corner of the internet!</p>
                         </div>
 

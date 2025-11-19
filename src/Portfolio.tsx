@@ -87,7 +87,7 @@ function Portfolio() {
 
     const images = [
         {
-            title:'WebCraft Labs',
+            title:'WebCraft Labs Projects',
             id: 'webcraft_labs',
             url: 'https://www.figma.com/design/229APkMFR2DqP819VYDmyY/WebCraft?m=auto&t=vZjGYwJcDZPGZLwW-1' // Keep url for external links
         },
@@ -102,7 +102,7 @@ function Portfolio() {
             url: 'https://www.pinterest.com/pin/9077636744660963/' // Keep url for external links
         },
         {
-            title:'Testing & Python',
+            title:'AI & Python',
             id: 'AI',
             url: 'https://www.pinterest.com/pin/9077636744660963/'
         }
@@ -294,26 +294,43 @@ function Portfolio() {
 
                 {/* window content */}
                 <div className='content'>
-                    {/* <div className='portfolio-banner'>PORTFOLIO</div> */}
+                    <div className='portfolio-content'>
+                        
+                        <div className='portfolio-container'>
+                            <ul className='portfolio-ul'>
+                                <li>Portfolio</li>
+                                <li>WebCraft Projects</li>
+                                <li>Personal Projects</li>
+                                <li>AI & Python</li>
+                                <li>UX/UI Design</li>
+                            </ul>
+                            
+                            <div className='img-grid-section'>
+                                <div className='portfolio-banner'>PORTFOLIO</div>
 
-                    <div className="img-grid">
-                        {images.map((image, index) => (
-                            <div key={index}>
-                                <div className='image-container'>
-                                    <div className='image-title'>{image.title}</div>
+                                <div className="img-grid">
+                                    {images.map((image, index) => (
+                                        <div key={index}>
+                                            <div className='image-container'>
+                                                <div className='image-title'>{image.title}</div>
 
-                                    <a href={image.url} target="_blank" rel="noopener noreferrer">
-                                        <img
-                                            src={`/src/assets/${image.id}.jpg`}
-                                            title={`${image.id} website`}
-                                            style={{ width: '320px', height: '180px' }}
-                                            alt={image.id}
-                                            className='image clickable-image'
-                                        />
-                                    </a>
+                                                <a href={image.url} target="_blank" rel="noopener noreferrer">
+                                                    <img
+                                                        src={`/src/assets/${image.id}.jpg`}
+                                                        title={`${image.id} website`}
+                                                        style={{ width: '320px', height: '180px' }}
+                                                        alt={image.id}
+                                                        className='image clickable-image'
+                                                    />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-                        ))}
+                        </div>
+
+
                     </div>
                     
 

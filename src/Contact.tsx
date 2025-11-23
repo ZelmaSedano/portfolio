@@ -34,6 +34,9 @@ function Contact() {
     
     const [showScreamModal, setShowScreamModal] = useState(false);
 
+    const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
+    const [showClippyModal, setShowClippyModal] = useState(false);
+
 
     // Send button active state
     const [isButtonActive, setIsButtonActive] = useState(false);
@@ -44,6 +47,7 @@ function Contact() {
     });
 
     // useEffects - 'save state to session storage'?
+
     // window position - window loads in middle of page
     useEffect(() => {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
@@ -77,6 +81,38 @@ function Contact() {
             return () => clearTimeout(timer);
         }
     }, [isButtonActive]);
+    // clippy useEffect, keeps him stuck to the bottom-right
+    useEffect(() => {
+        const updateClippyPosition = () => {
+            // get document height
+            const documentHeight = Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.offsetHeight,
+                document.body.clientHeight,
+                document.documentElement.clientHeight
+            );
+            
+            // bottom-right corner of document
+            setClippyPosition({
+            x: window.innerWidth - 80, // 100px from right edge
+            y: documentHeight - 150 // 120px from bottom
+            });
+        };
+
+        // initial position
+        updateClippyPosition();
+
+        // update on window resize and load
+        window.addEventListener('resize', updateClippyPosition);
+        window.addEventListener('load', updateClippyPosition);
+
+        return () => {
+            window.removeEventListener('resize', updateClippyPosition);
+            window.removeEventListener('load', updateClippyPosition);
+        };
+    }, []);
 
     // calculate available height for textarea
     const calculateTextareaHeight = () => {
@@ -178,112 +214,161 @@ function Contact() {
     return (
         <>
 
-        {/* cat icon */}
-        <div className="desktop">
-            {/* when you click the desktop icon, setShowModal is set to true */}
-            <DesktopIcon
-                icon="/src/assets/cat.png"
-                label="meowdy"
-                x={50}
-                y={75}
-                onClick={() => setShowCatModal(true)}
-            />
+            {/* cat icon */}
+            <div className="desktop">
+                {/* when you click the desktop icon, setShowModal is set to true */}
+                <DesktopIcon
+                    icon="/src/assets/cat.png"
+                    label="meowdy"
+                    x={50}
+                    y={35}
+                    onClick={() => setShowCatModal(true)}
+                />
 
-            {showCatModal && (
-                <div className="modal-overlay" onClick={() => setShowCatModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
-                {/* if you click inside the modal, then setShowModal ISN'T set to false */}
-                {/* onClick takes the event, and returns 'don't propogate this event' function */}
-                <div className="modal" onClick={(e) => e.stopPropagation()}>
-                    <div className="modal-header">
-                        <span>Question...</span>
-                        <button className='x-button' onClick={() => setShowCatModal(false)}>✕</button>
+                {showCatModal && (
+                    <div className="modal-overlay" onClick={() => setShowCatModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
+                    {/* if you click inside the modal, then setShowModal ISN'T set to false */}
+                    {/* onClick takes the event, and returns 'don't propogate this event' function */}
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>Question...</span>
+                            <button className='x-button' onClick={() => setShowCatModal(false)}>✕</button>
+                        </div>
+                        {/* body of modal */}
+                        <div className="modal-body">Do you like cats?</div>
+                            {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
+                            <div className='cat-buttons'>
+                                <button 
+                                    className='cat-button'
+                                    onClick={() => {
+                                        setShowCatModal(false);
+                                        setShowYesModal(true);
+                                    }}
+                                >
+                                    Yes
+                                </button>
+                                <button 
+                                    className='cat-button'
+                                    onClick={() => {
+                                        setShowCatModal(false);
+                                        setShowLoveModal(true);
+                                    }}
+                                >
+                                    Yes, I do 
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    {/* body of modal */}
-                    <div className="modal-body">Do you like cats?</div>
-                        {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
-                        <div className='cat-buttons'>
-                            <button 
+                )}
+            </div>
+            {/* define what showYesModal is */}
+                {showYesModal && (
+                    <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
+                        <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
+                            <div className="modal-header">
+                                <span>Smart Answer</span>
+                                <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="image-container">
+                                    <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {showLoveModal && (
+                    <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
+                        <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
+                            <div className="modal-header">
+                                <span>That's right, MINION</span>
+                                <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="image-container">
+                                    <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            
+            {/* scream icon */}
+            <div className="desktop">
+                <DesktopIcon
+                    icon="/src/assets/scream.png"
+                    label="RING RING"
+                    x={50}
+                    y={145}
+                    onClick={() => setShowScreamModal(true)}
+                />
+
+                {showScreamModal && (
+                    <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
+
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>I know what you did last summer</span>
+                            <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                        </div>
+
+                        <div className="modal-body">
+                            <img src='/src/assets/wassup.gif' className='gif'></img>
+                        </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* clippy */}
+            <div className="desktop">
+                {/* when you click the desktop icon, setShowModal is set to true */}
+                <DesktopIcon
+                    icon="/src/assets/mad_clippy.png"
+                    label="click me"
+                    x={clippyPosition.x}
+                    y={clippyPosition.y}
+                    onClick={() => setShowCatModal(true)}
+                    className='clippy'
+                />
+
+                {showClippyModal && (
+                    <div className="modal-overlay" onClick={() => setShowClippyModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
+                    {/* if you click inside the modal, then setShowModal ISN'T set to false */}
+                    {/* onClick takes the event, and returns 'don't propogate this event' function */}
+                        <div className="modal" onClick={(e) => e.stopPropagation()}>
+                            <div className="modal-header">
+                                <span>Hi, I'm ANGRY CLIPPY</span>
+                                <button className='x-button' onClick={() => setShowClippyModal(false)}>✕</button>
+                            </div>
+                            {/* body of modal */}
+                            <div className="modal-body">Are you kidding me??</div>
+                            {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
+                            <div className='cat-buttons'>
+                                <button 
                                 className='cat-button'
                                 onClick={() => {
-                                    setShowCatModal(false);
+                                    setShowClippyModal(false);
                                     setShowYesModal(true);
                                 }}
-                            >
-                                Yes
-                            </button>
-                            <button 
-                                className='cat-button'
-                                onClick={() => {
-                                    setShowCatModal(false);
-                                    setShowLoveModal(true);
-                                }}
-                            >
-                                Yes, I do 
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </div>
-        {/* define what showYesModal is */}
-            {showYesModal && (
-                <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
-                    <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span>Smart Answer</span>
-                            <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="image-container">
-                                <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
+                                >
+                                    Yes
+                                </button>
+                                <button 
+                                    className='cat-button'
+                                    onClick={() => {
+                                        setShowClippyModal(false);
+                                        setShowLoveModal(true);
+                                    }}
+                                >
+                                    No
+                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
-
-            {showLoveModal && (
-                <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
-                    <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <span>That's right, MINION</span>
-                            <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
-                        </div>
-                        <div className="modal-body">
-                            <div className="image-container">
-                                <img src="/src/assets/evil_cat.gif" alt="evil_cat" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-        
-        {/* scream icon */}
-        <div className="desktop">
-            <DesktopIcon
-                icon="/src/assets/scream.png"
-                label="RING RING"
-                x={50}
-                y={175}
-                onClick={() => setShowScreamModal(true)}
-            />
-
-            {showScreamModal && (
-                <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
-
-                <div className="modal" onClick={(e) => e.stopPropagation()}>
-                    <div className="modal-header">
-                        <span>I know what you did last summer</span>
-                        <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
-                    </div>
-
-                    <div className="modal-body">
-                        <img src='/src/assets/wassup.gif' className='gif'></img>
-                    </div>
-                    </div>
-                </div>
-            )}
-        </div>
+                )}
+            </div>
 
 
             {/* actual window content */}

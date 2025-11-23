@@ -58,6 +58,7 @@ body {
 /* icons */
 .modal .modal-body {
   background-color: #c3c3c3;
+  margin-left: 20px;
 }
 .cat-response-modal {
     width: 350px;
@@ -75,6 +76,9 @@ body {
   margin-bottom: 15px;
   color: black;
 }
+
+
+
 .image-container {
     width: 100%;
     display: flex;
@@ -455,13 +459,19 @@ nav ul li a p{
   border-bottom: 1px solid #808080;
 }
 
-
+.homepage-banners {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+.computer {
+  height: 100px;
+}
 /* homepage */
 .homepage-banners .banner,
 .homepage-banners .banner-1 {
   font-family: "Single Day", cursive;
   color: #AF1CD4;
-  font-size: 45px;
   margin: 0 auto;
   padding-top: 25px;
   text-shadow: 2px 2px 5px rgba(24, 22, 173, 0.7);
@@ -473,8 +483,9 @@ nav ul li a p{
 .homepage-banners .banner-1 {
   padding-top: 0;
   font-size: 35px;
-  margin-top: -10px;
+  margin-top: -15px;
 }
+
 .homepage-banners .bio-p {
   text-align: center;
 }
@@ -493,7 +504,7 @@ nav ul li a p{
   border: solid 3px #871cd4;
 }
 .sub-bio-section {
-  margin-top: -20px;
+  margin-top: 30px;
   text-align: center;
 }
 .sub-bio-text {
@@ -600,7 +611,7 @@ nav ul li a p{
 
 /* CONTACT FORM (extract) */
 .contact-form {
-  padding: 20px 20px 20px 0px;
+  padding: 15px 20px 0px 0px;
 }
 .form-row {
   /* FIXED THE MISALIGNED INPUT BOXES */
@@ -990,6 +1001,13 @@ input:focus, textarea:focus {
   }
 }
 @media (max-width: 1450px) {
+  .homepage-banners .banner {
+    font-size: 45px;
+  }
+  .homepage-banners .banner-1{
+    font-size: 30px;
+  }
+
   .form-textarea {
     max-height: 180px;
   }
@@ -1087,8 +1105,16 @@ input:focus, textarea:focus {
 }
 
 @media (max-width: 914px) {
+  .homepage-banners {
+    /* horizontally centers on the x axis */
+    align-items: center;
+  }
+  .homepage-banners .banner {
+    font-size: 35px;
+  }
+
   .homepage-banners .banner-1 {
-    font-size: 30px;
+    font-size: 25px;
   }
   .bio-section {
     width: 85%;
@@ -1100,6 +1126,11 @@ input:focus, textarea:focus {
 
 /******** Mobile Design *********/
 @media (max-width: 901px) {
+  /* make sure all the icons are hidden */
+  .desktop {
+    display: none;
+  }
+
   body {
     background: url('./assets/boop.png') no-repeat center/cover;;
   }

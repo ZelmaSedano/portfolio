@@ -34,6 +34,7 @@ function Portfolio() {
     const [showLoveModal, setShowLoveModal] = useState(false);
 
     const [showScreamModal, setShowScreamModal] = useState(false);
+    const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
 
 
     // save the state to sessionStorage
@@ -90,7 +91,41 @@ function Portfolio() {
             });
         }
     };
+
     const handleMouseUp = () => setIsDragging(false);
+
+    // clippy useEffect, keeps him stuck to the bottom-right
+    useEffect(() => {
+        const updateClippyPosition = () => {
+            // get document height
+            const documentHeight = Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.offsetHeight,
+                document.body.clientHeight,
+                document.documentElement.clientHeight
+            );
+            
+            // bottom-right corner of document
+            setClippyPosition({
+            x: window.innerWidth - 100, // 100px from right edge
+            y: documentHeight - 120 // 120px from bottom
+            });
+        };
+
+        // initial position
+        updateClippyPosition();
+
+        // update on window resize and load
+        window.addEventListener('resize', updateClippyPosition);
+        window.addEventListener('load', updateClippyPosition);
+
+        return () => {
+            window.removeEventListener('resize', updateClippyPosition);
+            window.removeEventListener('load', updateClippyPosition);
+        };
+    }, []);
 
 
     // toggle visibility
@@ -98,7 +133,7 @@ function Portfolio() {
 
     const images = [
         {
-            title:'WebCraft Labs',
+            title:'WebCraft Projects',
             id: 'webcraft_labs',
             url: 'https://www.figma.com/design/229APkMFR2DqP819VYDmyY/WebCraft?m=auto&t=vZjGYwJcDZPGZLwW-1' // Keep url for external links
         },
@@ -109,11 +144,11 @@ function Portfolio() {
         },
         {
             title:'UX/UI Design',
-            id: 'webcraft_labs',
+            id: 'uwu',
             url: 'https://www.pinterest.com/pin/9077636744660963/' // Keep url for external links
         },
         {
-            title:'Testing & Python',
+            title:'AI & Python',
             id: 'AI',
             url: 'https://www.pinterest.com/pin/9077636744660963/'
         }
@@ -228,6 +263,18 @@ function Portfolio() {
                         </div>
                     </div>
                 )}
+            </div>
+
+            {/* clippy */}
+            <div className="desktop">
+                {/* when you click the desktop icon, setShowModal is set to true */}
+                <DesktopIcon
+                    icon="/src/assets/mad_clippy.png"
+                    label="click me"
+                    x={clippyPosition.x}
+                    y={clippyPosition.y}
+                    onClick={() => setShowCatModal(true)}
+                />
             </div>
 
         {isVisible && (

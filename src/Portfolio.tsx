@@ -34,7 +34,9 @@ function Portfolio() {
     const [showLoveModal, setShowLoveModal] = useState(false);
 
     const [showScreamModal, setShowScreamModal] = useState(false);
+
     const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
+    const [showClippyModal, setShowClippyModal] = useState(false);
 
 
     // save the state to sessionStorage
@@ -109,8 +111,8 @@ function Portfolio() {
             
             // bottom-right corner of document
             setClippyPosition({
-            x: window.innerWidth - 100, // 100px from right edge
-            y: documentHeight - 120 // 120px from bottom
+            x: window.innerWidth - 80, // 100px from right edge
+            y: documentHeight - 150 // 120px from bottom
             });
         };
 
@@ -163,7 +165,7 @@ function Portfolio() {
                 icon="/src/assets/cat.png"
                 label="meowdy"
                 x={50}
-                y={75}
+                y={35}
                 onClick={() => setShowCatModal(true)}
             />
 
@@ -244,7 +246,7 @@ function Portfolio() {
                     icon="/src/assets/scream.png"
                     label="RING RING"
                     x={50}
-                    y={175}
+                    y={145}
                     onClick={() => setShowScreamModal(true)}
                 />
 
@@ -274,7 +276,44 @@ function Portfolio() {
                     x={clippyPosition.x}
                     y={clippyPosition.y}
                     onClick={() => setShowCatModal(true)}
+                    className='clippy'
                 />
+
+                {showClippyModal && (
+                    <div className="modal-overlay" onClick={() => setShowClippyModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
+                    {/* if you click inside the modal, then setShowModal ISN'T set to false */}
+                    {/* onClick takes the event, and returns 'don't propogate this event' function */}
+                        <div className="modal" onClick={(e) => e.stopPropagation()}>
+                            <div className="modal-header">
+                                <span>Hi, I'm ANGRY CLIPPY</span>
+                                <button className='x-button' onClick={() => setShowClippyModal(false)}>✕</button>
+                            </div>
+                            {/* body of modal */}
+                            <div className="modal-body">Are you kidding me??</div>
+                            {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
+                            <div className='cat-buttons'>
+                                <button 
+                                className='cat-button'
+                                onClick={() => {
+                                    setShowClippyModal(false);
+                                    setShowYesModal(true);
+                                }}
+                                >
+                                    Yes
+                                </button>
+                                <button 
+                                    className='cat-button'
+                                    onClick={() => {
+                                        setShowClippyModal(false);
+                                        setShowLoveModal(true);
+                                    }}
+                                >
+                                    No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
         {isVisible && (

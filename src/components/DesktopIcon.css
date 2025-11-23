@@ -1,3 +1,12 @@
+/* NOTES: 
+
+CSS multi-class selector vs descendant selector::after
+
+    - remember to string the classes in one string, no spaces
+
+    ex: .desktop-icon.clippy img {
+*/
+
 .desktop-icon {
     display: flex;
     flex-direction: column;
@@ -33,6 +42,13 @@
     width: 50px;
     height: 50px;
     margin-bottom: 4px;
+}
+
+/* no space between the 2 classes */
+.desktop-icon.clippy img {
+    width: 75px;
+    height: 75px;
+    margin-bottom: -2px;
 }
 
 /* fun fact: desktop-icon img worked, but .horoscope-icon didn't work by itself
@@ -90,4 +106,4 @@ you can just add the more specific selector in that case in front of the one tha
     background: #ececec;
     padding: 12px;
     color: black;
-    }
+}

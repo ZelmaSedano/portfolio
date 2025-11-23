@@ -39,6 +39,8 @@ function Home() {
 
     const [showScreamModal, setShowScreamModal] = useState(false);
 
+    const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
+
 
     // save the position of the window to session storage
     useEffect(() => {
@@ -89,6 +91,39 @@ function Home() {
         }
     };
 
+    // clippy useEffect, keeps him stuck to the bottom-right
+    useEffect(() => {
+        const updateClippyPosition = () => {
+            // get document height
+            const documentHeight = Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.offsetHeight,
+                document.body.clientHeight,
+                document.documentElement.clientHeight
+            );
+            
+            // bottom-right corner of document
+            setClippyPosition({
+            x: window.innerWidth - 100, // 100px from right edge
+            y: documentHeight - 120 // 120px from bottom
+            });
+        };
+
+        // initial position
+        updateClippyPosition();
+
+        // update on window resize and load
+        window.addEventListener('resize', updateClippyPosition);
+        window.addEventListener('load', updateClippyPosition);
+
+        return () => {
+            window.removeEventListener('resize', updateClippyPosition);
+            window.removeEventListener('load', updateClippyPosition);
+        };
+    }, []);
+
     const handleMouseUp = () => setIsDragging(false);
 
     // toggle visibility
@@ -103,7 +138,7 @@ function Home() {
                     icon="/src/assets/cat.png"
                     label="meowdy"
                     x={50}
-                    y={75}
+                    y={35}
                     onClick={() => setShowCatModal(true)}
                 />
 
@@ -182,7 +217,7 @@ function Home() {
                     icon="/src/assets/scream.png"
                     label="RING RING"
                     x={50}
-                    y={175}
+                    y={145}
                     onClick={() => setShowScreamModal(true)}
                 />
 
@@ -201,6 +236,19 @@ function Home() {
                         </div>
                     </div>
                 )}
+            </div>
+            
+            {/* clippy */}
+            <div className="desktop">
+                {/* when you click the desktop icon, setShowModal is set to true */}
+                <DesktopIcon
+                    icon="/src/assets/mad_clippy.png"
+                    label="click me"
+                    x={clippyPosition.x}
+                    y={clippyPosition.y}
+                    onClick={() => setShowCatModal(true)}
+                    className='clippy'
+                />
             </div>
 
             {/* if isVisible is true, */}
@@ -284,22 +332,24 @@ function Home() {
                     {/* window content */}
                     <div className='content'>
                         <div className='homepage-banners'>
-                            <p className='banner'>Val's Amazing Portfolio</p>
-                            <p className='banner-1'>Welcome to my lil corner of the internet!</p>
+                            <img className='computer' src="/src/assets/computer_1.png" alt="evil_cat" />
+                            <div className='inner-banner-text'>
+                                <p className='banner'>Valentia Sedano's Portolio</p>
+                                <p className='banner-1'>Nostalgia Design Expert</p>
+                            </div>
+                            <img className='computer' src="/src/assets/computer-2.png" alt="evil_cat" />
                         </div>
 
                         <div className='bio-section'>
-                            <img src="/src/assets/mee.jpg" className='bio-image' alt="bio"/>
 
                             <div className='sub-bio-section'>
-                                <img src="/src/assets/computer_1.png" alt="evil_cat" />
-                                <p className='sub-bio-text'>About Me:</p>
+                                <p className='sub-bio-text'>Slow Tech Design</p>
                                 <p className='sub-bio-p'>
-                                    Greetings! I am a passionate Software Engineer who dabbles in both backend Python/AI and frontend UX/UI solutions.
+                                    In an ever-changing world where users sense of safety is paramount, let's create environments that address their needs and provide a feeling of security to users via NOSTALGIA DESIGN
                                 </p>
-                                <p className='sub-bio-p-1'>
+                                {/* <p className='sub-bio-p-1'>
                                     Current obsession: <span>image classifiers</span>
-                                </p>
+                                </p> */}
                             </div>
                         </div>
 

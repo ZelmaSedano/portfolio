@@ -409,7 +409,7 @@ function Home() {
                         <div className='homepage-banners'>
                             <img className='computer' src="/src/assets/computer_1.png" alt="evil_cat" />
                             <div className='inner-banner-text'>
-                                <p className='banner'>Valentia Sedano's Portolio</p>
+                                <p className='banner'>Valentia's Portolio</p>
                                 <p className='banner-1'>Nostalgia Design Expert</p>
                             </div>
                             <img className='computer' src="/src/assets/computer-2.png" alt="evil_cat" />

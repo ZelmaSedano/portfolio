@@ -60,6 +60,13 @@ body {
   background-color: #c3c3c3;
   margin-left: 20px;
 }
+.modal .modal-body.scream-modal{
+  background-color: #c3c3c3;
+  margin-left: 0px;
+}
+.modal-header span {
+  padding-left: 20px;
+}
 .cat-response-modal {
     width: 350px;
 }
@@ -76,9 +83,12 @@ body {
   margin-bottom: 15px;
   color: black;
 }
-
-
-
+.wassupp {
+  height: 191px;
+  width: 280px;
+  margin-left: -20px;
+  padding-left: 0;
+}
 .image-container {
     width: 100%;
     display: flex;
@@ -89,10 +99,6 @@ body {
     max-width: 100%;
     max-height: 200px;
     object-fit: contain;
-}
-.wassupp {
-  height: 191px;
-  width: 280px;
 }
 .horoscope-select {
   background-color: white;
@@ -479,10 +485,11 @@ nav ul li a p{
 }
 .homepage-banners .banner {
   padding-top: 0;
+  font-size: 45px;
 }
 .homepage-banners .banner-1 {
   padding-top: 0;
-  font-size: 35px;
+  font-size: 25px;
   margin-top: -15px;
 }
 
@@ -1000,18 +1007,7 @@ input:focus, textarea:focus {
     max-height: 300px;
   }
 }
-@media (max-width: 1450px) {
-  .homepage-banners .banner {
-    font-size: 45px;
-  }
-  .homepage-banners .banner-1{
-    font-size: 30px;
-  }
 
-  .form-textarea {
-    max-height: 180px;
-  }
-}
 /* widescreen */
 @media (min-width: 1445px) {
   /* left column */
@@ -1050,7 +1046,6 @@ input:focus, textarea:focus {
   .widescreen-bottom-resume-column-1 {
     border-top: 3px solid grey;
   }
-
   .widescreen-employment-section {
     /* keep the section from growing wider, so skill section doesn't move */
     max-width: 505px;
@@ -1094,11 +1089,9 @@ input:focus, textarea:focus {
   .bio-section {
     width: 80%;
   }
-
   .portfolio-ul {
     font-size: 25px;
   }
-
   .portfolio-ul li {
     padding: 0 15px;
   }

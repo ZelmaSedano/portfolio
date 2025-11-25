@@ -136,7 +136,7 @@ function Portfolio() {
     const images = [
         {
             title:'WebCraft Projects',
-            id: 'webcraft_labs',
+            id: 'webcraft',
             url: 'https://www.figma.com/design/229APkMFR2DqP819VYDmyY/WebCraft?m=auto&t=vZjGYwJcDZPGZLwW-1' // Keep url for external links
         },
         {

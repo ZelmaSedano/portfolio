@@ -41,6 +41,8 @@ function Home() {
 
     const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
     const [showClippyModal, setShowClippyModal] = useState(false);
+    const [showClippyYesModal, setShowClippyYesModal] = useState(false);
+    const [showClippyNoModal, setShowClippyNoModal] = useState(false);
 
 
     // save the position of the window to session storage
@@ -95,7 +97,7 @@ function Home() {
             window.removeEventListener('resize', updateClippyPosition);
             window.removeEventListener('load', updateClippyPosition);
         };
-    }, []);
+    }, [location.pathname]);
 
 
     // event handler functions
@@ -230,7 +232,7 @@ function Home() {
 
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                            <span>I know what you did last summer</span>
+                            <span className='scream-modal'>I know what you did last summer</span>
                             <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
                         </div>
 
@@ -253,7 +255,6 @@ function Home() {
                     onClick={() => setShowClippyModal(true)}
                     className='clippy'
                 />
-
                 {showClippyModal && (
                     <div className="modal-overlay" onClick={() => setShowClippyModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
                     {/* if you click inside the modal, then setShowModal ISN'T set to false */}
@@ -271,7 +272,7 @@ function Home() {
                                 className='cat-button'
                                 onClick={() => {
                                     setShowClippyModal(false);
-                                    setShowYesModal(true);
+                                    setShowClippyYesModal(true);
                                 }}
                                 >
                                     Yes
@@ -280,7 +281,7 @@ function Home() {
                                     className='cat-button'
                                     onClick={() => {
                                         setShowClippyModal(false);
-                                        setShowLoveModal(true);
+                                        setShowClippyNoModal(true);
                                     }}
                                 >
                                     No
@@ -291,13 +292,13 @@ function Home() {
                 )}
             </div>
 
-            {/* define what showYesModal is */}
-                {showYesModal && (
-                    <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
+                {/* define what showYesModal is */}
+                {showClippyYesModal && (
+                    <div className="modal-overlay" onClick={() => setShowClippyYesModal(false)}>
                         <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
                             <div className="modal-header">
-                                <span>Smart Answer</span>
-                                <button className='x-button' onClick={() => setShowYesModal(false)}>✕</button>
+                                <span>WOWWWW</span>
+                                <button className='x-button' onClick={() => setShowClippyYesModal(false)}>✕</button>
                             </div>
                             <div className="modal-body">
                                 <div className="image-container">
@@ -308,12 +309,12 @@ function Home() {
                     </div>
                 )}
 
-                {showLoveModal && (
-                    <div className="modal-overlay" onClick={() => setShowLoveModal(false)}>
+                {showClippyNoModal && (
+                    <div className="modal-overlay" onClick={() => setShowClippyNoModal(false)}>
                         <div className="modal cat-response-modals" onClick={(e) => e.stopPropagation()}>
                             <div className="modal-header">
-                                <span>That's right, MINION</span>
-                                <button className='x-button' onClick={() => setShowLoveModal(false)}>✕</button>
+                                <span>I feel like you ARE</span>
+                                <button className='x-button' onClick={() => setShowClippyNoModal(false)}>✕</button>
                             </div>
                             <div className="modal-body">
                                 <div className="image-container">
@@ -422,9 +423,6 @@ function Home() {
                                 <p className='sub-bio-p'>
                                     In an ever-changing world where users sense of safety is paramount, let's create environments that address their needs and provide a feeling of security to users via NOSTALGIA DESIGN
                                 </p>
-                                {/* <p className='sub-bio-p-1'>
-                                    Current obsession: <span>image classifiers</span>
-                                </p> */}
                             </div>
                         </div>
 

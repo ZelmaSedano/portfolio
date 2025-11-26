@@ -10,7 +10,7 @@ import './components/DesktopIcon.css'; // contains both icon + modal
 
 
 function Contact() {
-    const windowRef = useRef(null);
+    const windowRef = useRef<HTMLDivElement | null>(null)
     const location = useLocation();
 
     // states
@@ -128,13 +128,12 @@ function Contact() {
     };
 
 
-    // mouse event handlers
-    const handleMouseDown = (e) => {
-        if (
-            e.target.closest('.blue-bar') && 
-            !e.target.closest('.x-button')) {
+    // mouse event handlers for React events (used in onMouseDown)
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if ((e.target as HTMLElement).closest('.blue-bar') && !(e.target as HTMLElement).closest('.x-button')) {
+            const rect = windowRef.current?.getBoundingClientRect();
+            if (!rect) return; // guard: abort if ref isn't set
             setIsDragging(true);
-            const rect = windowRef.current.getBoundingClientRect();
             setDragOffset({
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top
@@ -142,7 +141,8 @@ function Contact() {
         }
     };
 
-    const handleMouseMove = (e) => {
+    // native DOM event handlers (used with addEventListener)
+    const handleNativeMouseMove = (e: MouseEvent) => {
         if (isDragging && windowRef.current) {
             const newX = e.clientX - dragOffset.x;
             const newY = e.clientY - dragOffset.y;
@@ -155,15 +155,15 @@ function Contact() {
         }
     };
 
-    const handleMouseUp = () => setIsDragging(false);
+    const handleNativeMouseUp = () => setIsDragging(false);
 
-    // event listeners
+    // event listeners for native DOM events
     useEffect(() => {
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('mousemove', handleNativeMouseMove);
+        document.addEventListener('mouseup', handleNativeMouseUp);
         return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('mousemove', handleNativeMouseMove);
+            document.removeEventListener('mouseup', handleNativeMouseUp);
         };
     }, [isDragging, dragOffset]);
 
@@ -179,10 +179,10 @@ function Contact() {
     });
 
     // new state for loading indicator
-    const [isSending, setIsSending] = useState(false); 
+
 
     // handle input changes in the form fields
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -191,7 +191,7 @@ function Contact() {
     };
 
     // handle form submission - added emailjs code to actually send email
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsButtonActive(true); // Trigger the color change
         
@@ -516,16 +516,9 @@ function Contact() {
                                 <button 
                                     type="submit"
                                     className={`send-button ${isButtonActive ? 'active' : ''}`}
-                                    disabled={isSending}
                                 >
-                                    {isSending ? (
-                                        'Sending...'
-                                    ) : (
-                                        <>
-                                            <img src="/src/assets/send.png" className="send-icon" alt="Send"/>
-                                            Send
-                                        </>
-                                    )}
+                                    <img src="/src/assets/send.png" className="send-icon" alt="Send"/>
+                                    Send
                                 </button>
                             </div>
                         </form>

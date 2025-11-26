@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './App.css';
 
@@ -9,7 +9,7 @@ import './components/DesktopIcon.css'; // contains both icon + modal
 
 
 function Resume() {
-    const windowRef = useRef(null);
+    const windowRef = useRef<HTMLDivElement | null>(null);
     const location = useLocation();
 
     // states
@@ -48,13 +48,12 @@ function Resume() {
         return () => clearInterval(timer); // Cleanup
     }, []);
 
-    // mouse event handlers
-    const handleMouseDown = (e) => {
-        if (
-            e.target.closest('.blue-bar') && 
-            !e.target.closest('.x-button')) {
+    // event handler functions
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if ((e.target as HTMLElement).closest('.blue-bar') && !(e.target as HTMLElement).closest('.x-button')) {
+            const rect = windowRef.current?.getBoundingClientRect();
+            if (!rect) return; // guard: abort if ref isn't set
             setIsDragging(true);
-            const rect = windowRef.current.getBoundingClientRect();
             setDragOffset({
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top
@@ -62,7 +61,8 @@ function Resume() {
         }
     };
 
-    const handleMouseMove = (e) => {
+    // native DOM event handlers (used with addEventListener)
+    const handleNativeMouseMove = (e: MouseEvent) => {
         if (isDragging && windowRef.current) {
             const newX = e.clientX - dragOffset.x;
             const newY = e.clientY - dragOffset.y;
@@ -75,16 +75,18 @@ function Resume() {
         }
     };
 
+    const handleNativeMouseUp = () => setIsDragging(false);
 
-    // useEffects
     useEffect(() => {
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('mousemove', handleNativeMouseMove);
+        document.addEventListener('mouseup', handleNativeMouseUp);
         return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('mousemove', handleNativeMouseMove);
+            document.removeEventListener('mouseup', handleNativeMouseUp);
         };
     }, [isDragging, dragOffset]);
+
+
 
     // when the window is above 1445 setIsWideScreen is set
     useEffect(() => {
@@ -94,6 +96,7 @@ function Resume() {
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
+
 
     // clippy useEffect, keeps him stuck to the bottom-right
     useEffect(() => {
@@ -131,7 +134,6 @@ function Resume() {
     // toggle content window visibility
     const toggleWindow = () => setIsVisible(!isVisible);
 
-    const handleMouseUp = () => setIsDragging(false);
 
 
     // RENDERED PART

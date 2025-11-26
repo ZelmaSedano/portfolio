@@ -12,8 +12,7 @@ import './components/DesktopIcon.css'; // contains both icon + modal styles
 
 
 function Home() {
-    // JUSTINE: useRef is used to access DOM nodes, this line initiates a useRef hook with the value of null
-    const windowRef = useRef(null);
+    const windowRef = useRef<HTMLDivElement | null>(null);
     const location = useLocation();
 
     // states
@@ -50,14 +49,6 @@ function Home() {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
     }, [position]);
 
-    useEffect(() => {
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-        return () => {
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
-        };
-    }, [isDragging, dragOffset]);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -101,13 +92,11 @@ function Home() {
 
 
     // event handler functions
-    const handleMouseDown = (e) => {
-        if (
-            e.target.closest('.blue-bar') && 
-            !e.target.closest('.x-button')) {
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if ((e.target as HTMLElement).closest('.blue-bar') && !(e.target as HTMLElement).closest('.x-button')) {
+            const rect = windowRef.current?.getBoundingClientRect();
+            if (!rect) return; // guard: abort if ref isn't set
             setIsDragging(true);
-            // gets the draggable window's current position/size via the DOM ref
-            const rect = windowRef.current.getBoundingClientRect();
             setDragOffset({
                 x: e.clientX - rect.left,
                 y: e.clientY - rect.top
@@ -115,7 +104,8 @@ function Home() {
         }
     };
 
-    const handleMouseMove = (e) => {
+    // native DOM event handlers (used with addEventListener)
+    const handleNativeMouseMove = (e: MouseEvent) => {
         if (isDragging && windowRef.current) {
             const newX = e.clientX - dragOffset.x;
             const newY = e.clientY - dragOffset.y;
@@ -128,7 +118,16 @@ function Home() {
         }
     };
 
-    const handleMouseUp = () => setIsDragging(false);
+    const handleNativeMouseUp = () => setIsDragging(false);
+
+    useEffect(() => {
+        document.addEventListener('mousemove', handleNativeMouseMove);
+        document.addEventListener('mouseup', handleNativeMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleNativeMouseMove);
+            document.removeEventListener('mouseup', handleNativeMouseUp);
+        };
+    }, [isDragging, dragOffset]);
 
 
     // toggle visibility
@@ -408,7 +407,7 @@ function Home() {
                     {/* window content */}
                     <div className='content'>
                         <div className='homepage-banners'>
-                            <img className='computer' src="/src/assets/computer_1.png" alt="evil_cat" />
+                            <img className='computer' src="/src/assets/computer-2.png" alt="evil_cat" />
                             <div className='inner-banner-text'>
                                 <p className='banner'>Valentia's Portolio</p>
                                 <p className='banner-1'>Nostalgia Design Expert</p>

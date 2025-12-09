@@ -503,8 +503,8 @@ function Home() {
                         <div className='homepage-banners'>
                             <img className='computer' src="/src/assets/computer_1.png" alt="evil_cat" />
                             <div className='inner-banner-text'>
-                                <p className='banner'>Val's Kewl Portfolio</p>
-                                <p className='banner-1'>Nostalgic RetroFuture Design</p>
+                                <p className='banner'>-- Val Sedano --</p>
+                                <p className='banner-1'>RetroWave Designer & Developer</p>
                             </div>
                             <img className='computer' src="/src/assets/computer-2.png" alt="evil_cat" />
                         </div>

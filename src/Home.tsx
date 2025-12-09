@@ -138,16 +138,21 @@ function Home() {
     }, [isDragging, dragOffset]);
 
     // portfolio dropdown
+    const handlePortfolioClick = (e: React.MouseEvent) => {
+        // fixes window drag breaking
+        e.stopPropagation();
+        setIsPortfolioDropdownOpen(!isPortfolioDropdownOpen);
+    };
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (portfolioRef.current && !portfolioRef.current.contains(event.target as Node)) {
             setIsPortfolioDropdownOpen(false);
             }
         };
-
         document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            return () => {
+                document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
 
@@ -159,16 +164,23 @@ function Home() {
     };
 
     const handleMouseDown = (e: React.MouseEvent) => {
-        if ((e.target as HTMLElement).closest('.blue-bar') && !(e.target as HTMLElement).closest('.x-button')) {
+    // Don't start dragging if clicking on dropdown or its children
+        if (
+            (e.target as HTMLElement).closest('.blue-bar') && 
+            !(e.target as HTMLElement).closest('.x-button') &&
+            !(e.target as HTMLElement).closest('.portfolio-dropdown') &&
+            !(e.target as HTMLElement).closest('.portfolio-link-wrapper')
+        ) {
             const rect = windowRef.current?.getBoundingClientRect();
-            if (!rect) return; // guard: abort if ref isn't set
+            if (!rect) return;
             setIsDragging(true);
             setDragOffset({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
             });
         }
     };
+
 
     // native DOM event handlers (used with addEventListener)
     const handleNativeMouseMove = (e: MouseEvent) => {
@@ -486,7 +498,7 @@ function Home() {
                                 >
                                     <div 
                                     className="portfolio-link-wrapper"
-                                    onClick={() => setIsPortfolioDropdownOpen(!isPortfolioDropdownOpen)} // Add this click handler
+                                    onClick={handlePortfolioClick}
                                     >
                                         <img src="/src/assets/painting.ico" className='paint-icon' alt='portfolio'/>
                                         <p>Portfolio</p>
@@ -501,48 +513,51 @@ function Home() {
 
                                     {isPortfolioDropdownOpen && (
                                     
-                                        <div className="portfolio-dropdown">
-                                        <Link 
-                                            to="/portfolio" 
-                                            className="dropdown-item"
-                                            onClick={() => setIsPortfolioDropdownOpen(false)}
-                                        >
-                                            <span className="dropdown-icon">📁</span>
-                                            <span>All Projects</span>
-                                        </Link>
-                                        <Link 
-                                            to="/portfolio?filter=web" 
-                                            className="dropdown-item"
-                                            onClick={() => setIsPortfolioDropdownOpen(false)}
-                                        >
-                                            <span className="dropdown-icon">🌐</span>
-                                            <span>Web Development</span>
-                                        </Link>
-                                        <Link 
-                                            to="/portfolio?filter=design" 
-                                            className="dropdown-item"
-                                            onClick={() => setIsPortfolioDropdownOpen(false)}
-                                        >
-                                            <span className="dropdown-icon">🎨</span>
-                                            <span>UI/UX Design</span>
-                                        </Link>
-                                        <Link 
-                                            to="/portfolio?filter=games" 
-                                            className="dropdown-item"
-                                            onClick={() => setIsPortfolioDropdownOpen(false)}
-                                        >
-                                            <span className="dropdown-icon">🎮</span>
-                                            <span>Game Projects</span>
-                                        </Link>
-                                        <div className="dropdown-divider"></div>
-                                        <Link 
-                                            to="/portfolio?filter=recent" 
-                                            className="dropdown-item"
-                                            onClick={() => setIsPortfolioDropdownOpen(false)}
-                                        >
-                                            <span className="dropdown-icon">🕐</span>
-                                            <span>Recent Work</span>
-                                        </Link>
+                                        <div 
+                                            className="portfolio-dropdown"
+                                            onClick={(e) => e.stopPropagation()}
+    >
+                                            <Link 
+                                                to="/portfolio" 
+                                                className="dropdown-item"
+                                                onClick={() => setIsPortfolioDropdownOpen(false)}
+                                            >
+                                                <span className="dropdown-icon">📁</span>
+                                                <span>All Projects</span>
+                                            </Link>
+                                            <Link 
+                                                to="/"
+                                                className="dropdown-item"
+                                                onClick={() => setIsPortfolioDropdownOpen(false)}
+                                            >
+                                                <span className="dropdown-icon">🌐</span>
+                                                <span>WebCraft</span>
+                                            </Link>
+                                            <Link 
+                                                to="/"
+                                                className="dropdown-item"
+                                                onClick={() => setIsPortfolioDropdownOpen(false)}
+                                            >
+                                                <span className="dropdown-icon">🎨</span>
+                                                <span>Personal</span>
+                                            </Link>
+                                            <Link 
+                                                to="/"
+                                                className="dropdown-item"
+                                                onClick={() => setIsPortfolioDropdownOpen(false)}
+                                            >
+                                                <span className="dropdown-icon">🎮</span>
+                                                <span>UX/UI Design</span>
+                                            </Link>
+                                            <div className="dropdown-divider"></div>
+                                            <Link 
+                                                to="/p"
+                                                className="dropdown-item"
+                                                onClick={() => setIsPortfolioDropdownOpen(false)}
+                                            >
+                                                <span className="dropdown-icon">🕐</span>
+                                                <span>AI & Python</span>
+                                            </Link>
                                         </div>
                                     )}
                                 </li>

@@ -10,6 +10,12 @@ import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css'; // contains both icon + modal styles
 
+type HoroscopeData = {
+    data: {
+        date: string;
+        horoscope_data: string;
+    };
+};
 
 function Home() {
     const windowRef = useRef<HTMLDivElement | null>(null);
@@ -38,17 +44,46 @@ function Home() {
 
     const [showScreamModal, setShowScreamModal] = useState(false);
 
+    // horoscope API states
+    const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
+    const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [sign, setSign] = useState('aries'); // Default sign
+
     const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
     const [showClippyModal, setShowClippyModal] = useState(false);
     const [showClippyYesModal, setShowClippyYesModal] = useState(false);
     const [showClippyNoModal, setShowClippyNoModal] = useState(false);
 
 
-    // save the position of the window to session storage
+    // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT
+    const fetchHoroscope = async (sign: string) => {
+        setIsLoading(true);
+        setError(null);
+        
+        try {
+            const response = await fetch(`/api/horoscope?sign=${sign.toLowerCase()}`); // <-- No full URL needed
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+            const data = await response.json();
+            setHoroscopeData(data);
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : "Failed to fetch horoscope";
+            setError(errorMessage);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleGetHoroscope = () => {
+    fetchHoroscope(sign);
+    };
+
+    // useEffects
     useEffect(() => {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
     }, [position]);
-
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -147,9 +182,10 @@ function Home() {
                 />
 
                 {showCatModal && (
-                    <div className="modal-overlay" onClick={() => setShowCatModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
-                    {/* if you click inside the modal, then setShowModal ISN'T set to false */}
-                    {/* onClick takes the event, and returns 'don't propogate this event' function */}
+                    <div className="modal-overlay" onClick={() => setShowCatModal(false)}>
+                        {/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
+                        {/* if you click inside the modal, then setShowModal ISN'T set to false */}
+                        {/* onClick takes the event, and returns 'don't propogate this event' function */}
                         <div className="modal" onClick={(e) => e.stopPropagation()}>
                             <div className="modal-header">
                                 <span>Question...</span>
@@ -242,6 +278,64 @@ function Home() {
                     </div>
                 )}
             </div>
+
+            {/* horoscope icon */}
+            <div className="desktop">
+                <DesktopIcon
+                    icon='src/assets/scandique.jpg'
+                    label="horoscope"
+                    x={50}
+                    y={235}
+                    onClick={() => setShowHoroscopeModal(true)}
+                    className=''
+                    imgClassName='horoscope-icon'
+                />
+
+                {showHoroscopeModal && (
+                    <div className="modal-overlay" onClick={() => setShowHoroscopeModal(false)}>
+                        <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <span>Your Horoscope</span>
+                            <button className='x-button' onClick={() => setShowHoroscopeModal(false)}>✕</button>
+                        </div>
+                        <div className="modal-body">
+                            <div className="horoscope-controls">
+                            <select 
+                                value={sign} 
+                                onChange={(e) => setSign(e.target.value)}
+                                className="horoscope-select"
+                            >
+                                {["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].map((sign) => (
+                                <option key={sign} value={sign}>
+                                    {sign.charAt(0).toUpperCase() + sign.slice(1)}
+                                </option>
+                                ))}
+                            </select>
+                            
+                            <button 
+                                onClick={handleGetHoroscope}
+                                className="horoscope-button"
+                                disabled={isLoading}
+                            >
+                                {isLoading ? "Loading..." : "Get Horoscope"}
+                            </button>
+                            </div>
+
+                            {error && <div className="error">{error}</div>}
+
+                            {horoscopeData && (
+                            <div className="horoscope-results">
+                                <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
+                                <p><strong>Date:</strong> {horoscopeData.data.date}</p>
+                                <p><strong>Horoscope Data:</strong> {horoscopeData.data.horoscope_data}</p>
+                            </div>
+                            )}
+                        </div>
+                        </div>
+                    </div>
+                    )}
+            </div>
+            {/* end horoscope */}
             
             {/* clippy */}
             <div className="desktop">

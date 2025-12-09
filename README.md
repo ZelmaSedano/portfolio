@@ -7,4 +7,4 @@
   2. start node server `npm start`
   3. starts Vite project `npm run dev`
 
-<img src="https://raw.githubusercontent.com/ZelmaSedano/portfolio/meow.png" width="200px" >
+<img src='/meow.png'>

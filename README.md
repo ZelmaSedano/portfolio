@@ -1,6 +1,4 @@
-
 # Welcome to Valentia's Vintage Portfolio!
-
 ## how to run:
 
   1. `npm install`

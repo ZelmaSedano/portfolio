@@ -267,6 +267,7 @@ nav ul li a {
   margin-left: 5px;
   display: flex;
 }
+
 nav ul li::first-letter {
   text-decoration: underline;
 }
@@ -274,6 +275,176 @@ nav ul li a p{
   margin-top: 3px;
   margin-bottom: 1px;
 }
+
+/* PORTFOLIO dropdown menu */
+
+.portfolio-link-wrapper {
+  color: black;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.5px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* Remove underline */
+  padding: 0;
+  /* need a solid height, otherwise it's WAY too tall */
+  height: 25px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.portfolio-link-wrapper img {
+  margin-top: 0px;
+}
+
+.portfolio-link-wrapper p {
+  color: black;
+  margin-top: 18px;
+}
+
+
+.dropdown-arrow {
+  color: black;
+}
+
+/* PORTFOLIO DROPDOWN FIXES */
+.portfolio-dropdown-container {
+  position: relative !important; /* Force relative positioning */
+}
+
+.portfolio-dropdown {
+  position: absolute;
+  top: 100% !important; /* Position below the button */
+  left: 0;
+  margin-top: 2px;
+  min-width: 220px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 
+    2px 2px 0px #000000,
+    inset 1px 1px 0px #ffffff; /* Classic Windows 98 inset */
+  z-index: 9999 !important; /* Highest z-index to appear above everything */
+  padding: 4px 0;
+  display: block !important; /* Force display */
+  visibility: visible !important; /* Force visibility */
+  opacity: 1 !important; /* Force opacity */
+}
+
+/* Make sure dropdown doesn't inherit any hidden styles */
+.portfolio-dropdown-container .portfolio-dropdown {
+  position: absolute !important;
+  display: block !important;
+}
+
+/* Ensure the dropdown items are properly styled */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  color: black;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #c0c0c0;
+  font-size: 14px;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background: #000080;
+  color: white;
+}
+
+.dropdown-item .dropdown-icon {
+  margin-right: 8px;
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+}
+
+.dropdown-divider {
+  height: 2px;
+  background: #808080;
+  margin: 4px 0;
+  border-top: 1px solid #ffffff;
+}
+
+/* FIX NAVBAR OVERFLOW - BE MORE SPECIFIC */
+.navbar ul {
+  /* Add this to prevent navbar from containing dropdown */
+  overflow: visible !important;
+}
+
+.navbar {
+  position: relative;
+  z-index: 100;
+  overflow: visible !important; /* Allow dropdown to overflow */
+}
+
+/* Fix the portfolio button specifically - REMOVE overflow: visible from .button */
+.portfolio-dropdown-container {
+  overflow: visible !important; /* Only for dropdown container */
+}
+
+/* REMOVE THIS - It's breaking button layout */
+/* .button {
+  overflow: visible !important;
+} */
+
+/* Ensure the portfolio button has proper height */
+.portfolio-dropdown-container .portfolio-link-wrapper {
+  position: relative;
+  z-index: 1;
+  height: 25px !important; /* Force height */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Fix the paragraph inside portfolio button */
+.portfolio-link-wrapper p {
+  color: black;
+
+  line-height: 1;
+}
+
+/* Remove any inherited positioning that might be causing issues */
+.portfolio-dropdown-container .portfolio-dropdown {
+  transform: none !important;
+  clip-path: none !important;
+  clip: auto !important;
+}
+
+/* Make sure no parent is clipping the dropdown */
+.window {
+  overflow: visible !important;
+}
+
+.content {
+  overflow: visible !important;
+}
+
+/* Add this if you have overflow hidden on body or root */
+body, #root {
+  overflow: visible !important;
+}
+
+/* Ensure dropdown appears above URL bar */
+.url-container {
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-dropdown {
+  z-index: 10000 !important; /* Even higher to ensure it's on top */
+}
+
 
 /************ entire window ***************/
 .window {

@@ -18,6 +18,7 @@ type HoroscopeData = {
 };
 
 function Home() {
+    const portfolioRef = useRef<HTMLLIElement>(null);
     const windowRef = useRef<HTMLDivElement | null>(null);
     const location = useLocation();
 
@@ -56,6 +57,10 @@ function Home() {
     const [showClippyYesModal, setShowClippyYesModal] = useState(false);
     const [showClippyNoModal, setShowClippyNoModal] = useState(false);
 
+    //portfolio dropdown state
+    const [isPortfolioDropdownOpen, setIsPortfolioDropdownOpen] = useState(false);
+
+    ///////////////////////////////////////////////////////////////////
 
     // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT
     const fetchHoroscope = async (sign: string) => {
@@ -76,10 +81,8 @@ function Home() {
         }
     };
 
-    const handleGetHoroscope = () => {
-    fetchHoroscope(sign);
-    };
 
+    ///////////////////////////////////////////////////////////////////
     // useEffects
     useEffect(() => {
         sessionStorage.setItem('windowPosition', JSON.stringify(position));
@@ -125,8 +128,36 @@ function Home() {
         };
     }, [location.pathname]);
 
+    useEffect(() => {
+        document.addEventListener('mousemove', handleNativeMouseMove);
+        document.addEventListener('mouseup', handleNativeMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleNativeMouseMove);
+            document.removeEventListener('mouseup', handleNativeMouseUp);
+        };
+    }, [isDragging, dragOffset]);
 
+    // portfolio dropdown
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (portfolioRef.current && !portfolioRef.current.contains(event.target as Node)) {
+            setIsPortfolioDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+
+    ///////////////////////////////////////////////////////////////////
     // event handler functions
+    const handleGetHoroscope = () => {
+        fetchHoroscope(sign);
+    };
+
     const handleMouseDown = (e: React.MouseEvent) => {
         if ((e.target as HTMLElement).closest('.blue-bar') && !(e.target as HTMLElement).closest('.x-button')) {
             const rect = windowRef.current?.getBoundingClientRect();
@@ -155,19 +186,11 @@ function Home() {
 
     const handleNativeMouseUp = () => setIsDragging(false);
 
-    useEffect(() => {
-        document.addEventListener('mousemove', handleNativeMouseMove);
-        document.addEventListener('mouseup', handleNativeMouseUp);
-        return () => {
-            document.removeEventListener('mousemove', handleNativeMouseMove);
-            document.removeEventListener('mouseup', handleNativeMouseUp);
-        };
-    }, [isDragging, dragOffset]);
-
 
     // toggle visibility
     const toggleWindow = () => setIsVisible(!isVisible);
 
+    ///////////////////////////////////////////////////////////////////
     return (
         <>
             {/* cat icon */}
@@ -455,12 +478,79 @@ function Home() {
                                         <p>Home</p>
                                     </Link>
                                 </li>
-                                <li className='button'>
-                                    <Link to="/portfolio">
+
+                                {/* dropdown menu */}
+                                <li 
+                                    ref={portfolioRef}
+                                    className='button portfolio-dropdown-container'
+                                >
+                                    <div 
+                                    className="portfolio-link-wrapper"
+                                    onClick={() => setIsPortfolioDropdownOpen(!isPortfolioDropdownOpen)} // Add this click handler
+                                    >
                                         <img src="/src/assets/painting.ico" className='paint-icon' alt='portfolio'/>
                                         <p>Portfolio</p>
-                                    </Link>
+                                        <span className="dropdown-arrow">▼</span>
+                                    </div>
+
+                                    {/* <Link to="/portfolio">
+                                        <img src="/src/assets/painting.ico" className='paint-icon' alt='portfolio'/>
+                                        <p>Portfolio</p>
+                                        <span className="dropdown-arrow">▼</span>
+                                    </Link> */}
+
+                                    {isPortfolioDropdownOpen && (
+                                    
+                                        <div className="portfolio-dropdown">
+                                        <Link 
+                                            to="/portfolio" 
+                                            className="dropdown-item"
+                                            onClick={() => setIsPortfolioDropdownOpen(false)}
+                                        >
+                                            <span className="dropdown-icon">📁</span>
+                                            <span>All Projects</span>
+                                        </Link>
+                                        <Link 
+                                            to="/portfolio?filter=web" 
+                                            className="dropdown-item"
+                                            onClick={() => setIsPortfolioDropdownOpen(false)}
+                                        >
+                                            <span className="dropdown-icon">🌐</span>
+                                            <span>Web Development</span>
+                                        </Link>
+                                        <Link 
+                                            to="/portfolio?filter=design" 
+                                            className="dropdown-item"
+                                            onClick={() => setIsPortfolioDropdownOpen(false)}
+                                        >
+                                            <span className="dropdown-icon">🎨</span>
+                                            <span>UI/UX Design</span>
+                                        </Link>
+                                        <Link 
+                                            to="/portfolio?filter=games" 
+                                            className="dropdown-item"
+                                            onClick={() => setIsPortfolioDropdownOpen(false)}
+                                        >
+                                            <span className="dropdown-icon">🎮</span>
+                                            <span>Game Projects</span>
+                                        </Link>
+                                        <div className="dropdown-divider"></div>
+                                        <Link 
+                                            to="/portfolio?filter=recent" 
+                                            className="dropdown-item"
+                                            onClick={() => setIsPortfolioDropdownOpen(false)}
+                                        >
+                                            <span className="dropdown-icon">🕐</span>
+                                            <span>Recent Work</span>
+                                        </Link>
+                                        </div>
+                                    )}
                                 </li>
+
+
+
+
+                                
                                 <li className='button'>
                                     <Link to="/resume">
                                         <img src="/src/assets/resume.png" className='resume-icon' alt='resume'></img>

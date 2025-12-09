@@ -437,7 +437,7 @@ function Home() {
                     <header>
                         <section className='blue-bar'>
                             <img src="/src/assets/connections.ico" className='icon' alt="icon"/>
-                            <section className='blue-bar-text'>DevScape - Valentia Sedano</section>
+                            <section className='blue-bar-text'>DevScape - Val Sedano</section>
 
                             <div className="button-container">
                                 <button className='x-button' onClick={toggleWindow}>✕</button>
@@ -489,7 +489,7 @@ function Home() {
                             <div className = 'url-bar-small-1'>Address</div>
                             <div className = 'url-bar-large'>
                                 <div className='dropdown-container'>
-                                    <div className='url-text'>http://www.geocities.com/valentia_is_best_dev</div>
+                                    <div className='url-text'>http://www.geocities.com/val_is_best_dev</div>
                                 </div>
                                 <button className='url-dropdown-button'>▼</button>
                             </div>
@@ -501,10 +501,10 @@ function Home() {
                     {/* window content */}
                     <div className='content'>
                         <div className='homepage-banners'>
-                            <img className='computer' src="/src/assets/computer-2.png" alt="evil_cat" />
+                            <img className='computer' src="/src/assets/computer_1.png" alt="evil_cat" />
                             <div className='inner-banner-text'>
-                                <p className='banner'>Valentia's Portolio</p>
-                                <p className='banner-1'>Nostalgia Design Expert</p>
+                                <p className='banner'>Val's Kewl Portfolio</p>
+                                <p className='banner-1'>Nostalgic RetroFuture Design</p>
                             </div>
                             <img className='computer' src="/src/assets/computer-2.png" alt="evil_cat" />
                         </div>

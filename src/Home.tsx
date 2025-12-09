@@ -49,7 +49,7 @@ function Home() {
     const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [sign, setSign] = useState('aries'); // Default sign
+    const [sign, setSign] = useState('aries');
 
     const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
     const [showClippyModal, setShowClippyModal] = useState(false);
@@ -174,7 +174,7 @@ function Home() {
             <div className="desktop">
                 {/* when you click the desktop icon, setShowModal is set to true */}
                 <DesktopIcon
-                    icon="/src/assets/cat.png"
+                    icon="/src/assets/cat_2.png"
                     label="meowdy"
                     x={50}
                     y={35}
@@ -255,7 +255,7 @@ function Home() {
             {/* scream icon */}
             <div className="desktop">
                 <DesktopIcon
-                    icon="/src/assets/scream.png"
+                    icon="/src/assets/scream_2.png"
                     label="RING RING"
                     x={50}
                     y={145}
@@ -285,7 +285,7 @@ function Home() {
                     icon='src/assets/scandique.jpg'
                     label="horoscope"
                     x={50}
-                    y={235}
+                    y={255}
                     onClick={() => setShowHoroscopeModal(true)}
                     className=''
                     imgClassName='horoscope-icon'

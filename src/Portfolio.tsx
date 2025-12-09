@@ -7,11 +7,16 @@ import './components/Taskbar.css'
 import DesktopIcon from './components/DesktopIcon';
 import './components/DesktopIcon.css';
 
+type HoroscopeData = {
+    data: {
+        date: string;
+        horoscope_data: string;
+    };
+};
 
 function Portfolio() {
     const windowRef = useRef<HTMLDivElement | null>(null)
     const location = useLocation();
-
 
     // states
     const [position, setPosition] = useState(() => {
@@ -35,9 +40,38 @@ function Portfolio() {
 
     const [showScreamModal, setShowScreamModal] = useState(false);
 
+    // horoscope API states
+    const [showHoroscopeModal, setShowHoroscopeModal] = useState(false);
+    const [horoscopeData, setHoroscopeData] = useState<HoroscopeData | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [sign, setSign] = useState('aries');
+
     const [clippyPosition, setClippyPosition] = useState({ x: 0, y: 0 });
     const [showClippyModal, setShowClippyModal] = useState(false);
 
+    // fetch - VITE WAS BLOCKING THIS FROM WORKING, REMEMBER TO UPDATE VITE.CONFIG NEXT
+    const fetchHoroscope = async (sign: string) => {
+        setIsLoading(true);
+        setError(null);
+        
+        try {
+            const response = await fetch(`/api/horoscope?sign=${sign.toLowerCase()}`); // <-- No full URL needed
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+            const data = await response.json();
+            setHoroscopeData(data);
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : "Failed to fetch horoscope";
+            setError(errorMessage);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleGetHoroscope = () => {
+    fetchHoroscope(sign);
+    };
 
     // save the state to sessionStorage
     useEffect(() => {
@@ -209,7 +243,7 @@ function Portfolio() {
                 </div>
             )}
         </div>
-        {/* define what showYesModal is */}
+            {/* define what showYesModal is */}
             {showYesModal && (
                 <div className="modal-overlay" onClick={() => setShowYesModal(false)}>
                     <div className="modal cat-response-modal" onClick={(e) => e.stopPropagation()}>
@@ -243,80 +277,138 @@ function Portfolio() {
             )}
 
         {/* scream icon */}
-            <div className="desktop">
-                <DesktopIcon
-                    icon="/src/assets/scream.png"
-                    label="RING RING"
-                    x={50}
-                    y={145}
-                    onClick={() => setShowScreamModal(true)}
-                />
+        <div className="desktop">
+            <DesktopIcon
+                icon="/src/assets/scream.png"
+                label="RING RING"
+                x={50}
+                y={145}
+                onClick={() => setShowScreamModal(true)}
+            />
 
-                {showScreamModal && (
-                    <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
+            {showScreamModal && (
+                <div className="modal-overlay" onClick={() => setShowScreamModal(false)}>
 
+                <div className="modal" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-header">
+                        <span>I know what you did last summer</span>
+                        <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                    </div>
+
+                    <div className="modal-body">
+                        <img src='/src/assets/wassup.gif' className='gif'></img>
+                    </div>
+                    </div>
+                </div>
+            )}
+        </div>
+
+
+        {/* horoscope icon */}
+        <div className="desktop">
+            <DesktopIcon
+                icon='src/assets/scandique.jpg'
+                label="horoscope"
+                x={50}
+                y={255}
+                onClick={() => setShowHoroscopeModal(true)}
+                className=''
+                imgClassName='horoscope-icon'
+            />
+
+            {showHoroscopeModal && (
+                <div className="modal-overlay" onClick={() => setShowHoroscopeModal(false)}>
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-header">
+                        <span>Your Horoscope</span>
+                        <button className='x-button' onClick={() => setShowHoroscopeModal(false)}>✕</button>
+                    </div>
+                    <div className="modal-body">
+                        <div className="horoscope-controls">
+                        <select 
+                            value={sign} 
+                            onChange={(e) => setSign(e.target.value)}
+                            className="horoscope-select"
+                        >
+                            {["aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"].map((sign) => (
+                            <option key={sign} value={sign}>
+                                {sign.charAt(0).toUpperCase() + sign.slice(1)}
+                            </option>
+                            ))}
+                        </select>
+                        
+                        <button 
+                            onClick={handleGetHoroscope}
+                            className="horoscope-button"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? "Loading..." : "Get Horoscope"}
+                        </button>
+                        </div>
+
+                        {error && <div className="error">{error}</div>}
+
+                        {horoscopeData && (
+                        <div className="horoscope-results">
+                            <h3>{sign.charAt(0).toUpperCase() + sign.slice(1)}</h3>
+                            <p><strong>Date:</strong> {horoscopeData.data.date}</p>
+                            <p><strong>Horoscope Data:</strong> {horoscopeData.data.horoscope_data}</p>
+                        </div>
+                        )}
+                    </div>
+                    </div>
+                </div>
+                )}
+        </div>
+        {/* end horoscope */}
+        {/* clippy */}
+        <div className="desktop">
+            {/* when you click the desktop icon, setShowModal is set to true */}
+            <DesktopIcon
+                icon="/src/assets/mad_clippy.png"
+                label="click me"
+                x={clippyPosition.x}
+                y={clippyPosition.y}
+                onClick={() => setShowCatModal(true)}
+                className='clippy'
+            />
+
+            {showClippyModal && (
+                <div className="modal-overlay" onClick={() => setShowClippyModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
+                {/* if you click inside the modal, then setShowModal ISN'T set to false */}
+                {/* onClick takes the event, and returns 'don't propogate this event' function */}
                     <div className="modal" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                            <span>I know what you did last summer</span>
-                            <button className='x-button' onClick={() => setShowScreamModal(false)}>✕</button>
+                            <span>Hi, I'm ANGRY CLIPPY</span>
+                            <button className='x-button' onClick={() => setShowClippyModal(false)}>✕</button>
                         </div>
-
-                        <div className="modal-body">
-                            <img src='/src/assets/wassup.gif' className='gif'></img>
-                        </div>
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            {/* clippy */}
-            <div className="desktop">
-                {/* when you click the desktop icon, setShowModal is set to true */}
-                <DesktopIcon
-                    icon="/src/assets/mad_clippy.png"
-                    label="click me"
-                    x={clippyPosition.x}
-                    y={clippyPosition.y}
-                    onClick={() => setShowCatModal(true)}
-                    className='clippy'
-                />
-
-                {showClippyModal && (
-                    <div className="modal-overlay" onClick={() => setShowClippyModal(false)}>{/* when the user clicks again, setShowModal is set to false (modal isn't shown) */}
-                    {/* if you click inside the modal, then setShowModal ISN'T set to false */}
-                    {/* onClick takes the event, and returns 'don't propogate this event' function */}
-                        <div className="modal" onClick={(e) => e.stopPropagation()}>
-                            <div className="modal-header">
-                                <span>Hi, I'm ANGRY CLIPPY</span>
-                                <button className='x-button' onClick={() => setShowClippyModal(false)}>✕</button>
-                            </div>
-                            {/* body of modal */}
-                            <div className="modal-body">Are you kidding me??</div>
-                            {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
-                            <div className='cat-buttons'>
-                                <button 
+                        {/* body of modal */}
+                        <div className="modal-body">Are you kidding me??</div>
+                        {/* CHALLENGE: add two buttons to this modal, 'yes', and 'I love them!', and return a message to the user based on their selection */}
+                        <div className='cat-buttons'>
+                            <button 
+                            className='cat-button'
+                            onClick={() => {
+                                setShowClippyModal(false);
+                                setShowYesModal(true);
+                            }}
+                            >
+                                Yes
+                            </button>
+                            <button 
                                 className='cat-button'
                                 onClick={() => {
                                     setShowClippyModal(false);
-                                    setShowYesModal(true);
+                                    setShowLoveModal(true);
                                 }}
-                                >
-                                    Yes
-                                </button>
-                                <button 
-                                    className='cat-button'
-                                    onClick={() => {
-                                        setShowClippyModal(false);
-                                        setShowLoveModal(true);
-                                    }}
-                                >
-                                    No
-                                </button>
-                            </div>
+                            >
+                                No
+                            </button>
                         </div>
                     </div>
-                )}
-            </div>
+                </div>
+            )}
+        </div>
 
         {isVisible && (
             <div 

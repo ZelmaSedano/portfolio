@@ -279,7 +279,7 @@ function Portfolio() {
         {/* scream icon */}
         <div className="desktop">
             <DesktopIcon
-                icon="/src/assets/scream.png"
+                icon="/src/assets/scream_2.png"
                 label="RING RING"
                 x={50}
                 y={145}

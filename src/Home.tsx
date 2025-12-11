@@ -139,7 +139,7 @@ function Home() {
 
     // portfolio dropdown
     const handlePortfolioClick = (e: React.MouseEvent) => {
-        // fixes window drag breaking
+        // fixes window drag breaking, if you don't include this the blue-bar drag 
         e.stopPropagation();
         setIsPortfolioDropdownOpen(!isPortfolioDropdownOpen);
     };
@@ -549,9 +549,8 @@ function Home() {
                                                 <span className="dropdown-icon">🎮</span>
                                                 <span>UX/UI Design</span>
                                             </Link>
-                                            <div className="dropdown-divider"></div>
                                             <Link 
-                                                to="/p"
+                                                to="/"
                                                 className="dropdown-item"
                                                 onClick={() => setIsPortfolioDropdownOpen(false)}
                                             >

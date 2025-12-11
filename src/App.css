@@ -277,7 +277,6 @@ nav ul li a p{
 }
 
 /* PORTFOLIO dropdown menu */
-
 .portfolio-link-wrapper {
   color: black;
   font-weight: 400;
@@ -297,28 +296,26 @@ nav ul li a p{
 .portfolio-link-wrapper img {
   margin-top: 0px;
 }
-
 .portfolio-link-wrapper p {
   color: black;
   margin-top: 18px;
 }
 
-
 .dropdown-arrow {
   color: black;
 }
 
-/* Add these styles to your existing CSS */
-
+/* PARENT to dropdown */
 .portfolio-dropdown-container {
-  position: relative; /* This is important for positioning the dropdown */
+  position: relative;
 }
 
 .portfolio-dropdown {
+  /* remember, removes from flow */
   position: absolute;
-  top: 100%; /* Position directly below the parent */
+  top: 100%;
   left: 0;
-  z-index: 1000; /* Ensure it appears above everything */
+  z-index: 1000;
   background-color: #c3c3c3;
   border: 1px solid #000;
   box-shadow: 2px 2px 0px #000;
@@ -332,7 +329,6 @@ nav ul li a p{
   padding: 8px 12px;
   text-decoration: none;
   color: black;
-  border-bottom: 1px solid #808080;
   cursor: pointer;
 }
 
@@ -352,9 +348,9 @@ nav ul li a p{
   margin: 4px 0;
 }
 
-/* Prevent dropdown from being draggable */
+/* helps fix drag issue that dropdown interferes with*/
 .portfolio-dropdown * {
-  pointer-events: auto; /* Ensure dropdown items are clickable */
+  pointer-events: auto; 
 }
 
 
